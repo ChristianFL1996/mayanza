@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel Paraíso</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: url('hotel-header.jpg') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    section {
+      padding: 40px;
+      text-align: center;
+    }
+    section img {
+      width: 300px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    #mensaje {
+      font-size: 18px;
+      color: #444;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hotel Paraíso</h1>
+    <p>Tu lugar ideal para descansar</p>
+  </header>
+
+  <nav>
+    <a href="#habitaciones">Habitaciones</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="habitaciones">
+    <h2>Habitaciones</h2>
+    <img src="habitacion1.jpg" alt="Habitación estándar">
+    <img src="habitacion2.jpg" alt="Suite de lujo">
+  </section>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <p>✔ Piscina</p>
+    <p>✔ Restaurante gourmet</p>
+    <p>✔ Spa y masajes</p>
+    <p>✔ Wi-Fi gratuito</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>📍 Dirección: Calle Principal #123, Ciudad</p>
+    <p>📞 Teléfono: +502 1234 5678</p>
+    <p>✉ Email: reservas@hotelparaiso.com</p>
+    <button onclick="mostrarMensaje()">Ver mensaje de bienvenida</button>
+    <div id="mensaje"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Hotel Paraíso - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    function mostrarMensaje() {
+      const mensaje = document.getElementById("mensaje");
+      const frases = [
+        "Bienvenido a Hotel Paraíso, donde tus sueños descansan.",
+        "Disfruta de nuestras habitaciones con vista al mar.",
+        "Relájate en nuestro spa y déjate consentir.",
+        "Tu comodidad es nuestra prioridad."
+      ];
+      const aleatorio = Math.floor(Math.random() * frases.length);
+      mensaje.textContent = frases[aleatorio];
+    }
+  </script>
+</body>
+</html>
