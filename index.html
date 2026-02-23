@@ -2,79 +2,176 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Hotel Paraíso</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Paraíso | Lujo y Descanso</title>
   <style>
+    /* Reset y Estilos Globales */
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
       padding: 0;
+      color: #333;
+      line-height: 1.6;
     }
-   header {
-  /* He agregado un gradiente oscuro para que el texto blanco sea legible */
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-              url('https://files.catbox.moe/p97y87.jpg') no-repeat center center;
-  
-  background-size: cover;
-  color: white;
-  text-align: center;
-  
-  /* Usamos min-height para que se vea imponente en cualquier pantalla */
-  min-height: 80vh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  padding: 20px;
-}
+
+    /* Navegación Profesional */
     nav {
-      background: #333;
-      padding: 10px;
+      background: rgba(44, 62, 80, 0.95);
+      padding: 15px 0;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     nav a {
       color: white;
-      margin: 0 15px;
+      margin: 0 20px;
       text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
     }
-    section {
-      padding: 40px;
-      text-align: center;
+    nav a:hover {
+      color: #3498db;
     }
-    section img {
-      width: 300px;
-      border-radius: 10px;
-      margin: 10px;
-    }
-    footer {
-      background: #333;
+
+    /* Header de Alta Categoría */
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://files.catbox.moe/p97y87.jpg') no-repeat center center;
+      background-size: cover;
       color: white;
       text-align: center;
+      min-height: 85vh; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
     }
-    #mensaje {
-      font-size: 18px;
-      color: #444;
+    header h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+    }
+    header p {
+      font-size: 1.2rem;
+      font-style: italic;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    /* Secciones */
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    h2::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: #3498db;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Galería de Habitaciones */
+    .habitaciones-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 350px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .card-info {
+      padding: 20px;
+    }
+
+    /* Servicios con Iconos */
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
       margin-top: 20px;
     }
+    .servicio-item {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    /* Botón y Contacto */
+    #contacto {
+      background: #f4f7f6;
+      max-width: 100%;
+    }
     button {
-      padding: 10px 20px;
-      background: #0077cc;
+      padding: 15px 35px;
+      background: #2c3e50;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-transform: uppercase;
       cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 20px;
     }
     button:hover {
-      background: #005fa3;
+      background: #3498db;
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+    #mensaje {
+      height: 30px;
+      margin-top: 25px;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: #bdc3c7;
+      text-align: center;
+      padding: 40px 20px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hotel Paraíso</h1>
-    <p>Tu lugar ideal para descansar</p>
-  </header>
 
   <nav>
     <a href="#habitaciones">Habitaciones</a>
@@ -82,48 +179,71 @@
     <a href="#contacto">Contacto</a>
   </nav>
 
+  <header>
+    <h1>Hotel Paraíso</h1>
+    <p>La elegancia del descanso en el corazón de la ciudad</p>
+  </header>
+
   <section id="habitaciones">
-    <h2>Habitaciones</h2>
-    <img src="habitacion1.jpg" alt="Habitación estándar">
-    <img src="habitacion2.jpg" alt="Suite de lujo">
+    <h2>Nuestras Habitaciones</h2>
+    <div class="habitaciones-container">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80" alt="Habitación Estándar">
+        <div class="card-info">
+          <h3>Suite Estándar</h3>
+          <p>Confort y calidez para una estancia perfecta.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Suite de Lujo">
+        <div class="card-info">
+          <h3>Master Suite</h3>
+          <p>Lujo inigualable con vistas panorámicas.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="servicios">
-    <h2>Servicios</h2>
-    <p>✔ Piscina</p>
-    <p>✔ Restaurante gourmet</p>
-    <p>✔ Spa y masajes</p>
-    <p>✔ Wi-Fi gratuito</p>
+    <h2>Servicios Exclusivos</h2>
+    <div class="servicios-grid">
+      <div class="servicio-item">🏊 Piscina Climatizada</div>
+      <div class="servicio-item">🍽 Restaurante Gourmet</div>
+      <div class="servicio-item">💆 Spa & Wellness</div>
+      <div class="servicio-item">📶 Wi-Fi de Alta Velocidad</div>
+    </div>
   </section>
 
   <section id="contacto">
-    <h2>Contacto</h2>
-    <p>📍 Dirección: Calle Principal #123, Ciudad</p>
-    <p>📞 Teléfono: +502 1234 5678</p>
-    <p>✉ Email: reservas@hotelparaiso.com</p>
-    <button onclick="mostrarMensaje()">Ver mensaje de bienvenida</button>
+    <h2>Reserva con Nosotros</h2>
+    <p>📍 Calle Principal #123, Ciudad de Guatemala</p>
+    <p>📞 +502 1234 5678 | ✉ reservas@hotelparaiso.com</p>
+    <button onclick="mostrarMensaje()">Consultar Disponibilidad</button>
     <div id="mensaje"></div>
   </section>
 
   <footer>
-    <p>&copy; 2026 Hotel Paraíso - Todos los derechos reservados</p>
+    <p>&copy; 2026 Hotel Paraíso. Diseñado para ofrecer la mejor experiencia.</p>
   </footer>
 
   <script>
     function mostrarMensaje() {
       const mensaje = document.getElementById("mensaje");
       const frases = [
-        "Bienvenido a Hotel Paraíso, donde tus sueños descansan.",
-        "Disfruta de nuestras habitaciones con vista al mar.",
-        "Relájate en nuestro spa y déjate consentir.",
-        "Tu comodidad es nuestra prioridad."
+        "¡Excelente elección! Tenemos una suite esperando por ti.",
+        "Bienvenido a la exclusividad de Hotel Paraíso.",
+        "Relájate, nosotros nos encargamos del resto.",
+        "Conectando tus sueños con la realidad."
       ];
       const aleatorio = Math.floor(Math.random() * frases.length);
-      mensaje.textContent = frases[aleatorio];
+      mensaje.style.opacity = 0;
+      setTimeout(() => {
+        mensaje.textContent = frases[aleatorio];
+        mensaje.style.opacity = 1;
+        mensaje.style.transition = "opacity 0.5s";
+      }, 200);
     }
   </script>
 </body>
-
 </html>
-
 
