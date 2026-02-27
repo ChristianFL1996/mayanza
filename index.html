@@ -3,254 +3,2227 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel Paraíso | Lujo y Descanso</title>
+  <title>Mayanza Grand Hotels | El Latido de la Eterna Primavera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset y Estilos Globales */
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      line-height: 1.6;
+    /* =============================================
+       VARIABLES CSS - PALETA MAYANZA
+       ¿Qué es esto? Son "variables" = como cajitas
+       con nombre donde guardamos valores (colores,
+       tamaños) para reutilizarlos fácilmente.
+    ============================================= */
+    :root {
+      --dorado:        #a68031;
+      --dorado-claro:  #ac8400;
+      --dorado-sombra: #9d7639;
+      --amarillo-maiz: #c47d00;
+      --rojo-carmesi:  #cb3534;
+      --azul-profundo: #435e8c;
+      --verde-quetzal: #357e4e;
+      --violeta:       #7f4eaa;
+
+      --crema:         #f5efe6;
+      --oscuro:        #1a1208;
+      --oscuro-medio:  #2a1f0d;
+      --texto-claro:   #f0e8d5;
+
+      --fuente-titulo: 'Cinzel', serif;
+      --fuente-elegante: 'Cormorant Garamond', serif;
+      --fuente-cuerpo: 'Jost', sans-serif;
+
+      --transicion: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    /* Navegación Profesional */
-    nav {
-      background: rgba(44, 62, 80, 0.95);
-      padding: 15px 0;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* =============================================
+       RESET Y BASE
+       * = aplica a TODOS los elementos
+       box-sizing: border-box = que el padding NO
+       agrande el elemento (comportamiento natural)
+    ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    nav a {
-      color: white;
-      margin: 0 20px;
+
+    html {
+      scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en enlaces */
+    }
+
+    body {
+      font-family: var(--fuente-cuerpo);
+      background-color: var(--oscuro);
+      color: var(--texto-claro);
+      overflow-x: hidden; /* Evita scroll horizontal no deseado */
+      cursor: default;
+    }
+
+    /* Scrollbar personalizada para Chrome/Edge */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--oscuro); }
+    ::-webkit-scrollbar-thumb { background: var(--dorado); border-radius: 3px; }
+
+    /* =============================================
+       PRELOADER - Pantalla de carga inicial
+       Se muestra mientras la página carga,
+       luego se oculta con JavaScript
+    ============================================= */
+    #preloader {
+      position: fixed;        /* Fijo en pantalla, encima de todo */
+      inset: 0;               /* top:0, right:0, bottom:0, left:0 */
+      background: var(--oscuro);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;          /* Número muy alto = encima de todo */
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #preloader.oculto {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-glifo {
+      width: 80px;
+      height: 80px;
+      border: 2px solid rgba(166,128,49,0.2);
+      border-top-color: var(--dorado);
+      border-radius: 50%;      /* Círculo */
+      animation: girar 1s linear infinite; /* Gira sin parar */
+    }
+    .loader-texto {
+      font-family: var(--fuente-titulo);
+      font-size: 0.75rem;
+      letter-spacing: 6px;
+      color: var(--dorado);
+      margin-top: 20px;
+      opacity: 0.7;
+    }
+    @keyframes girar {
+      to { transform: rotate(360deg); }
+    }
+
+    /* =============================================
+       BARRA DE NAVEGACIÓN (nav)
+       position: fixed = se queda visible siempre
+       arriba aunque el usuario haga scroll
+    ============================================= */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 22px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transicion);
+    }
+    /* Clase que se agrega con JS cuando se hace scroll */
+    nav.scrolled {
+      background: rgba(26, 18, 8, 0.97);
+      backdrop-filter: blur(10px);
+      padding: 14px 60px;
+      border-bottom: 1px solid rgba(166,128,49,0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      font-weight: 600;
+    }
+    .nav-logo img {
+      height: 44px;
+      filter: drop-shadow(0 0 8px rgba(166,128,49,0.5));
+    }
+    .nav-logo-texto {
+      font-family: var(--fuente-titulo);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--dorado);
       text-transform: uppercase;
-      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none; /* Quita los puntos de la lista */
+    }
+    .nav-links a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      position: relative;
+      transition: var(--transicion);
+    }
+    /* Línea decorativa bajo cada link al pasar el mouse */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--dorado);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--dorado); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-reserva {
+      background: transparent;
+      border: 1px solid var(--dorado);
+      color: var(--dorado) !important;
+      padding: 8px 24px;
+      font-size: 0.65rem !important;
+      letter-spacing: 2px;
+      transition: var(--transicion) !important;
+    }
+    .nav-reserva:hover {
+      background: var(--dorado) !important;
+      color: var(--oscuro) !important;
+    }
+
+    /* Menú hamburguesa para móviles - oculto por defecto */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 1px;
+      background: var(--dorado);
+      transition: var(--transicion);
+    }
+
+    /* =============================================
+       HERO - La sección principal / portada
+       min-height: 100vh = al menos toda la pantalla
+    ============================================= */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Slider de imágenes de fondo */
+    .hero-slider {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      /* Ken Burns effect: animación de zoom lento */
+      transform: scale(1.08);
+      transition: opacity 1.5s ease, transform 8s ease;
+    }
+    .hero-slide.activo {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Las imágenes del hotel del usuario */
+    .slide-1 { background-image: url('https://i.ibb.co/dssh3x2v/hotel.png'); }
+
+    /* Overlay oscuro encima de la imagen para que el texto se lea */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(26,18,8,0.75) 0%,
+        rgba(26,18,8,0.35) 50%,
+        rgba(26,18,8,0.65) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Patrón maya decorativo semitransparente */
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a68031' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none; /* No interfiere con clics */
+    }
+
+    .hero-contenido {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 20px;
+      max-width: 900px;
+    }
+
+    .hero-pretitulo {
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.65rem;
+      letter-spacing: 8px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: aparecer-arriba 1s ease 0.5s forwards;
+    }
+
+    .hero-titulo {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 6px;
+      color: var(--crema);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: aparecer-arriba 1s ease 0.8s forwards;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+
+    .hero-titulo span {
+      /* Fondo con gradiente aplicado al texto (técnica CSS avanzada) */
+      background: linear-gradient(135deg, var(--dorado), var(--amarillo-maiz), var(--dorado));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hero-subtitulo {
+      font-family: var(--fuente-elegante);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: rgba(240,232,213,0.8);
+      margin-top: 20px;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: aparecer-arriba 1s ease 1.1s forwards;
+    }
+
+    .hero-separador {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 36px auto;
+      opacity: 0;
+      animation: aparecer-arriba 1s ease 1.4s forwards;
+    }
+    .hero-separador::before,
+    .hero-separador::after {
+      content: '';
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--dorado));
+    }
+    .hero-separador::after {
+      background: linear-gradient(to left, transparent, var(--dorado));
+    }
+    .hero-glifo {
+      font-size: 1.2rem;
+      color: var(--dorado);
+    }
+
+    .hero-botones {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: aparecer-arriba 1s ease 1.7s forwards;
+    }
+
+    /* Botón principal lleno */
+    .btn-primario {
+      display: inline-block;
+      padding: 16px 44px;
+      background: var(--dorado);
+      color: var(--oscuro);
+      text-decoration: none;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: var(--transicion);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      /* clip-path = recorta la forma del elemento, aquí crea un paralelogramo */
+    }
+    .btn-primario:hover {
+      background: var(--amarillo-maiz);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(166,128,49,0.4);
+    }
+
+    /* Botón secundario solo con borde */
+    .btn-secundario {
+      display: inline-block;
+      padding: 16px 44px;
+      background: transparent;
+      color: var(--crema);
+      text-decoration: none;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid rgba(240,232,213,0.4);
+      cursor: pointer;
+      transition: var(--transicion);
+    }
+    .btn-secundario:hover {
+      border-color: var(--dorado);
+      color: var(--dorado);
+    }
+
+    /* Indicador de scroll animado */
+    .scroll-indicador {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: aparecer-arriba 1s ease 2s forwards;
+    }
+    .scroll-texto {
+      font-size: 0.55rem;
+      letter-spacing: 4px;
+      color: rgba(240,232,213,0.5);
+      text-transform: uppercase;
+    }
+    .scroll-linea {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--dorado), transparent);
+      animation: pulso-linea 2s ease infinite;
+    }
+    @keyframes pulso-linea {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* Animación de entrada desde abajo */
+    @keyframes aparecer-arriba {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Puntos del slider hero */
+    .hero-dots {
+      position: absolute;
+      bottom: 40px;
+      right: 60px;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+    }
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(166,128,49,0.4);
+      cursor: pointer;
+      transition: var(--transicion);
+    }
+    .hero-dot.activo {
+      background: var(--dorado);
+      width: 24px;
+      border-radius: 3px;
+    }
+
+    /* =============================================
+       FRANJA DE RECONOCIMIENTOS
+       Separador elegante tipo "awards strip"
+    ============================================= */
+    .franja-reconocimientos {
+      background: linear-gradient(135deg, var(--oscuro-medio), #1e1506);
+      border-top: 1px solid rgba(166,128,49,0.2);
+      border-bottom: 1px solid rgba(166,128,49,0.2);
+      padding: 20px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      overflow: hidden;
+    }
+    .reconocimiento-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .reconocimiento-item:hover { opacity: 1; }
+    .reconocimiento-icono { font-size: 1.4rem; }
+    .reconocimiento-texto {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dorado);
+    }
+
+    /* =============================================
+       SECCIONES GENERALES
+       max-width = ancho máximo del contenido
+       margin: 0 auto = centrar horizontalmente
+    ============================================= */
+    .seccion {
+      padding: 120px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .seccion-completa {
+      padding: 120px 60px;
+    }
+
+    /* Etiqueta pequeña de categoría encima del título */
+    .seccion-etiqueta {
+      font-size: 0.6rem;
+      letter-spacing: 5px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* Títulos de sección */
+    .seccion-titulo {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: 3px;
+      line-height: 1.1;
+      color: var(--crema);
+    }
+
+    /* Línea dorada decorativa bajo títulos */
+    .linea-dorada {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, var(--dorado), var(--amarillo-maiz));
+      margin: 24px 0;
+    }
+    .linea-dorada.centrada { margin: 24px auto; }
+
+    .seccion-descripcion {
+      font-family: var(--fuente-elegante);
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: rgba(240,232,213,0.7);
+      max-width: 600px;
+    }
+
+    /* =============================================
+       HISTORIA / ABOUT - Layout de dos columnas
+       display: grid = sistema de cuadrícula CSS
+       grid-template-columns: define cuántas columnas
+       y qué tamaño tiene cada una
+    ============================================= */
+    #historia {
+      background: var(--oscuro);
+    }
+    .historia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+      gap: 80px;
+      align-items: center;
+    }
+
+    .historia-imagen-wrapper {
+      position: relative;
+    }
+    .historia-imagen-principal {
+      width: 100%;
+      height: 600px;
+      object-fit: cover; /* La imagen llena el espacio sin deformarse */
+      display: block;
+    }
+    /* Marco dorado decorativo con pseudo-elemento */
+    .historia-imagen-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid rgba(166,128,49,0.3);
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Tarjeta de estadística flotante sobre la imagen */
+    .historia-stat {
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      background: var(--dorado);
+      color: var(--oscuro);
+      padding: 28px 36px;
+      text-align: center;
+      z-index: 2;
+    }
+    .historia-stat-numero {
+      font-family: var(--fuente-titulo);
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .historia-stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .historia-contenido { padding: 20px 0; }
+    .historia-cita {
+      font-family: var(--fuente-elegante);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--dorado);
+      line-height: 1.4;
+      margin: 32px 0;
+      padding-left: 24px;
+      border-left: 2px solid var(--dorado);
+    }
+
+    /* Pestañas: Misión / Visión / Historia */
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(166,128,49,0.2);
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: rgba(240,232,213,0.4);
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: var(--transicion);
+      margin-bottom: -1px;
+    }
+    .tab-btn.activo {
+      color: var(--dorado);
+      border-bottom-color: var(--dorado);
+    }
+    .tab-contenido { display: none; }
+    .tab-contenido.activo { display: block; }
+
+    /* =============================================
+       HABITACIONES - Grid de tarjetas
+    ============================================= */
+    #habitaciones {
+      background: linear-gradient(180deg, var(--oscuro) 0%, #0d0b05 100%);
+    }
+    .habitaciones-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    /* Grid de tarjetas: se adapta automáticamente */
+    .habitaciones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2px; /* Separación mínima para efecto de mosaico */
+    }
+
+    .hab-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      /* aspect-ratio = proporción fija ancho:alto */
+      aspect-ratio: 4/5;
+    }
+    /* Primera tarjeta más grande (ocupa 2 filas) */
+    .hab-card:first-child {
+      grid-row: span 1;
+      aspect-ratio: 4/3;
+    }
+
+    .hab-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+      display: block;
+    }
+    .hab-card:hover img {
+      transform: scale(1.08); /* Zoom suave al pasar el mouse */
+    }
+
+    /* Overlay gradiente sobre cada tarjeta */
+    .hab-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,18,8,0.95) 0%, transparent 60%);
+      transition: var(--transicion);
+    }
+    .hab-card:hover .hab-overlay {
+      background: linear-gradient(to top, rgba(26,18,8,0.97) 0%, rgba(26,18,8,0.3) 100%);
+    }
+
+    .hab-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px;
+      transform: translateY(10px);
+      transition: var(--transicion);
+    }
+    .hab-card:hover .hab-info { transform: translateY(0); }
+
+    .hab-categoria {
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hab-nombre {
+      font-family: var(--fuente-titulo);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--crema);
+      letter-spacing: 2px;
+    }
+    .hab-descripcion {
+      font-family: var(--fuente-elegante);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(240,232,213,0.7);
+      margin: 8px 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .hab-card:hover .hab-descripcion { max-height: 60px; }
+
+    .hab-precio {
+      font-family: var(--fuente-elegante);
+      font-size: 1.2rem;
+      color: var(--dorado);
+    }
+    .hab-precio span {
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      color: rgba(240,232,213,0.5);
+      font-style: italic;
+    }
+
+    /* =============================================
+       EXPERIENCIAS / SERVICIOS
+    ============================================= */
+    #experiencias {
+      background: var(--oscuro-medio);
+      position: relative;
+    }
+    #experiencias::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a68031' fill-opacity='0.03'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .exp-contenedor {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 70px;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(166,128,49,0.1);
+    }
+
+    .exp-item {
+      background: var(--oscuro-medio);
+      padding: 50px 40px;
+      text-align: center;
+      transition: var(--transicion);
+      position: relative;
+      overflow: hidden;
+    }
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(to top, rgba(166,128,49,0.08), transparent);
+      transition: height 0.4s ease;
+    }
+    .exp-item:hover::before { height: 100%; }
+    .exp-item:hover { transform: translateY(-4px); }
+
+    .exp-icono {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .exp-nombre {
+      font-family: var(--fuente-titulo);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      color: var(--crema);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .exp-desc {
+      font-family: var(--fuente-elegante);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(240,232,213,0.55);
+      line-height: 1.7;
+    }
+
+    /* =============================================
+       GALERÍA - Mosaico de imágenes
+    ============================================= */
+    #galeria {
+      background: var(--oscuro);
+      padding: 0;
+    }
+    .galeria-titulo-wrap {
+      text-align: center;
+      padding: 80px 60px 50px;
+    }
+
+    /* Mosaico CSS Grid con celdas de distintos tamaños */
+    .galeria-mosaic {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 280px);
+      gap: 3px;
+    }
+    .galeria-item {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    /* Posicionamiento especial para crear mosaico no uniforme */
+    .galeria-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .galeria-item:nth-child(4) { grid-column: span 2; }
+    .galeria-item:nth-child(7) { grid-column: span 2; }
+
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .galeria-item:hover img { transform: scale(1.1); }
+
+    /* Overlay al pasar mouse en galería */
+    .galeria-item::after {
+      content: '✦';
+      position: absolute;
+      inset: 0;
+      background: rgba(166,128,49,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--dorado);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .galeria-item:hover::after { opacity: 1; }
+
+    /* =============================================
+       SECCIÓN MAPA Y CONTACTO
+    ============================================= */
+    #contacto {
+      background: linear-gradient(135deg, #0d0b05 0%, var(--oscuro-medio) 100%);
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contacto-info-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(166,128,49,0.15);
+    }
+    .contacto-info-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .contacto-icono-wrap {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(166,128,49,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0; /* No se comprime aunque el contenedor sea pequeño */
+      color: var(--dorado);
+    }
+    .contacto-label {
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .contacto-valor {
+      font-family: var(--fuente-elegante);
+      font-size: 1.1rem;
+      color: var(--crema);
+      line-height: 1.6;
+    }
+    .contacto-valor a {
+      color: var(--crema);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contacto-valor a:hover { color: var(--dorado); }
+
+    /* Botón de WhatsApp */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 16px 36px;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 16px;
+      transition: var(--transicion);
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37,211,102,0.3);
+    }
+
+    /* Formulario de contacto */
+    .form-grupo {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: rgba(166,128,49,0.06);
+      border: 1px solid rgba(166,128,49,0.2);
+      border-radius: 0;
+      color: var(--crema);
+      padding: 14px 18px;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--dorado);
+    }
+    .form-textarea { height: 120px; resize: vertical; }
+    /* Estilo del select nativo */
+    .form-select { appearance: none; cursor: pointer; }
+
+    .form-fila {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* =============================================
+       MAPA DE GOOGLE
+    ============================================= */
+    .mapa-wrapper {
+      width: 100%;
+      height: 400px;
+      border: 1px solid rgba(166,128,49,0.2);
+      overflow: hidden;
+      margin-top: 20px;
+      position: relative;
+    }
+    .mapa-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      /* filter: grayscale y sepia para que el mapa combine con la estética oscura */
+      filter: grayscale(40%) sepia(30%) brightness(0.8);
+      transition: filter 0.3s;
+    }
+    .mapa-wrapper:hover iframe {
+      filter: grayscale(0%) sepia(10%) brightness(0.9);
+    }
+    .mapa-label {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* =============================================
+       BANNER CTA (Call to Action) - Llamada a acción
+       Sección para animar al usuario a reservar
+    ============================================= */
+    #cta {
+      position: relative;
+      padding: 140px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(26,18,8,0.85), rgba(26,18,8,0.85)),
+                  url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80') center/cover;
+    }
+    .cta-contenido {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .cta-titulo {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 400;
+      letter-spacing: 4px;
+      color: var(--crema);
+      margin-bottom: 20px;
+    }
+    .cta-descripcion {
+      font-family: var(--fuente-elegante);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(240,232,213,0.7);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: #080603;
+      padding: 80px 60px 30px;
+      border-top: 1px solid rgba(166,128,49,0.15);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-logo img {
+      height: 56px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 10px rgba(166,128,49,0.3));
+    }
+    .footer-lema {
+      font-family: var(--fuente-elegante);
+      font-style: italic;
+      color: rgba(240,232,213,0.5);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* Redes sociales */
+    .footer-redes {
+      display: flex;
+      gap: 12px;
+    }
+    .red-social {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(166,128,49,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: rgba(240,232,213,0.5);
+      transition: var(--transicion);
+    }
+    .red-social:hover {
+      border-color: var(--dorado);
+      color: var(--dorado);
+      background: rgba(166,128,49,0.1);
+    }
+
+    .footer-titulo-col {
+      font-family: var(--fuente-titulo);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      color: rgba(240,232,213,0.5);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--dorado); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(166,128,49,0.1);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copyright {
+      font-size: 0.7rem;
+      color: rgba(240,232,213,0.3);
+      letter-spacing: 1px;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-legal a {
+      color: rgba(240,232,213,0.3);
+      text-decoration: none;
+      font-size: 0.65rem;
       letter-spacing: 1px;
       transition: color 0.3s;
     }
-    nav a:hover {
-      color: #3498db;
-    }
+    .footer-legal a:hover { color: var(--dorado); }
 
-    /* Header de Alta Categoría */
-    header {
-  /* Imagen profesional de respaldo con capa oscura para legibilidad */
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-              url('https://i.ibb.co/dssh3x2v/hotel.png') no-repeat center center;
-  
-  background-size: cover;
-  color: white;
-  text-align: center;
-  
-  /* Altura imponente para nivel corporativo */
-  min-height: 85vh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  padding: 20px;
-}
-    header h1 {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
-    }
-    header p {
-      font-size: 1.2rem;
-      font-style: italic;
-      margin-top: 10px;
-      opacity: 0.9;
-    }
-
-    /* Secciones */
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    h2::after {
-      content: '';
-      width: 60px;
-      height: 3px;
-      background: #3498db;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    /* Galería de Habitaciones */
-    .habitaciones-container {
+    /* =============================================
+       MODAL DE RESERVA
+       position: fixed = cubre toda la pantalla
+    ============================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      gap: 30px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transicion);
+      padding: 20px;
     }
-    .card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      width: 350px;
-      transition: transform 0.3s;
+    .modal-overlay.abierto {
+      opacity: 1;
+      visibility: visible;
     }
-    .card:hover {
-      transform: translateY(-10px);
-    }
-    .card img {
+    .modal {
+      background: var(--oscuro-medio);
+      border: 1px solid rgba(166,128,49,0.3);
+      max-width: 600px;
       width: 100%;
-      height: 250px;
-      object-fit: cover;
+      padding: 60px;
+      position: relative;
+      transform: translateY(30px);
+      transition: transform 0.4s ease;
     }
-    .card-info {
-      padding: 20px;
+    .modal-overlay.abierto .modal {
+      transform: translateY(0);
     }
-
-    /* Servicios con Iconos */
-    .servicios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .servicio-item {
-      padding: 20px;
-      background: #f8f9fa;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    /* Botón y Contacto */
-    #contacto {
-      background: #f4f7f6;
-      max-width: 100%;
-    }
-    button {
-      padding: 15px 35px;
-      background: #2c3e50;
-      color: white;
+    .modal-cerrar {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
       border: none;
-      border-radius: 50px;
-      font-weight: bold;
-      text-transform: uppercase;
+      color: rgba(240,232,213,0.4);
+      font-size: 1.5rem;
       cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 20px;
+      transition: color 0.3s;
     }
-    button:hover {
-      background: #3498db;
-      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    .modal-cerrar:hover { color: var(--dorado); }
+    .modal-titulo {
+      font-family: var(--fuente-titulo);
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      color: var(--crema);
+      margin-bottom: 8px;
     }
-    #mensaje {
-      height: 30px;
-      margin-top: 25px;
-      font-weight: 500;
-      color: #2c3e50;
+    .modal-subtitulo {
+      font-family: var(--fuente-elegante);
+      font-style: italic;
+      color: var(--dorado);
+      margin-bottom: 36px;
+    }
+    .modal-exito {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .modal-exito.visible { display: block; }
+    .modal-exito-icono {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .modal-exito-texto {
+      font-family: var(--fuente-elegante);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--dorado);
+      line-height: 1.7;
     }
 
-    footer {
-      background: #2c3e50;
-      color: #bdc3c7;
-      text-align: center;
-      padding: 40px 20px;
+    /* =============================================
+       SCROLL REVEAL - Animaciones al hacer scroll
+       Las secciones aparecen cuando entran en vista
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Retrasos para que los elementos aparezcan uno a uno */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =============================================
+       RESPONSIVE - Adaptación para móviles/tablets
+       @media = regla que aplica CSS solo si
+       el ancho de pantalla es menor a X px
+    ============================================= */
+    @media (max-width: 1024px) {
+      nav { padding: 18px 30px; }
+      nav.scrolled { padding: 12px 30px; }
+      .nav-links { display: none; }
+      .nav-links.abierto {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(26,18,8,0.98);
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        z-index: 999;
+      }
+      .nav-links.abierto a { font-size: 1.2rem; }
+      .hamburger { display: flex; z-index: 1000; }
+      .historia-grid { grid-template-columns: 1fr; }
+      .historia-imagen-wrapper { display: none; }
+      .exp-grid { grid-template-columns: repeat(2, 1fr); }
+      .exp-header { grid-template-columns: 1fr; gap: 30px; }
+      .galeria-mosaic {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+      .galeria-item:nth-child(1) { grid-column: span 2; }
+      .galeria-item:nth-child(4) { grid-column: span 1; }
+      .galeria-item:nth-child(7) { grid-column: span 1; }
+      .contacto-grid { grid-template-columns: 1fr; gap: 50px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .seccion { padding: 80px 30px; }
+      .seccion-completa { padding: 80px 30px; }
+    }
+
+    @media (max-width: 640px) {
+      .franja-reconocimientos { gap: 20px; flex-wrap: wrap; justify-content: center; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .habitaciones-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .form-fila { grid-template-columns: 1fr; }
+      .modal { padding: 36px 24px; }
+      .hero-dots { display: none; }
+    }
+
+    /* =============================================
+       NOTIFICACIÓN TOAST
+       Mensaje flotante temporal para confirmaciones
+    ============================================= */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--dorado);
+      color: var(--oscuro);
+      padding: 16px 28px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      z-index: 9998;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    .toast.visible {
+      transform: translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#habitaciones">Habitaciones</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#contacto">Contacto</a>
+  <!-- ==========================================
+       PRELOADER - Pantalla de carga
+       Se oculta automáticamente con JavaScript
+  =========================================== -->
+  <div id="preloader">
+    <div class="loader-glifo"></div>
+    <p class="loader-texto">Mayanza · Grand Hotels</p>
+  </div>
+
+  <!-- ==========================================
+       NAVEGACIÓN PRINCIPAL
+  =========================================== -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <!-- 
+        La imagen del logo del usuario.
+        Si no carga, el texto sirve de respaldo.
+      -->
+      <img src="logo.jpeg" alt="Mayanza Grand Hotels" onerror="this.style.display='none'">
+      <div class="nav-logo-texto">Mayanza<br>Grand Hotels</div>
+    </a>
+
+    <!-- Lista de navegación -->
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#historia">Nuestra Historia</a></li>
+      <li><a href="#habitaciones">Habitaciones</a></li>
+      <li><a href="#experiencias">Experiencias</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#" class="nav-reserva" onclick="abrirModal(event)">Reservar</a></li>
+    </ul>
+
+    <!-- Botón hamburguesa para móvil -->
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
-  <header>
-    <h1>Hotel Paraíso</h1>
-    <p>La elegancia del descanso en el corazón de la ciudad</p>
-  </header>
+  <!-- ==========================================
+       HERO SECTION - Portada principal
+  =========================================== -->
+  <section id="hero">
+    <!-- Slider de fondo -->
+    <div class="hero-slider" id="hero-slider">
+      <!--
+        IMÁGENES: Las imágenes provienen de las fotos
+        del hotel que compartiste. Se muestran como
+        fondos del slider con JavaScript.
+      -->
+      <div class="hero-slide activo" style="background-image: linear-gradient(rgba(26,18,8,0.4), rgba(26,18,8,0.4)), url('WhatsApp_Image_2026-02-27_at_7_32_29_AM.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="hero-slide" style="background-image: linear-gradient(rgba(26,18,8,0.4), rgba(26,18,8,0.4)), url('WhatsApp_Image_2026-02-27_at_7_32_29_AM__1_.jpeg'); background-size:cover; background-position:center;"></div>
+      <div class="hero-slide" style="background-image: linear-gradient(rgba(26,18,8,0.4), rgba(26,18,8,0.4)), url('WhatsApp_Image_2026-02-27_at_7_32_30_AM.jpeg'); background-size:cover; background-position:center;"></div>
+    </div>
 
+    <div class="hero-overlay"></div>
+    <div class="hero-pattern"></div>
+
+    <!-- Contenido central del hero -->
+    <div class="hero-contenido">
+      <p class="hero-pretitulo">Guatemala · Herencia Maya · Lujo Incomparable</p>
+      <h1 class="hero-titulo">
+        <span>Mayanza</span>
+        Grand Hotels
+      </h1>
+      <p class="hero-subtitulo">"El Latido de la Eterna Primavera"</p>
+
+      <div class="hero-separador">
+        <div class="hero-glifo">✦</div>
+      </div>
+
+      <div class="hero-botones">
+        <a href="#habitaciones" class="btn-primario">Explorar Suites</a>
+        <a href="#historia" class="btn-secundario">Nuestra Historia</a>
+      </div>
+    </div>
+
+    <!-- Indicador de scroll -->
+    <div class="scroll-indicador">
+      <span class="scroll-texto">Descubrir</span>
+      <div class="scroll-linea"></div>
+    </div>
+
+    <!-- Puntos del slider -->
+    <div class="hero-dots" id="hero-dots"></div>
+  </section>
+
+  <!-- ==========================================
+       FRANJA DE RECONOCIMIENTOS
+  =========================================== -->
+  <div class="franja-reconocimientos">
+    <div class="reconocimiento-item">
+      <span class="reconocimiento-icono">🏆</span>
+      <span class="reconocimiento-texto">Leading Hotels of the World</span>
+    </div>
+    <div class="reconocimiento-item">
+      <span class="reconocimiento-icono">⭐</span>
+      <span class="reconocimiento-texto">5 Estrellas Gran Turismo</span>
+    </div>
+    <div class="reconocimiento-item">
+      <span class="reconocimiento-icono">🌿</span>
+      <span class="reconocimiento-texto">Sello Verde Sostenible</span>
+    </div>
+    <div class="reconocimiento-item">
+      <span class="reconocimiento-icono">🎨</span>
+      <span class="reconocimiento-texto">Patrimonio Cultural Maya</span>
+    </div>
+    <div class="reconocimiento-item">
+      <span class="reconocimiento-icono">🍽️</span>
+      <span class="reconocimiento-texto">Gastronomía de Autor</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       HISTORIA / MISIÓN / VISIÓN
+  =========================================== -->
+  <section id="historia">
+    <div class="seccion">
+      <div class="historia-grid">
+
+        <!-- Columna izquierda: imagen -->
+        <div class="historia-imagen-wrapper reveal">
+          <img
+            src="WhatsApp_Image_2026-02-27_at_7_32_31_AM__3_.jpeg"
+            alt="Lobby de Mayanza Grand Hotels"
+            class="historia-imagen-principal"
+          >
+          <div class="historia-stat">
+            <div class="historia-stat-numero">2025</div>
+            <div class="historia-stat-label">Año de Apertura</div>
+          </div>
+        </div>
+
+        <!-- Columna derecha: texto -->
+        <div class="historia-contenido reveal reveal-delay-2">
+          <span class="seccion-etiqueta">Quiénes somos</span>
+          <h2 class="seccion-titulo">La Herencia<br>Hecha Refugio</h2>
+          <div class="linea-dorada"></div>
+
+          <!-- Pestañas para cambiar entre Misión, Visión e Historia -->
+          <div class="tabs">
+            <button class="tab-btn activo" onclick="cambiarTab(this, 'tab-historia')">Historia</button>
+            <button class="tab-btn" onclick="cambiarTab(this, 'tab-mision')">Misión</button>
+            <button class="tab-btn" onclick="cambiarTab(this, 'tab-vision')">Visión</button>
+          </div>
+
+          <div id="tab-historia" class="tab-contenido activo">
+            <p class="seccion-descripcion">
+              El nombre <strong style="color:var(--dorado)">Mayanza</strong> nació de la unión de dos palabras que lo dicen todo: <em>Maya</em> y <em>Añanza</em>, que en su esencia significa "herencia". En Mayanza, cada hilo de nuestra historia cuenta una aventura.
+            </p>
+            <blockquote class="historia-cita">
+              "No solo te hospedas en Guatemala; vives el latido de una civilización milenaria con el servicio que mereces hoy."
+            </blockquote>
+            <p class="seccion-descripcion">
+              Cada espacio, cada textura, cada sabor que ofrecemos ha sido cuidadosamente seleccionado para que el viajero no solo descanse, sino que sea transformado por la magnificencia de la cultura que nos dio origen.
+            </p>
+          </div>
+
+          <div id="tab-mision" class="tab-contenido">
+            <p class="seccion-descripcion">
+              <strong style="color:var(--dorado)">Nuestra Misión:</strong> Exponer la riqueza del patrimonio guatemalteco a través de una hospitalidad de lujo que celebra nuestros textiles, gastronomía y calidez humana, brindando un refugio de elegancia en el corazón de América Central.
+            </p>
+            <br>
+            <p class="seccion-descripcion">
+              Cada estancia es una inmersión profunda en la cultura viva de Guatemala: sus colores, sus sabores, su arquitectura y su gente.
+            </p>
+          </div>
+
+          <div id="tab-vision" class="tab-contenido">
+            <p class="seccion-descripcion">
+              <strong style="color:var(--dorado)">Nuestra Visión:</strong> Ser la cadena hotelera embajadora de la cultura maya a nivel mundial, reconocida por transformar la tradición en una experiencia de confort inigualable para el año 2030.
+            </p>
+            <br>
+            <p class="seccion-descripcion">
+              Proyectamos abrir destinos en los principales puntos culturales de Mesoamérica, llevando el corazón de Guatemala al mundo entero.
+            </p>
+          </div>
+
+          <br>
+          <a href="#habitaciones" class="btn-primario">Conoce nuestras suites</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       HABITACIONES Y SUITES
+  =========================================== -->
   <section id="habitaciones">
-    <h2>Nuestras Habitaciones</h2>
-    <div class="habitaciones-container">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80" alt="Habitación Estándar">
-        <div class="card-info">
-          <h3>Suite Estándar</h3>
-          <p>Confort y calidez para una estancia perfecta.</p>
+    <div class="habitaciones-header seccion reveal">
+      <span class="seccion-etiqueta" style="text-align:center; display:block;">Alojamiento de Lujo</span>
+      <h2 class="seccion-titulo" style="text-align:center;">Suites que<br>Cuentan Historias</h2>
+      <div class="linea-dorada centrada"></div>
+      <p class="seccion-descripcion" style="text-align:center; margin:0 auto; max-width:500px;">
+        Cada habitación es un santuario diseñado con textiles mayas auténticos,<br>madera preciosa y vistas que quitan el aliento.
+      </p>
+    </div>
+
+    <div class="habitaciones-grid" style="padding: 0 60px 60px; max-width:1400px; margin:0 auto;">
+
+      <!-- Tarjeta 1 -->
+      <div class="hab-card reveal">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_30_AM__1_.jpeg" alt="Suite Ancestral">
+        <div class="hab-overlay"></div>
+        <div class="hab-info">
+          <div class="hab-categoria">Suite Deluxe</div>
+          <div class="hab-nombre">Suite Ancestral</div>
+          <div class="hab-descripcion">Inmersión total en la arquitectura maya con piscina privada y vista al lago.</div>
+          <div class="hab-precio">Desde Q2,800 <span>/ noche</span></div>
         </div>
       </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Suite de Lujo">
-        <div class="card-info">
-          <h3>Master Suite</h3>
-          <p>Lujo inigualable con vistas panorámicas.</p>
+
+      <!-- Tarjeta 2 -->
+      <div class="hab-card reveal reveal-delay-1">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_31_AM.jpeg" alt="Master Suite Quetzal">
+        <div class="hab-overlay"></div>
+        <div class="hab-info">
+          <div class="hab-categoria">Master Suite</div>
+          <div class="hab-nombre">Suite Quetzal</div>
+          <div class="hab-descripcion">Techo de palma natural, cama king y terraza panorámica al atardecer.</div>
+          <div class="hab-precio">Desde Q4,200 <span>/ noche</span></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="hab-card reveal reveal-delay-2">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_31_AM__1_.jpeg" alt="Suite Gran Lobby">
+        <div class="hab-overlay"></div>
+        <div class="hab-info">
+          <div class="hab-categoria">Villa Presidencial</div>
+          <div class="hab-nombre">Villa Mayanza</div>
+          <div class="hab-descripcion">La experiencia más exclusiva: villa privada con piscina, jardín y mayordomo personal.</div>
+          <div class="hab-precio">Desde Q9,500 <span>/ noche</span></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="hab-card reveal reveal-delay-3">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM.jpeg" alt="Suite Superior Maya">
+        <div class="hab-overlay"></div>
+        <div class="hab-info">
+          <div class="hab-categoria">Suite Superior</div>
+          <div class="hab-nombre">Suite Ixchel</div>
+          <div class="hab-descripcion">Decorada con glifos tallados a mano y textiles de Chichicastenango.</div>
+          <div class="hab-precio">Desde Q3,600 <span>/ noche</span></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 5 -->
+      <div class="hab-card reveal">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM__1_.jpeg" alt="Suite Kukulkán">
+        <div class="hab-overlay"></div>
+        <div class="hab-info">
+          <div class="hab-categoria">Suite Boutique</div>
+          <div class="hab-nombre">Suite Kukulkán</div>
+          <div class="hab-descripcion">Ambiente íntimo con bañera de inmersión y vistas a los jardines tropicales.</div>
+          <div class="hab-precio">Desde Q3,100 <span>/ noche</span></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 6 -->
+      <div class="hab-card reveal reveal-delay-1">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM__2_.jpeg" alt="Suite Tzolkin">
+        <div class="hab-overlay"></div>
+        <div class="hab-info">
+          <div class="hab-categoria">Suite Heritage</div>
+          <div class="hab-nombre">Suite Tzolkin</div>
+          <div class="hab-descripcion">Un recorrido por el calendario maya con arte sacro en cada rincón.</div>
+          <div class="hab-precio">Desde Q3,800 <span>/ noche</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       EXPERIENCIAS Y SERVICIOS
+  =========================================== -->
+  <section id="experiencias">
+    <div class="seccion-completa">
+      <div class="exp-contenedor">
+        <div class="exp-header reveal">
+          <div>
+            <span class="seccion-etiqueta">Experiencias Exclusivas</span>
+            <h2 class="seccion-titulo">Cada Momento<br>es un Ritual</h2>
+            <div class="linea-dorada"></div>
+          </div>
+          <div>
+            <p class="seccion-descripcion">
+              En Mayanza, los servicios no son amenidades; son celebraciones de nuestra cultura. Desde el amanecer hasta las estrellas, cada experiencia está diseñada para quedarse en tu memoria.
+            </p>
+            <br>
+            <a href="#contacto" class="btn-primario" style="display:inline-block; margin-top:10px;">Consultar paquetes</a>
+          </div>
+        </div>
+
+        <div class="exp-grid">
+          <div class="exp-item reveal">
+            <span class="exp-icono">🌊</span>
+            <div class="exp-nombre">Piscina Infinita</div>
+            <p class="exp-desc">Flota entre el cielo y el lago Petén. Una piscina que se funde con el horizonte guatemalteco.</p>
+          </div>
+          <div class="exp-item reveal reveal-delay-1">
+            <span class="exp-icono">🌿</span>
+            <div class="exp-nombre">Spa Ancestral</div>
+            <p class="exp-desc">Rituales de limpieza maya con cacao, copal y hierbas medicinales de las tierras altas.</p>
+          </div>
+          <div class="exp-item reveal reveal-delay-2">
+            <span class="exp-icono">🍽️</span>
+            <div class="exp-nombre">Gastronomía de Autor</div>
+            <p class="exp-desc">Recetas mayas contemporáneas: kak'ik, pepián negro y cacao de origen servidos con elegancia.</p>
+          </div>
+          <div class="exp-item reveal">
+            <span class="exp-icono">🚢</span>
+            <div class="exp-nombre">Tours Arqueológicos</div>
+            <p class="exp-desc">Expediciones privadas a Tikal, Yaxhá y Quiriguá guiadas por expertos mayanistas.</p>
+          </div>
+          <div class="exp-item reveal reveal-delay-1">
+            <span class="exp-icono">🎭</span>
+            <div class="exp-nombre">Cultura Viva</div>
+            <p class="exp-desc">Ceremonias mayas auténticas, danzas del venado y talleres de tejido con artesanas locales.</p>
+          </div>
+          <div class="exp-item reveal reveal-delay-2">
+            <span class="exp-icono">🌅</span>
+            <div class="exp-nombre">Amanecer en el Lago</div>
+            <p class="exp-desc">Paseos privados al amanecer en lancha artesanal con desayuno criollo a bordo.</p>
+          </div>
+          <div class="exp-item reveal">
+            <span class="exp-icono">💎</span>
+            <div class="exp-nombre">Mayordomo Personal</div>
+            <p class="exp-desc">Un anfitrión dedicado exclusivamente a ti, disponible las 24 horas para cada necesidad.</p>
+          </div>
+          <div class="exp-item reveal reveal-delay-1">
+            <span class="exp-icono">🏛️</span>
+            <div class="exp-nombre">Salones de Eventos</div>
+            <p class="exp-desc">Bodas, cenas de gala y reuniones ejecutivas en escenarios de belleza maya inigualable.</p>
+          </div>
+          <div class="exp-item reveal reveal-delay-2">
+            <span class="exp-icono">✈️</span>
+            <div class="exp-nombre">Concierge & Transfer</div>
+            <p class="exp-desc">Traslados en helicóptero, jets privados y servicios de conserjería de clase mundial.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="servicios">
-    <h2>Servicios Exclusivos</h2>
-    <div class="servicios-grid">
-      <div class="servicio-item">🏊 Piscina Climatizada</div>
-      <div class="servicio-item">🍽 Restaurante Gourmet</div>
-      <div class="servicio-item">💆 Spa & Wellness</div>
-      <div class="servicio-item">📶 Wi-Fi de Alta Velocidad</div>
+  <!-- ==========================================
+       GALERÍA
+  =========================================== -->
+  <section id="galeria">
+    <div class="galeria-titulo-wrap reveal">
+      <span class="seccion-etiqueta">Galería Visual</span>
+      <h2 class="seccion-titulo">Un Viaje a través<br>de Nuestros Espacios</h2>
+      <div class="linea-dorada centrada"></div>
+    </div>
+
+    <div class="galeria-mosaic">
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_29_AM__1_.jpeg" alt="Vista exterior Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_31_AM__2_.jpeg" alt="Piscina Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM__3_.jpeg" alt="Habitación Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM__4_.jpeg" alt="Lobby Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM__5_.jpeg" alt="Salón Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_31_AM__3_.jpeg" alt="Restaurante Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_30_AM__1_.jpeg" alt="Suite Mayanza">
+      </div>
+      <div class="galeria-item">
+        <img src="WhatsApp_Image_2026-02-27_at_7_32_32_AM.jpeg" alt="Detalle cultural Mayanza">
+      </div>
     </div>
   </section>
 
+  <!-- ==========================================
+       CALL TO ACTION
+  =========================================== -->
+  <section id="cta">
+    <div class="cta-bg"></div>
+    <div class="cta-contenido reveal">
+      <span class="seccion-etiqueta">Reserva Ahora</span>
+      <h2 class="cta-titulo">Tu Historia<br>Comienza Aquí</h2>
+      <p class="cta-descripcion">
+        Cada reserva en Mayanza es el inicio de una experiencia que recordarás toda la vida. No solo es un hotel; es el encuentro entre lo eterno y lo contemporáneo.
+      </p>
+      <div class="hero-botones">
+        <a href="#" class="btn-primario" onclick="abrirModal(event)">Hacer una Reserva</a>
+        <a href="https://wa.me/50256311624" target="_blank" class="btn-secundario">Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTACTO Y MAPA
+  =========================================== -->
   <section id="contacto">
-    <h2>Reserva con Nosotros</h2>
-    <p>📍 Calle Principal #123, Ciudad de Guatemala</p>
-    <p>📞 +502 1234 5678 | ✉ reservas@hotelparaiso.com</p>
-    <button onclick="mostrarMensaje()">Consultar Disponibilidad</button>
-    <div id="mensaje"></div>
+    <div class="seccion">
+      <div style="text-align:center; margin-bottom: 70px;" class="reveal">
+        <span class="seccion-etiqueta">Contáctanos</span>
+        <h2 class="seccion-titulo">Estamos Aquí<br>para Recibirte</h2>
+        <div class="linea-dorada centrada"></div>
+      </div>
+
+      <div class="contacto-grid">
+
+        <!-- Información de contacto -->
+        <div class="reveal">
+          <div class="contacto-info-item">
+            <div class="contacto-icono-wrap">📍</div>
+            <div>
+              <div class="contacto-label">Ubicación</div>
+              <div class="contacto-valor">
+                Lago Petén Itzá, Flores, Petén<br>
+                República de Guatemala
+              </div>
+            </div>
+          </div>
+
+          <div class="contacto-info-item">
+            <div class="contacto-icono-wrap">📱</div>
+            <div>
+              <div class="contacto-label">WhatsApp & Teléfono</div>
+              <div class="contacto-valor">
+                <a href="https://wa.me/50256311624">+502 5631 1624</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contacto-info-item">
+            <div class="contacto-icono-wrap">✉️</div>
+            <div>
+              <div class="contacto-label">Correo Electrónico</div>
+              <div class="contacto-valor">
+                <a href="mailto:reservas@mayanza.com">reservas@mayanza.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contacto-info-item">
+            <div class="contacto-icono-wrap">🕐</div>
+            <div>
+              <div class="contacto-label">Check-in / Check-out</div>
+              <div class="contacto-valor">
+                Check-in: 3:00 PM<br>
+                Check-out: 12:00 PM
+              </div>
+            </div>
+          </div>
+
+          <a href="https://wa.me/50256311624" target="_blank" class="btn-whatsapp">
+            <span>💬</span> Escribir por WhatsApp
+          </a>
+
+          <!-- Mapa de Google -->
+          <div style="margin-top: 40px;">
+            <div class="mapa-label">📍 Encuéntranos en el mapa</div>
+            <div class="mapa-wrapper">
+              <!--
+                MAPA DE GOOGLE:
+                El src del iframe apunta a Google Maps.
+                La ubicación está centrada en Flores, Petén, Guatemala.
+                Puedes reemplazar la URL con la ubicación exacta:
+                Ve a maps.google.com → Busca tu dirección → Clic en "Compartir"
+                → "Insertar mapa" → Copia el enlace del src="" del iframe
+              -->
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15346.827!2d-89.8973!3d16.9298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6634b4b91ef66d%3A0x7e3b4c0f24c0b0a!2sFlores%2C%20Pet%C3%A9n%2C%20Guatemala!5e0!3m2!1ses!2sgt!4v1698765432100!5m2!1ses!2sgt"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación Mayanza Grand Hotels - Flores, Petén, Guatemala"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de consulta -->
+        <div class="reveal reveal-delay-2">
+          <span class="seccion-etiqueta">Envíanos un mensaje</span>
+          <h3 class="seccion-titulo" style="font-size: 2rem; margin-bottom: 8px;">Planifica tu<br>Estancia</h3>
+          <div class="linea-dorada"></div>
+          <br>
+
+          <form id="form-contacto" onsubmit="enviarFormulario(event)">
+            <div class="form-fila">
+              <div class="form-grupo">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-input" placeholder="Tu nombre" required>
+              </div>
+              <div class="form-grupo">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-input" placeholder="Tu apellido" required>
+              </div>
+            </div>
+
+            <div class="form-fila">
+              <div class="form-grupo">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="tu@email.com" required>
+              </div>
+              <div class="form-grupo">
+                <label class="form-label">Teléfono</label>
+                <input type="tel" class="form-input" placeholder="+502 0000 0000">
+              </div>
+            </div>
+
+            <div class="form-fila">
+              <div class="form-grupo">
+                <label class="form-label">Check-in</label>
+                <input type="date" class="form-input">
+              </div>
+              <div class="form-grupo">
+                <label class="form-label">Check-out</label>
+                <input type="date" class="form-input">
+              </div>
+            </div>
+
+            <div class="form-grupo">
+              <label class="form-label">Tipo de Suite</label>
+              <select class="form-select form-input">
+                <option value="">Selecciona tu suite</option>
+                <option>Suite Ancestral – Q2,800/noche</option>
+                <option>Suite Quetzal – Q4,200/noche</option>
+                <option>Suite Ixchel – Q3,600/noche</option>
+                <option>Suite Kukulkán – Q3,100/noche</option>
+                <option>Suite Tzolkin – Q3,800/noche</option>
+                <option>Villa Mayanza – Q9,500/noche</option>
+              </select>
+            </div>
+
+            <div class="form-grupo">
+              <label class="form-label">Mensaje</label>
+              <textarea class="form-textarea" placeholder="¿Cómo podemos hacer tu estadía inolvidable?"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primario" style="width:100%; clip-path:none; text-align:center; font-size:0.72rem;">
+              Enviar Consulta
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
   </section>
 
+  <!-- ==========================================
+       FOOTER
+  =========================================== -->
   <footer>
-    <p>&copy; 2026 Hotel Paraíso. Diseñado para ofrecer la mejor experiencia.</p>
+    <div class="footer-grid">
+
+      <!-- Columna 1: Logo y descripción -->
+      <div>
+        <img src="logo.jpeg" alt="Mayanza Grand Hotels" class="footer-logo" style="height:56px; display:block; margin-bottom:20px; filter: drop-shadow(0 0 10px rgba(166,128,49,0.3));" onerror="this.style.display='none'">
+        <p class="footer-lema">
+          "El Latido de la Eterna Primavera"<br><br>
+          Donde la herencia maya se convierte en la más sublime experiencia hotelera de América Central.
+        </p>
+        <div class="footer-redes">
+          <a href="#" class="red-social" aria-label="Instagram">📷</a>
+          <a href="#" class="red-social" aria-label="Facebook">📘</a>
+          <a href="https://wa.me/50256311624" class="red-social" aria-label="WhatsApp">💬</a>
+          <a href="#" class="red-social" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <!-- Columna 2 -->
+      <div>
+        <div class="footer-titulo-col">El Hotel</div>
+        <ul class="footer-links">
+          <li><a href="#historia">Nuestra Historia</a></li>
+          <li><a href="#habitaciones">Suites & Villas</a></li>
+          <li><a href="#experiencias">Experiencias</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3 -->
+      <div>
+        <div class="footer-titulo-col">Experiencias</div>
+        <ul class="footer-links">
+          <li><a href="#">Spa Ancestral</a></li>
+          <li><a href="#">Tours Arqueológicos</a></li>
+          <li><a href="#">Gastronomía Maya</a></li>
+          <li><a href="#">Eventos & Bodas</a></li>
+          <li><a href="#">Concierge Premium</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 4 -->
+      <div>
+        <div class="footer-titulo-col">Contacto</div>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/50256311624">+502 5631 1624</a></li>
+          <li><a href="mailto:reservas@mayanza.com">reservas@mayanza.com</a></li>
+          <li><a href="#">Flores, Petén, Guatemala</a></li>
+          <li><a href="#">www.mayanza.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 Mayanza Grand Hotels. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Términos & Condiciones</a>
+        <a href="#">Política de Cancelación</a>
+      </div>
+    </div>
   </footer>
 
+  <!-- ==========================================
+       MODAL DE RESERVA
+  =========================================== -->
+  <div class="modal-overlay" id="modal-reserva">
+    <div class="modal">
+      <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+
+      <div id="modal-form">
+        <div class="seccion-etiqueta">Reservaciones</div>
+        <div class="modal-titulo">Reserva tu Suite</div>
+        <p class="modal-subtitulo">Nuestro equipo te contactará en menos de 2 horas</p>
+
+        <form onsubmit="confirmarReserva(event)">
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label class="form-label">Nombre completo</label>
+              <input type="text" class="form-input" required placeholder="Tu nombre">
+            </div>
+            <div class="form-grupo">
+              <label class="form-label">WhatsApp</label>
+              <input type="tel" class="form-input" required placeholder="+502 0000 0000">
+            </div>
+          </div>
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label class="form-label">Check-in</label>
+              <input type="date" class="form-input" required>
+            </div>
+            <div class="form-grupo">
+              <label class="form-label">Check-out</label>
+              <input type="date" class="form-input" required>
+            </div>
+          </div>
+          <div class="form-grupo">
+            <label class="form-label">Suite de interés</label>
+            <select class="form-select form-input">
+              <option>Suite Ancestral</option>
+              <option>Suite Quetzal</option>
+              <option>Suite Ixchel</option>
+              <option>Suite Kukulkán</option>
+              <option>Suite Tzolkin</option>
+              <option>Villa Mayanza</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit" class="btn-primario" style="width:100%; clip-path:none;">
+            Solicitar Reserva
+          </button>
+        </form>
+      </div>
+
+      <!-- Mensaje de éxito que aparece tras enviar -->
+      <div class="modal-exito" id="modal-exito">
+        <div class="modal-exito-icono">✦</div>
+        <div class="modal-titulo" style="margin-bottom:16px;">¡Solicitud Enviada!</div>
+        <p class="modal-exito-texto">
+          Gracias por elegir Mayanza Grand Hotels.<br>
+          Nuestro equipo de concierge te contactará en menos de 2 horas por WhatsApp para confirmar tu reservación.
+        </p>
+        <br>
+        <a href="https://wa.me/50256311624" target="_blank" class="btn-primario" style="display:inline-block; margin-top:16px;">
+          Contactar ahora por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de confirmación -->
+  <div class="toast" id="toast">✦ Mensaje enviado exitosamente</div>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       Aquí va toda la lógica interactiva de la página
+  =========================================== -->
   <script>
-    function mostrarMensaje() {
-      const mensaje = document.getElementById("mensaje");
-      const frases = [
-        "¡Excelente elección! Tenemos una suite esperando por ti.",
-        "Bienvenido a la exclusividad de Hotel Paraíso.",
-        "Relájate, nosotros nos encargamos del resto.",
-        "Conectando tus sueños con la realidad."
-      ];
-      const aleatorio = Math.floor(Math.random() * frases.length);
-      mensaje.style.opacity = 0;
+    /* ==================================================
+       PRELOADER
+       Cuando la página termina de cargar (window.onload),
+       ocultamos la pantalla de carga.
+    ================================================== */
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        mensaje.textContent = frases[aleatorio];
-        mensaje.style.opacity = 1;
-        mensaje.style.transition = "opacity 0.5s";
-      }, 200);
+        document.getElementById('preloader').classList.add('oculto');
+      }, 800); // Esperamos 800 milisegundos antes de ocultar
+    });
+
+    /* ==================================================
+       NAVBAR: Cambio de estilo al hacer scroll
+       window.addEventListener('scroll', ...) = ejecuta
+       código cada vez que el usuario hace scroll
+    ================================================== */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      // Si el scroll vertical es mayor a 80px, agregamos la clase 'scrolled'
+      if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    /* ==================================================
+       MENÚ HAMBURGUESA (para móviles)
+    ================================================== */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('abierto'); // toggle = agrega si no está, quita si está
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('abierto');
+      });
+    });
+
+    /* ==================================================
+       HERO SLIDER
+       Cambia automáticamente entre imágenes cada 5 segundos.
+       Pasos:
+       1. Obtenemos todos los slides
+       2. Cada 5 segundos, quitamos la clase 'activo' del slide actual
+       3. Agregamos 'activo' al siguiente slide
+    ================================================== */
+    const slides = document.querySelectorAll('.hero-slide');
+    let slideActual = 0;
+
+    // Crear puntos de navegación (dots) dinámicamente
+    const dotsContainer = document.getElementById('hero-dots');
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = `hero-dot ${i === 0 ? 'activo' : ''}`;
+      dot.addEventListener('click', () => irASlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    function irASlide(n) {
+      // Quitar clase activo del slide y dot actuales
+      slides[slideActual].classList.remove('activo');
+      document.querySelectorAll('.hero-dot')[slideActual].classList.remove('activo');
+
+      // Actualizar el índice
+      slideActual = n;
+
+      // Activar el nuevo slide y dot
+      slides[slideActual].classList.add('activo');
+      document.querySelectorAll('.hero-dot')[slideActual].classList.add('activo');
     }
+
+    // Avanzar al siguiente slide cada 5 segundos
+    setInterval(() => {
+      const siguiente = (slideActual + 1) % slides.length; // % = módulo, da la vuelta al llegar al final
+      irASlide(siguiente);
+    }, 5000);
+
+    /* ==================================================
+       TABS (Pestañas) de Historia / Misión / Visión
+    ================================================== */
+    function cambiarTab(boton, tabId) {
+      // Quitar clase activo de todos los botones y contenidos
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+      document.querySelectorAll('.tab-contenido').forEach(c => c.classList.remove('activo'));
+
+      // Activar el botón y contenido seleccionados
+      boton.classList.add('activo');
+      document.getElementById(tabId).classList.add('activo');
+    }
+
+    /* ==================================================
+       SCROLL REVEAL
+       IntersectionObserver = API del navegador que detecta
+       cuándo un elemento entra en el área visible de la pantalla.
+       
+       Es más eficiente que escuchar el evento 'scroll'
+       manualmente porque el navegador lo optimiza.
+    ================================================== */
+    const observador = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Si el elemento es visible, agregar clase 'visible'
+          entry.target.classList.add('visible');
+          // Dejar de observar el elemento (ya cumplió su función)
+          observador.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1, // El elemento debe ser 10% visible para activarse
+      rootMargin: '0px 0px -50px 0px' // Margen: se activa 50px antes del borde inferior
+    });
+
+    // Observar todos los elementos con clase 'reveal'
+    document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
+
+    /* ==================================================
+       MODAL DE RESERVA
+    ================================================== */
+    function abrirModal(event) {
+      event.preventDefault(); // Evita que el enlace navegue
+      document.getElementById('modal-reserva').classList.add('abierto');
+      document.body.style.overflow = 'hidden'; // Bloquea el scroll del fondo
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal-reserva').classList.remove('abierto');
+      document.body.style.overflow = ''; // Desbloquea el scroll
+
+      // Reiniciar el modal para la próxima vez
+      setTimeout(() => {
+        document.getElementById('modal-form').style.display = 'block';
+        document.getElementById('modal-exito').classList.remove('visible');
+      }, 400);
+    }
+
+    // Cerrar modal al hacer clic en el fondo oscuro
+    document.getElementById('modal-reserva').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modal-reserva')) cerrarModal();
+    });
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') cerrarModal();
+    });
+
+    function confirmarReserva(event) {
+      event.preventDefault();
+      document.getElementById('modal-form').style.display = 'none';
+      document.getElementById('modal-exito').classList.add('visible');
+    }
+
+    /* ==================================================
+       FORMULARIO DE CONTACTO
+    ================================================== */
+    function enviarFormulario(event) {
+      event.preventDefault();
+      mostrarToast();
+      event.target.reset(); // Limpia el formulario
+    }
+
+    /* ==================================================
+       TOAST (notificación flotante)
+    ================================================== */
+    function mostrarToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('visible');
+      // Ocultar después de 3 segundos
+      setTimeout(() => toast.classList.remove('visible'), 3000);
+    }
+
+    /* ==================================================
+       PARALLAX SUAVE en el hero
+       Al mover el mouse, el contenido del hero
+       se mueve ligeramente creando profundidad
+    ================================================== */
+    const heroContenido = document.querySelector('.hero-contenido');
+    document.getElementById('hero').addEventListener('mousemove', (e) => {
+      const xRel = (e.clientX / window.innerWidth - 0.5) * 10;
+      const yRel = (e.clientY / window.innerHeight - 0.5) * 6;
+      if (heroContenido) {
+        heroContenido.style.transform = `translate(${xRel}px, ${yRel}px)`;
+      }
+    });
+    document.getElementById('hero').addEventListener('mouseleave', () => {
+      if (heroContenido) heroContenido.style.transform = '';
+    });
   </script>
+
 </body>
 </html>
+
 
 
 
