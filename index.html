@@ -96,11 +96,11 @@
     .booking-bar-inner { display: flex; align-items: stretch; max-width: 100%; }
     .booking-field { flex: 1; position: relative; border-right: 1px solid rgba(166,128,49,0.15); }
     .booking-field:last-child { border-right: none; }
-    .booking-btn-trigger { width: 100%; background: none; border: none; padding: 14px 20px; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; transition: background 0.3s; }
+    .booking-btn-trigger { width: 100%; background: none; border: none; padding: 18px 24px; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; transition: background 0.3s; }
     .booking-btn-trigger:hover { background: rgba(166,128,49,0.05); }
-    .booking-field-label { font-size: 0.52rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dorado); font-family: var(--fuente-cuerpo); font-weight: 500; }
-    .booking-field-value { font-size: 0.85rem; color: #3a2e1a; font-family: var(--fuente-elegante); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
-    .booking-field-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--dorado); font-size: 0.7rem; }
+    .booking-field-label { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dorado); font-family: var(--fuente-cuerpo); font-weight: 700; }
+    .booking-field-value { font-size: 1.05rem; color: #1a1208; font-family: var(--fuente-cuerpo); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; }
+    .booking-field-icon { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--dorado); font-size: 0.85rem; }
     .booking-dropdown { position: absolute; top: 100%; left: 0; min-width: 320px; background: #fff; border: 1px solid rgba(166,128,49,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.15); z-index: 200; display: none; }
     .booking-dropdown.abierto { display: block; }
     .booking-dropdown-header { padding: 20px 24px 12px; border-bottom: 1px solid rgba(166,128,49,0.1); display: flex; justify-content: space-between; align-items: center; }
@@ -545,6 +545,10 @@
   </style>
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- QRCode.js - genera QR real escaneable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- html2canvas - para descargar comprobante como imagen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 <!-- PRELOADER -->
@@ -1786,36 +1790,43 @@
       <div class="modal-titulo" style="margin-bottom:10px;">¡Reserva Confirmada!</div>
       <p class="modal-exito-texto" id="modal-exito-texto">Gracias por elegir Mayanza Grand Hotels. Nuestro equipo te contactará pronto.</p>
       <div id="emailjs-config-note" style="background:#fff8e1;border:1px solid #f0c040;padding:10px 14px;margin:12px 0;border-radius:3px;font-size:0.72rem;color:#5a4000;line-height:1.6;display:none;">
-        <strong>⚙️ Nota técnica:</strong> Para activar el envío de emails automático a <strong>mayanzahotels@gmail.com</strong> y al cliente, configura EmailJS en <a href="https://www.emailjs.com" target="_blank" style="color:var(--dorado);">emailjs.com</a> y reemplaza <code>YOUR_PUBLIC_KEY</code>, <code>YOUR_SERVICE_ID</code> y <code>YOUR_TEMPLATE_ID</code> en el script del sitio.
+        <strong>⚙️ Nota técnica:</strong> Para activar el envío de emails automático configura EmailJS y reemplaza las claves en las líneas <strong>2249, 2252 y 2258</strong> del script.
       </div>
-      <div class="qr-container">
-        <p style="font-size:0.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--dorado); margin-bottom:12px; font-family:var(--fuente-cuerpo);">Código de Reservación</p>
-        <div class="qr-code" id="qr-code-display">
-          <svg viewBox="0 0 100 100" width="100" height="100" style="border:2px solid #1a1208;">
-            <rect x="10" y="10" width="30" height="30" fill="none" stroke="#1a1208" stroke-width="3"/>
-            <rect x="15" y="15" width="20" height="20" fill="#1a1208"/>
-            <rect x="60" y="10" width="30" height="30" fill="none" stroke="#1a1208" stroke-width="3"/>
-            <rect x="65" y="15" width="20" height="20" fill="#1a1208"/>
-            <rect x="10" y="60" width="30" height="30" fill="none" stroke="#1a1208" stroke-width="3"/>
-            <rect x="15" y="65" width="20" height="20" fill="#1a1208"/>
-            <rect x="50" y="50" width="5" height="5" fill="#1a1208"/>
-            <rect x="60" y="50" width="5" height="5" fill="#1a1208"/>
-            <rect x="70" y="50" width="5" height="5" fill="#1a1208"/>
-            <rect x="80" y="50" width="5" height="5" fill="#1a1208"/>
-            <rect x="50" y="60" width="5" height="5" fill="#1a1208"/>
-            <rect x="70" y="60" width="5" height="5" fill="#1a1208"/>
-            <rect x="55" y="70" width="5" height="5" fill="#1a1208"/>
-            <rect x="65" y="70" width="5" height="5" fill="#1a1208"/>
-            <rect x="75" y="70" width="5" height="5" fill="#1a1208"/>
-            <rect x="50" y="80" width="5" height="5" fill="#1a1208"/>
-            <rect x="60" y="80" width="5" height="5" fill="#1a1208"/>
-            <rect x="80" y="80" width="5" height="5" fill="#1a1208"/>
-          </svg>
+
+      <!-- COMPROBANTE DESCARGABLE -->
+      <div id="comprobante-reserva" style="background:#fffdf8; border:1px solid rgba(166,128,49,0.25); border-radius:4px; padding:28px 24px; margin:16px 0; text-align:center; font-family:'Cinzel',serif;">
+        <!-- Header del comprobante -->
+        <div style="border-bottom:2px solid var(--dorado); padding-bottom:16px; margin-bottom:20px;">
+          <div style="font-size:0.55rem; letter-spacing:5px; color:var(--dorado); text-transform:uppercase; margin-bottom:4px;">Mayanza Grand Hotels</div>
+          <div style="font-size:1.1rem; color:#1a1208; letter-spacing:2px;">Comprobante de Reservación</div>
         </div>
-        <p style="font-size:0.68rem; color:var(--texto-gris); margin-top:10px; font-family:var(--fuente-cuerpo);" id="qr-res-num">Presente este código en recepción</p>
+        <!-- Info de reserva -->
+        <div id="comprobante-info" style="font-family:'Jost',sans-serif; font-size:0.82rem; color:#3a2e1a; line-height:2; text-align:left; margin-bottom:20px; padding:0 8px;">
+          <!-- Se llena dinámicamente -->
+        </div>
+        <!-- QR real -->
+        <div style="margin:16px auto;">
+          <div style="font-size:0.55rem; letter-spacing:3px; text-transform:uppercase; color:var(--dorado); margin-bottom:10px; font-family:'Jost',sans-serif;">Código QR · Presentar en recepción</div>
+          <div id="qr-code-display" style="display:inline-block; background:#fff; padding:10px; border:1px solid rgba(166,128,49,0.3);"></div>
+        </div>
+        <p id="qr-res-num" style="font-size:0.72rem; color:#5a4e3a; margin-top:8px; font-family:'Jost',sans-serif; letter-spacing:1px;"></p>
+        <!-- Footer del comprobante -->
+        <div style="border-top:1px solid rgba(166,128,49,0.2); margin-top:16px; padding-top:12px; font-size:0.62rem; color:#8a7a5a; font-family:'Jost',sans-serif; letter-spacing:1px;">
+          mayanzahotels@gmail.com · +502 5631 1624 · Guatemala
+        </div>
       </div>
-      <br>
-      <a href="https://wa.me/50256311624" target="_blank" class="btn-primario" style="display:inline-block;">Contactar por WhatsApp</a>
+
+      <!-- BOTONES DE ACCIÓN -->
+      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:16px;">
+        <button onclick="descargarComprobante()" style="background:var(--dorado); border:none; color:#fff; padding:12px 24px; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s; border-radius:2px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          Descargar Comprobante
+        </button>
+        <a href="https://wa.me/50256311624" target="_blank" style="background:#25d366; border:none; color:#fff; padding:12px 24px; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; display:inline-flex; align-items:center; gap:8px; text-decoration:none; border-radius:2px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -1933,7 +1944,7 @@
 <!-- TOAST -->
 <div class="toast" id="toast">✦ Mensaje enviado exitosamente</div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // PRELOADER
 function ocultarPreloader() { var el = document.getElementById("preloader"); if (el) el.style.display = "none"; }
 document.addEventListener("DOMContentLoaded", function() { setTimeout(ocultarPreloader, 300); });
@@ -2190,7 +2201,6 @@ function cambiarTarifaTab(btn, tabId) {
 
 function confirmarReserva(event) {
   event.preventDefault();
-  // Validar suite seleccionada
   const suiteVal = document.getElementById('m-suite').value;
   if (!suiteVal) {
     document.getElementById('suite-error').style.display = 'block';
@@ -2205,59 +2215,116 @@ function confirmarReserva(event) {
   const tel       = document.getElementById('m-tel').value.trim();
   const checkin   = document.getElementById('m-checkin').value;
   const checkout  = document.getElementById('m-checkout').value;
-  const paquete   = document.getElementById('m-paquete').value || 'Sin paquete — solo hospedaje';
+  const paquete   = document.getElementById('m-paquete').value || 'Sin paquete';
   const notas     = document.getElementById('m-notas').value.trim();
   const adultos   = document.getElementById('cnt-madultos').textContent;
   const ninos     = document.getElementById('cnt-mninos').textContent;
   const habs      = document.getElementById('cnt-mhabs').textContent;
   const resNum    = 'MGH-' + Date.now().toString().slice(-6);
+  const fechaEmision = new Date().toLocaleDateString('es-GT', {day:'2-digit', month:'long', year:'numeric'});
+  const fmtDate = d => d ? d.split('-').reverse().join('/') : 'Por confirmar';
+  let noches = '';
+  if (checkin && checkout) {
+    const diff = (new Date(checkout) - new Date(checkin)) / (1000*60*60*24);
+    if (diff > 0) noches = ' (' + diff + ' noche' + (diff>1?'s':'') + ')';
+  }
 
-  // Mostrar pantalla de éxito primero
+  // Datos del QR — texto completo escaneable en recepción
+  const qrData = 'MAYANZA GRAND HOTELS\n========================\nRESERVACION: ' + resNum +
+    '\nHUESPED: ' + nombres + ' ' + apellidos +
+    '\nEMAIL: ' + email +
+    '\nTEL: ' + (tel||'N/A') +
+    '\nSUITE: ' + suiteVal +
+    '\nCHECK-IN: ' + fmtDate(checkin) +
+    '\nCHECK-OUT: ' + fmtDate(checkout) + noches +
+    '\nADULTOS: ' + adultos + ' | NINOS: ' + ninos + ' | HAB: ' + habs +
+    '\nPAQUETE: ' + paquete +
+    '\nNOTAS: ' + (notas||'Ninguna') +
+    '\nEMITIDO: ' + fechaEmision +
+    '\n========================\nTel: +502 5631-1624\nmayanzahotels@gmail.com';
+
+  // Mostrar éxito
   document.getElementById('modal-form').style.display = 'none';
   document.getElementById('modal-exito-texto').innerHTML =
-    `Gracias <strong>${nombres} ${apellidos}</strong>, tu solicitud de reserva ha sido recibida.<br>
-    <span style="font-size:0.85rem;color:var(--texto-gris);">Suite: ${suiteVal} · Check-in: ${checkin || 'por definir'} · Check-out: ${checkout || 'por definir'}</span><br>
-    <span style="font-size:0.82rem;color:var(--texto-gris);">Huéspedes: ${adultos} adulto(s), ${ninos} niño(s) · Hab.: ${habs}</span>`;
-  document.getElementById('qr-res-num').textContent = 'Reservación: ' + resNum + ' · Presentar en recepción';
-  document.getElementById('modal-exito').classList.add('visible');
-  // Mostrar nota de configuración si EmailJS no está configurado
+    'Gracias <strong>' + nombres + ' ' + apellidos + '</strong>, tu solicitud de reserva ha sido recibida.<br>' +
+    '<span style="font-size:0.82rem;color:var(--texto-gris);">' + suiteVal + ' &middot; ' + fmtDate(checkin) + ' &rarr; ' + fmtDate(checkout) + noches + '</span>';
+
+  // Llenar comprobante
+  document.getElementById('comprobante-info').innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">N&ordm; Reserva</span><br><strong style="font-family:\'Cinzel\',serif;font-size:0.95rem;">' + resNum + '</strong></div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Emitido</span><br>' + fechaEmision + '</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Hu&eacute;sped</span><br><strong>' + nombres + ' ' + apellidos + '</strong></div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Tel&eacute;fono</span><br>' + (tel||'N/A') + '</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Email</span><br>' + email + '</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Hu&eacute;spedes</span><br>' + adultos + ' adulto(s), ' + ninos + ' ni&ntilde;o(s) &middot; ' + habs + ' hab.</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Suite</span><br><strong>' + suiteVal + '</strong></div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Paquete</span><br>' + paquete + '</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Check-in</span><br><strong>' + fmtDate(checkin) + '</strong></div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Check-out</span><br><strong>' + fmtDate(checkout) + noches + '</strong></div>' +
+    (notas ? '<div style="grid-column:1/-1;"><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Notas</span><br>' + notas + '</div>' : '') +
+    '</div>';
+
+  document.getElementById('qr-res-num').textContent = 'Reservaci\u00F3n: ' + resNum + ' \u00B7 Presentar en recepci\u00F3n';
   const note = document.getElementById('emailjs-config-note');
   if (note) note.style.display = 'block';
+  document.getElementById('modal-exito').classList.add('visible');
 
-  // Enviar emails via EmailJS
-  const templateParams = {
-    to_email:     email,
-    to_name:      nombres + ' ' + apellidos,
-    from_name:    'Mayanza Grand Hotels',
-    reply_to:     'mayanzahotels@gmail.com',
-    res_num:      resNum,
-    suite:        suiteVal,
-    checkin:      checkin || 'Por confirmar',
-    checkout:     checkout || 'Por confirmar',
-    adultos:      adultos,
-    ninos:        ninos,
-    habitaciones: habs,
-    paquete:      paquete,
-    telefono:     tel || 'No proporcionado',
-    notas:        notas || 'Ninguna',
-    hotel_email:  'mayanzahotels@gmail.com'
-  };
+  // Generar QR REAL con QRCode.js
+  const qrContainer = document.getElementById('qr-code-display');
+  qrContainer.innerHTML = '';
+  setTimeout(function() {
+    new QRCode(qrContainer, {
+      text: qrData, width: 160, height: 160,
+      colorDark: '#1a1208', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }, 150);
 
-  // Inicializar EmailJS (Public Key de cuenta configurada)
-  // NOTA: Reemplazar 'YOUR_PUBLIC_KEY', 'YOUR_SERVICE_ID' y 'YOUR_TEMPLATE_ID'
-  // con las credenciales de tu cuenta en emailjs.com
-  emailjs.init('YOUR_PUBLIC_KEY');
+  window._reservaActual = { nombres: nombres, apellidos: apellidos, resNum: resNum,
+    suiteVal: suiteVal, checkin: fmtDate(checkin), checkout: fmtDate(checkout),
+    noches: noches, adultos: adultos, ninos: ninos, habs: habs,
+    paquete: paquete, email: email, tel: tel, notas: notas, fechaEmision: fechaEmision };
 
-  // Email al cliente
-  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-    .then(() => { console.log('Email al cliente enviado'); })
-    .catch((err) => { console.warn('EmailJS pendiente de configurar:', err); });
+  // ══════════════════════════════════════════════════════
+  // EMAILJS — REEMPLAZA LAS 3 CONSTANTES DE ABAJO:
+  var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← tu Public Key de emailjs.com
+  var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← tu Service ID (ej: service_abc123)
+  var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← tu Template ID (ej: template_xyz)
+  // ══════════════════════════════════════════════════════
 
-  // Email a la empresa (mismo template o uno diferente)
-  const hotelParams = { ...templateParams, to_email: 'mayanzahotels@gmail.com', to_name: 'Equipo Mayanza Hotels' };
-  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', hotelParams)
-    .then(() => { console.log('Email al hotel enviado'); })
-    .catch((err) => { console.warn('EmailJS hotel pendiente:', err); });
+  if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    var tpl = { to_email: email, to_name: nombres+' '+apellidos,
+      from_name: 'Mayanza Grand Hotels', reply_to: 'mayanzahotels@gmail.com',
+      res_num: resNum, suite: suiteVal, checkin: fmtDate(checkin), checkout: fmtDate(checkout),
+      adultos: adultos, ninos: ninos, habitaciones: habs, paquete: paquete,
+      telefono: tel||'N/A', notas: notas||'Ninguna' };
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, tpl)
+      .then(function(){ console.log('Email cliente enviado'); })
+      .catch(function(e){ console.warn('Email cliente error:', e); });
+    var tplHotel = Object.assign({}, tpl, { to_email: 'mayanzahotels@gmail.com', to_name: 'Equipo Mayanza' });
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, tplHotel)
+      .then(function(){ console.log('Email hotel enviado'); })
+      .catch(function(e){ console.warn('Email hotel error:', e); });
+  }
+}
+
+// Descargar comprobante como imagen PNG
+function descargarComprobante() {
+  var el = document.getElementById('comprobante-reserva');
+  var res = window._reservaActual || {};
+  var nombre = ((res.nombres||'') + '_' + (res.apellidos||'')).replace(/\s+/g,'_') || 'comprobante';
+  var numRes = res.resNum || 'MGH';
+  html2canvas(el, { scale: 2, backgroundColor: '#fffdf8', useCORS: true, logging: false })
+    .then(function(canvas) {
+      var link = document.createElement('a');
+      link.download = 'Reserva_Mayanza_' + numRes + '_' + nombre + '.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }).catch(function() {
+      alert('Para guardar: presiona y mantén sobre el comprobante → Guardar imagen');
+    });
 }
 
 // Contadores en modal de reserva
@@ -2308,7 +2375,7 @@ function cerrarModalLegal(id) { document.getElementById(id).classList.remove('ab
 // PARALLAX SUAVE
 const heroContenido = document.querySelector('.hero-contenido');
 document.addEventListener('mousemove', (e) => {
-  if (!heroContenido) return;
+    if (!heroContenido) return;
   const x = (e.clientX / window.innerWidth - 0.5) * 10;
   const y = (e.clientY / window.innerHeight - 0.5) * 6;
   heroContenido.style.transform = `translate(${x}px, ${y}px)`;
