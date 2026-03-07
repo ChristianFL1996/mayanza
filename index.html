@@ -543,21 +543,16 @@
       .info-hotel-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <!-- QRCode.js confiable -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-  <!-- html2canvas para descargar comprobante -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-<!-- PRELOADER -->
 <div id="preloader">
   <div class="loader-glifo"></div>
   <p class="loader-texto">Mayanza · Grand Hotels</p>
 </div>
 
-<!-- SIDE MENU BUTTON -->
 <button class="side-menu-btn" onclick="abrirSideMenu()" aria-label="Menú lateral">
   <span class="bar"></span>
   <span class="bar"></span>
@@ -565,10 +560,8 @@
   <span class="menu-label">Menú</span>
 </button>
 
-<!-- SIDE MENU OVERLAY -->
 <div class="side-menu-overlay" id="sideMenuOverlay" onclick="cerrarSideMenu()"></div>
 
-<!-- SIDE MENU PANEL -->
 <div class="side-menu" id="sideMenu">
   <div class="side-menu-header">
     <span class="side-menu-logo">Mayanza</span>
@@ -594,7 +587,7 @@
       <div class="side-menu-section-title">Acceso Rápido</div>
       <a href="#habitaciones" class="side-menu-link" onclick="cerrarSideMenu()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/></svg>
-        Habitaciones &amp; Suites
+        Habitaciones & Suites
       </a>
       <a href="#experiencias" class="side-menu-link" onclick="cerrarSideMenu()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
@@ -602,7 +595,7 @@
       </a>
       <a href="#paquetes" class="side-menu-link" onclick="cerrarSideMenu()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
-        Ofertas &amp; Paquetes
+        Ofertas & Paquetes
       </a>
       <a href="#galeria" class="side-menu-link" onclick="cerrarSideMenu()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
@@ -627,7 +620,6 @@
   </nav>
 </div>
 
-<!-- NAVBAR -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
     <img src="logo.jpeg" alt="Mayanza Grand Hotels" onerror="this.style.display='none'">
@@ -652,7 +644,6 @@
   </button>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-slider" id="hero-slider">
     <div class="hero-slide activo" style="background-image: linear-gradient(rgba(26,18,8,0.4), rgba(26,18,8,0.4)), url('Foto_de_picina_4.jpeg'); background-size:cover; background-position:center;"></div>
@@ -675,23 +666,21 @@
       <a href="#historia" class="btn-secundario">Nuestra Historia</a>
     </div>
   </div>
-  <button class="slider-flecha slider-flecha-izq" onclick="moverSlider(-1)" aria-label="Anterior">&#8592;</button>
-  <button class="slider-flecha slider-flecha-der" onclick="moverSlider(1)" aria-label="Siguiente">&#8594;</button>
+  <button class="slider-flecha slider-flecha-izq" onclick="moverSlider(-1)" aria-label="Anterior">←</button>
+  <button class="slider-flecha slider-flecha-der" onclick="moverSlider(1)" aria-label="Siguiente">→</button>
   <div class="slider-contador" id="slider-contador"><span id="slide-num">01</span> / 0<span id="slide-total">4</span></div>
   <div class="slider-progreso" id="slider-progreso"></div>
   <div class="scroll-indicador"><span class="scroll-texto">Descubrir</span><div class="scroll-linea"></div></div>
   <div class="hero-dots" id="hero-dots"></div>
 </section>
 
-<!-- BOOKING BAR -->
 <div class="booking-bar" id="bookingBar">
   <div class="booking-bar-inner">
-    <!-- Check-in / Check-out -->
     <div class="booking-field">
       <button class="booking-btn-trigger" onclick="toggleDropdown('drop-fechas')">
         <span class="booking-field-label">Fechas</span>
         <span class="booking-field-value" id="booking-fechas-val">Selecciona tus fechas</span>
-        <span class="booking-field-icon">&#9662;</span>
+        <span class="booking-field-icon">▾</span>
       </button>
       <div class="booking-dropdown" id="drop-fechas">
         <div class="booking-dropdown-header">
@@ -713,12 +702,11 @@
         </div>
       </div>
     </div>
-    <!-- Huéspedes -->
     <div class="booking-field">
       <button class="booking-btn-trigger" onclick="toggleDropdown('drop-huespedes')">
         <span class="booking-field-label">Huéspedes</span>
         <span class="booking-field-value" id="booking-huespedes-val">2 adultos · 0 niños</span>
-        <span class="booking-field-icon">&#9662;</span>
+        <span class="booking-field-icon">▾</span>
       </button>
       <div class="booking-dropdown" id="drop-huespedes">
         <div class="booking-dropdown-header">
@@ -763,12 +751,11 @@
         </div>
       </div>
     </div>
-    <!-- Tarifas Especiales -->
     <div class="booking-field">
       <button class="booking-btn-trigger" onclick="toggleDropdown('drop-tarifas')">
         <span class="booking-field-label">Tarifas Especiales</span>
         <span class="booking-field-value" id="booking-tarifa-val">Tarifa estándar más baja</span>
-        <span class="booking-field-icon">&#9662;</span>
+        <span class="booking-field-icon">▾</span>
       </button>
       <div class="booking-dropdown" id="drop-tarifas" style="min-width:360px;">
         <div class="booking-dropdown-header">
@@ -816,12 +803,10 @@
         </div>
       </div>
     </div>
-    <!-- Botón Reservar -->
     <button class="booking-reservar-btn" onclick="abrirModal(event)">Reservar</button>
   </div>
 </div>
 
-<!-- FRANJA RECONOCIMIENTOS -->
 <div class="franja-reconocimientos">
   <div class="reconocimiento-item">
     <svg class="reconocimiento-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>
@@ -845,7 +830,6 @@
   </div>
 </div>
 
-<!-- HISTORIA -->
 <section id="historia">
   <div class="seccion">
     <div class="historia-grid">
@@ -867,7 +851,6 @@
         <a href="#habitaciones" class="btn-primario">Conoce nuestras suites</a>
       </div>
     </div>
-    <!-- Misión y Visión elegante sin fichas -->
     <div class="historia-mv-grid reveal">
       <div class="historia-mv-item">
         <span class="historia-mv-label">Misión</span>
@@ -883,18 +866,16 @@
   </div>
 </section>
 
-<!-- HABITACIONES -->
 <section id="habitaciones">
   <div class="habitaciones-header seccion reveal" style="padding-bottom:0;">
     <span class="seccion-etiqueta" style="text-align:center; display:block;">Alojamiento de Lujo</span>
-    <h2 class="seccion-titulo" style="text-align:center;">Habitaciones &amp; Suites</h2>
+    <h2 class="seccion-titulo" style="text-align:center;">Habitaciones & Suites</h2>
     <div class="linea-dorada centrada"></div>
     <p class="seccion-descripcion" style="text-align:center; margin:0 auto; max-width:500px;">Cada habitación es un santuario diseñado con textiles mayas auténticos, madera preciosa y vistas que quitan el aliento.</p>
   </div>
 
   <div style="padding: 30px 60px 20px; max-width:1400px; margin:0 auto;">
     <div class="habitaciones-grid" id="habitaciones-grid">
-      <!-- Page 1 -->
       <div class="hab-page activo">
         <div class="hab-card" onclick="abrirHabitacion(0)">
           <img src="Foto_habitación_simple1.jpeg" alt="Habitación Simple">
@@ -936,7 +917,6 @@
           </div>
         </div>
       </div>
-      <!-- Page 2 -->
       <div class="hab-page">
         <div class="hab-card" onclick="abrirHabitacion(3)">
           <img src="Foto_de_salon_de_restaurante.jpeg" alt="Suite Ixchel">
@@ -979,19 +959,17 @@
         </div>
       </div>
     </div>
-    <!-- Paginación -->
     <div class="habitaciones-paginacion" id="hab-paginacion">
-      <button class="pag-btn" onclick="cambiarHabPage(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="pag-btn" onclick="cambiarHabPage(-1)" aria-label="Anterior">←</button>
       <div class="pag-dots-container">
         <button class="pag-dot activo" onclick="irHabPage(0)"></button>
         <button class="pag-dot" onclick="irHabPage(1)"></button>
       </div>
-      <button class="pag-btn" onclick="cambiarHabPage(1)" aria-label="Siguiente">&#8594;</button>
+      <button class="pag-btn" onclick="cambiarHabPage(1)" aria-label="Siguiente">→</button>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCIAS -->
 <section id="experiencias">
   <div class="seccion-completa">
     <div class="exp-contenedor">
@@ -1008,7 +986,6 @@
         </div>
       </div>
       <div class="exp-grid">
-        <!-- Piscina Infinita -->
         <div class="exp-item reveal" onclick="abrirLightbox('Picina_foto1.jpeg')">
           <div class="exp-img-wrap">
             <img src="Picina_foto1.jpeg" alt="Piscina Infinita">
@@ -1016,7 +993,6 @@
           <div class="exp-nombre">Piscina Infinita</div>
           <p class="exp-desc">Flota entre el cielo y el lago Petén. Una piscina que se funde con el horizonte guatemalteco.</p>
         </div>
-        <!-- Spa Ancestral -->
         <div class="exp-item reveal reveal-delay-1" onclick="abrirGaleriaExp('spa')">
           <div class="exp-img-wrap">
             <img src="Foto_de_recepción.jpeg" alt="Spa Ancestral">
@@ -1024,7 +1000,6 @@
           <div class="exp-nombre">Spa Ancestral</div>
           <p class="exp-desc">Rituales de limpieza maya con cacao, copal y hierbas medicinales de las tierras altas.</p>
         </div>
-        <!-- Gastronomía -->
         <div class="exp-item reveal reveal-delay-2" onclick="abrirGaleriaExp('gastro')">
           <div class="exp-img-wrap">
             <img src="Foto_de_salon_de_restaurante.jpeg" alt="Gastronomía de Autor">
@@ -1032,7 +1007,6 @@
           <div class="exp-nombre">Gastronomía de Autor</div>
           <p class="exp-desc">Recetas mayas contemporáneas: kak'ik, pepián negro y cacao de origen servidos con elegancia.</p>
         </div>
-        <!-- Tours -->
         <div class="exp-item reveal" onclick="abrirGaleriaExp('tours')">
           <div class="exp-img-wrap">
             <img src="Foto_de_lugar_demostrativa1.jpeg" alt="Tours Arqueológicos">
@@ -1040,7 +1014,6 @@
           <div class="exp-nombre">Tours Arqueológicos</div>
           <p class="exp-desc">Expediciones privadas a Tikal, Yaxhá y Quiriguá guiadas por expertos mayanistas.</p>
         </div>
-        <!-- Cultura Viva -->
         <div class="exp-item reveal reveal-delay-1" onclick="abrirLightbox('Foto_de_una_de_las_entradas_de_Hotel.jpeg')">
           <div class="exp-img-wrap">
             <img src="Foto_de_una_de_las_entradas_de_Hotel.jpeg" alt="Cultura Viva">
@@ -1048,7 +1021,6 @@
           <div class="exp-nombre">Cultura Viva</div>
           <p class="exp-desc">Ceremonias mayas auténticas, danzas del venado y talleres de tejido con artesanas locales.</p>
         </div>
-        <!-- Amanecer en el Lago -->
         <div class="exp-item reveal reveal-delay-2" onclick="abrirLightbox('Foto_de_picina_4.jpeg')">
           <div class="exp-img-wrap">
             <img src="Foto_de_picina_4.jpeg" alt="Amanecer en el Lago">
@@ -1056,7 +1028,6 @@
           <div class="exp-nombre">Amanecer en el Lago</div>
           <p class="exp-desc">Paseos privados al amanecer en lancha artesanal con desayuno criollo a bordo.</p>
         </div>
-        <!-- Mayordomo -->
         <div class="exp-item reveal" onclick="abrirLightbox('Corredor_Hotel.jpeg')">
           <div class="exp-img-wrap">
             <img src="Corredor_Hotel.jpeg" alt="Mayordomo Personal">
@@ -1064,7 +1035,6 @@
           <div class="exp-nombre">Mayordomo Personal</div>
           <p class="exp-desc">Un anfitrión dedicado exclusivamente a ti, disponible las 24 horas para cada necesidad.</p>
         </div>
-        <!-- Salones de Eventos -->
         <div class="exp-item reveal reveal-delay-1" onclick="abrirGaleriaExp('eventos')">
           <div class="exp-img-wrap">
             <img src="Salon_de_eventos.jpeg" alt="Salones de Eventos">
@@ -1072,12 +1042,11 @@
           <div class="exp-nombre">Salones de Eventos</div>
           <p class="exp-desc">Bodas, cenas de gala y reuniones ejecutivas en escenarios de belleza maya inigualable.</p>
         </div>
-        <!-- Concierge -->
         <div class="exp-item reveal reveal-delay-2" onclick="abrirLightbox('Foto_de_recepción.jpeg')">
           <div class="exp-img-wrap">
             <img src="Foto_de_recepción.jpeg" alt="Concierge">
           </div>
-          <div class="exp-nombre">Concierge &amp; Transfer</div>
+          <div class="exp-nombre">Concierge & Transfer</div>
           <p class="exp-desc">Traslados en helicóptero, jets privados y servicios de conserjería de clase mundial.</p>
         </div>
       </div>
@@ -1085,12 +1054,11 @@
   </div>
 </section>
 
-<!-- PAQUETES -->
 <section id="paquetes">
   <div class="seccion">
     <div style="text-align:center;" class="reveal">
       <span class="seccion-etiqueta">Ofertas Especiales</span>
-      <h2 class="seccion-titulo">Paquetes &amp; Experiencias</h2>
+      <h2 class="seccion-titulo">Paquetes & Experiencias</h2>
       <div class="linea-dorada centrada"></div>
       <p class="seccion-descripcion" style="text-align:center; margin:0 auto;">Descubre nuestros paquetes diseñados para cada tipo de viajero, combinando lujo, cultura y experiencias únicas.</p>
     </div>
@@ -1173,7 +1141,6 @@
   </div>
 </section>
 
-<!-- GALERÍA -->
 <section id="galeria">
   <div class="galeria-titulo-wrap reveal">
     <span class="seccion-etiqueta">Galería Visual</span>
@@ -1185,31 +1152,28 @@
     <button class="galeria-tab" onclick="cambiarGaleria('grid', this)">Cuadrícula</button>
     <button class="galeria-tab" onclick="cambiarGaleria('slider', this)">Diapositivas</button>
   </div>
-  <!-- Vista Mosaico -->
   <div class="galeria-view activo" id="galeria-mosaic">
     <div class="galeria-mosaic">
-      <div class="galeria-item"><img src="Foto_de_picina_4.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_picina_4.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Picina_foto1.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Picina_foto1.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Picina_Foto2.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Picina_Foto2.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Picina_Foto3.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Picina_Foto3.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Foto_de_recepción.jpeg" alt="Recepción"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_recepción.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Salon_de_eventos.jpeg" alt="Salón Eventos"><button class="galeria-expand-btn" onclick="abrirLightbox('Salon_de_eventos.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Salon_de_eventos_2.jpeg" alt="Salón Eventos"><button class="galeria-expand-btn" onclick="abrirLightbox('Salon_de_eventos_2.jpeg')">&#10697;</button></div>
-      <div class="galeria-item"><img src="Foto_de_salon_de_restaurante.jpeg" alt="Restaurante"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_salon_de_restaurante.jpeg')">&#10697;</button></div>
+      <div class="galeria-item"><img src="Foto_de_picina_4.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_picina_4.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Picina_foto1.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Picina_foto1.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Picina_Foto2.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Picina_Foto2.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Picina_Foto3.jpeg" alt="Piscina Mayanza"><button class="galeria-expand-btn" onclick="abrirLightbox('Picina_Foto3.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Foto_de_recepción.jpeg" alt="Recepción"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_recepción.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Salon_de_eventos.jpeg" alt="Salón Eventos"><button class="galeria-expand-btn" onclick="abrirLightbox('Salon_de_eventos.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Salon_de_eventos_2.jpeg" alt="Salón Eventos"><button class="galeria-expand-btn" onclick="abrirLightbox('Salon_de_eventos_2.jpeg')">⧉</button></div>
+      <div class="galeria-item"><img src="Foto_de_salon_de_restaurante.jpeg" alt="Restaurante"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_salon_de_restaurante.jpeg')">⧉</button></div>
     </div>
   </div>
-  <!-- Vista Grid -->
   <div class="galeria-view" id="galeria-grid">
     <div class="galeria-grid-view">
-      <div class="galeria-item" style="height:280px;"><img src="Foto_de_Suit.jpeg" alt="Suite"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_Suit.jpeg')">&#10697;</button></div>
-      <div class="galeria-item" style="height:280px;"><img src="Foto_de_de_Suit_2.jpeg" alt="Suite 2"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_de_Suit_2.jpeg')">&#10697;</button></div>
-      <div class="galeria-item" style="height:280px;"><img src="Foto_habitación_simple1.jpeg" alt="Habitación"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_habitación_simple1.jpeg')">&#10697;</button></div>
-      <div class="galeria-item" style="height:280px;"><img src="Corredor_Hotel.jpeg" alt="Corredor"><button class="galeria-expand-btn" onclick="abrirLightbox('Corredor_Hotel.jpeg')">&#10697;</button></div>
-      <div class="galeria-item" style="height:280px;"><img src="Foto_de_una_de_las_entradas_de_Hotel.jpeg" alt="Entrada"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_una_de_las_entradas_de_Hotel.jpeg')">&#10697;</button></div>
-      <div class="galeria-item" style="height:280px;"><img src="Foto_de_lugar_demostrativa1.jpeg" alt="Lugar"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_lugar_demostrativa1.jpeg')">&#10697;</button></div>
+      <div class="galeria-item" style="height:280px;"><img src="Foto_de_Suit.jpeg" alt="Suite"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_Suit.jpeg')">⧉</button></div>
+      <div class="galeria-item" style="height:280px;"><img src="Foto_de_de_Suit_2.jpeg" alt="Suite 2"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_de_Suit_2.jpeg')">⧉</button></div>
+      <div class="galeria-item" style="height:280px;"><img src="Foto_habitación_simple1.jpeg" alt="Habitación"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_habitación_simple1.jpeg')">⧉</button></div>
+      <div class="galeria-item" style="height:280px;"><img src="Corredor_Hotel.jpeg" alt="Corredor"><button class="galeria-expand-btn" onclick="abrirLightbox('Corredor_Hotel.jpeg')">⧉</button></div>
+      <div class="galeria-item" style="height:280px;"><img src="Foto_de_una_de_las_entradas_de_Hotel.jpeg" alt="Entrada"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_una_de_las_entradas_de_Hotel.jpeg')">⧉</button></div>
+      <div class="galeria-item" style="height:280px;"><img src="Foto_de_lugar_demostrativa1.jpeg" alt="Lugar"><button class="galeria-expand-btn" onclick="abrirLightbox('Foto_de_lugar_demostrativa1.jpeg')">⧉</button></div>
     </div>
   </div>
-  <!-- Vista Slider -->
   <div class="galeria-view" id="galeria-slider">
     <div class="galeria-slider-view">
       <div class="galeria-slider-track" id="gal-track">
@@ -1221,15 +1185,14 @@
         <div class="galeria-slider-slide"><img src="Corredor_Hotel.jpeg" alt="Corredor"></div>
       </div>
       <div class="galeria-slider-btns">
-        <button class="galeria-slider-btn" onclick="galSlider(-1)">&#8592;</button>
-        <button class="galeria-slider-btn" onclick="galSlider(1)">&#8594;</button>
+        <button class="galeria-slider-btn" onclick="galSlider(-1)">←</button>
+        <button class="galeria-slider-btn" onclick="galSlider(1)">→</button>
       </div>
       <div class="galeria-slider-dots" id="gal-dots"></div>
     </div>
   </div>
 </section>
 
-<!-- COMODIDADES -->
 <section id="comodidades">
   <div class="seccion">
     <div style="text-align:center;" class="reveal">
@@ -1238,27 +1201,22 @@
       <div class="linea-dorada centrada"></div>
     </div>
     <div class="comodidades-grid" style="margin-top:50px;">
-      <!-- Col 1 -->
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M3 13h1m17 0h1M5 20h14M5 4h14M3 17h18M3 10h18"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Restaurante en Instalaciones</span><span class="comodidad-badge">1 Restaurante</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Tienda de Regalos</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Tienda de Artículos Varios</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l4 4"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Piscina al Aire Libre</span><span class="comodidad-badge">Gratis</span></div></div>
-      <!-- Col 2 -->
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Bañera de Hidromasajes</span><span class="comodidad-badge">Gratis</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Bar en Instalaciones</span><span class="comodidad-badge">1 Bar</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Centro de Negocios</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Espacio para Reuniones</span></div></div>
-      <!-- Col 3 -->
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Peluquería</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Spa</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Gimnasio</span><span class="comodidad-badge">Gratis</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Wi-Fi Sin Cargo</span><span class="comodidad-badge">Gratis para socios Bonvoy</span></div></div>
-      <!-- Col 4 -->
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Lavandería en el Hotel</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Servicio a la Habitación</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Llamadas de Despertador</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Conserje</span></div></div>
-      <!-- Extras -->
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Limpieza Diaria de Habitación</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Casino</span></div></div>
       <div class="comodidad-item"><div class="comodidad-icon"><svg viewBox="0 0 24 24"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg></div><div class="comodidad-text"><span class="comodidad-nombre">Llave Móvil</span></div></div>
@@ -1267,7 +1225,6 @@
   </div>
 </section>
 
-<!-- INFO HOTEL -->
 <section id="info-hotel">
   <div class="seccion">
     <div style="text-align:center;" class="reveal">
@@ -1317,7 +1274,6 @@
   </div>
 </section>
 
-<!-- ORGANIGRAMA -->
 <section id="organigrama">
   <div class="seccion">
     <div style="text-align:center;" class="reveal">
@@ -1326,7 +1282,6 @@
       <div class="linea-dorada centrada"></div>
     </div>
     <div class="org-container">
-      <!-- Gerente General -->
       <div class="org-nivel">
         <div class="org-card director">
           <div class="org-titulo">Nivel Directivo</div>
@@ -1338,7 +1293,6 @@
         </div>
         <div class="org-connector-v"></div>
       </div>
-      <!-- Línea horizontal -->
       <div style="display:flex; justify-content:center; margin-bottom:0;">
         <div style="width:70%; height:2px; background:rgba(166,128,49,0.25);"></div>
       </div>
@@ -1384,7 +1338,6 @@
           </div>
         </div>
       </div>
-      <!-- Nivel Operativo -->
       <div style="text-align:center; margin-top:40px; margin-bottom:20px;">
         <span style="font-size:0.55rem; letter-spacing:4px; color:rgba(166,128,49,0.6); text-transform:uppercase;">Nivel Operativo</span>
       </div>
@@ -1424,7 +1377,6 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section id="cta">
   <div class="cta-bg"></div>
   <div class="cta-contenido reveal">
@@ -1438,7 +1390,6 @@
   </div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto">
   <div class="seccion">
     <div style="text-align:center; margin-bottom: 60px;" class="reveal">
@@ -1462,7 +1413,7 @@
             <svg viewBox="0 0 24 24"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
           </div>
           <div>
-            <div class="contacto-label">WhatsApp &amp; Teléfono</div>
+            <div class="contacto-label">WhatsApp & Teléfono</div>
             <div class="contacto-valor"><a href="https://wa.me/50256311624">+502 5631 1624</a></div>
           </div>
         </div>
@@ -1472,7 +1423,7 @@
           </div>
           <div>
             <div class="contacto-label">Correo Electrónico</div>
-            <div class="contacto-valor"><a href="/cdn-cgi/l/email-protection#a0d2c5d3c5d2d6c1d3e0cdc1d9c1cedac1c7d2c1cec4c8cfd4c5ccd38ec3cfcd"><span class="__cf_email__" data-cfemail="f88a9d8b9d8a8e998bb8959981999682999f8a99969c90978c9d948bd69b9795">[email&#160;protected]</span></a></div>
+            <div class="contacto-valor"><a href="/cdn-cgi/l/email-protection#a0d2c5d3c5d2d6c1d3e0cdc1d9c1cedac1c7d2c1cec4c8cfd4c5ccd38ec3cfcd"><span class="__cf_email__" data-cfemail="f88a9d8b9d8a8e998bb8959981999682999f8a99969c90978c9d948bd69b9795">[email protected]</span></a></div>
           </div>
         </div>
         <div class="contacto-info-item">
@@ -1495,7 +1446,6 @@
           </div>
         </div>
       </div>
-      <!-- FORMULARIO RESERVA -->
       <div class="reveal reveal-delay-2">
         <span class="seccion-etiqueta">Reserva Directa</span>
         <h3 class="seccion-titulo" style="font-size: 2rem; margin-bottom: 8px;">Planifica tu<br>Estancia</h3>
@@ -1555,7 +1505,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -1580,7 +1529,7 @@
       <div class="footer-titulo-col">El Hotel</div>
       <ul class="footer-links">
         <li><a href="#historia">Nuestra Historia</a></li>
-        <li><a href="#habitaciones">Suites &amp; Villas</a></li>
+        <li><a href="#habitaciones">Suites & Villas</a></li>
         <li><a href="#experiencias">Experiencias</a></li>
         <li><a href="#paquetes">Paquetes</a></li>
         <li><a href="#galeria">Galería</a></li>
@@ -1593,7 +1542,7 @@
         <li><a href="#experiencias">Spa Ancestral</a></li>
         <li><a href="#experiencias">Tours Arqueológicos</a></li>
         <li><a href="#experiencias">Gastronomía Maya</a></li>
-        <li><a href="#experiencias">Eventos &amp; Bodas</a></li>
+        <li><a href="#experiencias">Eventos & Bodas</a></li>
         <li><a href="#experiencias">Concierge Premium</a></li>
         <li><a href="#comodidades">Comodidades</a></li>
       </ul>
@@ -1602,7 +1551,7 @@
       <div class="footer-titulo-col">Contacto</div>
       <ul class="footer-links">
         <li><a href="https://wa.me/50256311624">+502 5631 1624</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#b4c6d1c7d1c6c2d5c7f4d9d5cdd5daced5d3c6d5dad0dcdbc0d1d8c79ad7dbd9"><span class="__cf_email__" data-cfemail="dba9bea8bea9adbaa89bb6baa2bab5a1babca9bab5bfb3b4afbeb7a8f5b8b4b6">[email&#160;protected]</span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#b4c6d1c7d1c6c2d5c7f4d9d5cdd5daced5d3c6d5dad0dcdbc0d1d8c79ad7dbd9"><span class="__cf_email__" data-cfemail="dba9bea8bea9adbaa89bb6baa2bab5a1babca9bab5bfb3b4afbeb7a8f5b8b4b6">[email protected]</span></a></li>
         <li><a href="#contacto">Flores, Petén, Guatemala</a></li>
         <li><a href="#" onclick="abrirModal(event)">Reservar ahora</a></li>
       </ul>
@@ -1611,14 +1560,13 @@
   <div class="footer-bottom">
     <p class="footer-copyright">© 2025 Mayanza Grand Hotels. Todos los derechos reservados.</p>
     <div class="footer-legal">
-      <a href="#" onclick="abrirTerminos(); return false;">Términos &amp; Condiciones</a>
+      <a href="#" onclick="abrirTerminos(); return false;">Términos & Condiciones</a>
       <a href="#" onclick="abrirAvisoLegal(); return false;">Aviso Legal</a>
       <a href="#" onclick="abrirModal({preventDefault:()=>{}}); return false;">Política de Cancelación</a>
     </div>
   </div>
 </footer>
 
-<!-- MODAL RESERVA COMPLETO -->
 <div class="modal-overlay" id="modal-reserva">
   <div class="modal">
     <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
@@ -1627,7 +1575,6 @@
       <div class="modal-titulo">Reserva tu Suite</div>
       <p class="modal-subtitulo">Sin necesidad de crear cuenta — solo reserva</p>
 
-      <!-- Tabs Tarifas -->
       <div class="modal-tarifas">
         <div class="tarifas-tabs">
           <button class="tarifa-tab activo" onclick="cambiarTarifaTab(this, 'tab-estandar')">Estándar</button>
@@ -1703,7 +1650,6 @@
             <input type="date" id="m-checkout" class="form-input" required>
           </div>
         </div>
-        <!-- Huéspedes -->
         <div class="form-grupo">
           <label class="form-label">Huéspedes</label>
           <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
@@ -1733,7 +1679,6 @@
             </div>
           </div>
         </div>
-        <!-- Suite de interés — selección visual -->
         <div class="form-grupo">
           <label class="form-label">Suite de interés <span style="color:var(--dorado);">*</span></label>
           <input type="hidden" id="m-suite" required>
@@ -1765,7 +1710,6 @@
           </div>
           <p id="suite-error" style="display:none;color:#c0392b;font-size:0.72rem;margin-top:6px;">Por favor selecciona una suite</p>
         </div>
-        <!-- Paquete opcional -->
         <div class="form-grupo">
           <label class="form-label">Paquete especial <span style="font-size:0.65rem;color:var(--texto-gris);font-weight:300;">(opcional)</span></label>
           <select id="m-paquete" class="form-select form-input" style="background:#faf8f4;color:#1a1208;border:1px solid rgba(166,128,49,0.35);">
@@ -1793,18 +1737,13 @@
         <strong>⚙️ Nota técnica:</strong> Para activar el envío de emails automático configura EmailJS y reemplaza las claves en las líneas <strong>2249, 2252 y 2258</strong> del script.
       </div>
 
-      <!-- COMPROBANTE DESCARGABLE -->
       <div id="comprobante-reserva" style="background:#fffdf8; border:1px solid rgba(166,128,49,0.25); border-radius:4px; padding:28px 24px; margin:16px 0; text-align:center; font-family:'Cinzel',serif;">
-        <!-- Header del comprobante -->
         <div style="border-bottom:2px solid var(--dorado); padding-bottom:16px; margin-bottom:20px;">
           <div style="font-size:0.55rem; letter-spacing:5px; color:var(--dorado); text-transform:uppercase; margin-bottom:4px;">Mayanza Grand Hotels</div>
           <div style="font-size:1.1rem; color:#1a1208; letter-spacing:2px;">Comprobante de Reservación</div>
         </div>
-        <!-- Info de reserva -->
         <div id="comprobante-info" style="font-family:'Jost',sans-serif; font-size:0.82rem; color:#3a2e1a; line-height:2; text-align:left; margin-bottom:20px; padding:0 8px;">
-          <!-- Se llena dinámicamente -->
-        </div>
-        <!-- QR real -->
+          </div>
         <div style="margin:16px auto; text-align:center;">
           <div style="font-size:0.55rem; letter-spacing:3px; text-transform:uppercase; color:var(--dorado); margin-bottom:10px; font-family:'Jost',sans-serif;">Código QR · Presentar en recepción</div>
           <div style="display:inline-block; background:#fff; padding:12px; border:1px solid rgba(166,128,49,0.3); border-radius:3px;">
@@ -1812,13 +1751,11 @@
           </div>
         </div>
         <p id="qr-res-num" style="font-size:0.72rem; color:#5a4e3a; margin-top:8px; font-family:'Jost',sans-serif; letter-spacing:1px;"></p>
-        <!-- Footer del comprobante -->
         <div style="border-top:1px solid rgba(166,128,49,0.2); margin-top:16px; padding-top:12px; font-size:0.62rem; color:#8a7a5a; font-family:'Jost',sans-serif; letter-spacing:1px;">
-          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a171b031b14001b12150e1f16093a1d171b131654191517">[email&#160;protected]</a> · +502 5631 1624 · Guatemala
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a171b031b14001b12150e1f16093a1d171b131654191517">[email protected]</a> · +502 5631 1624 · Guatemala
         </div>
       </div>
 
-      <!-- BOTONES DE ACCIÓN -->
       <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:stretch; margin-top:20px;">
         <button onclick="descargarComprobante()" style="background:var(--dorado); border:none; color:#fff; padding:13px 22px; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:2px; min-width:210px; box-sizing:border-box;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0;"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
@@ -1833,7 +1770,6 @@
   </div>
 </div>
 
-<!-- MODAL HABITACION DETALLE -->
 <div class="modal-hab-overlay" id="modal-hab">
   <div class="modal-hab" id="modal-hab-content">
     <button class="modal-hab-close" onclick="cerrarHabitacion()">✕</button>
@@ -1855,13 +1791,11 @@
   </div>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="img-lightbox" id="img-lightbox" onclick="if(event.target===this)cerrarLightbox()">
   <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
   <button class="img-lightbox-close" onclick="event.stopPropagation();cerrarLightbox()" title="Cerrar">✕</button>
 </div>
 
-<!-- MODAL TÉRMINOS -->
 <div class="modal-overlay" id="modal-terminos">
   <div class="modal modal-terminos">
     <button class="modal-cerrar" onclick="document.getElementById('modal-terminos').classList.remove('abierto')">✕</button>
@@ -1882,12 +1816,11 @@
       <h4>6. Privacidad</h4>
       <p>Los datos personales proporcionados durante la reserva son tratados con estricta confidencialidad y únicamente para fines de gestión de la estadía, en cumplimiento con las leyes guatemaltecas de protección de datos.</p>
       <br>
-      <p style="font-size:0.75rem; color:var(--texto-gris);">Última actualización: Enero 2025. Para consultas: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="106275637562667163507d7169717e6a717762717e74787f64757c633e737f7d">[email&#160;protected]</a></p>
+      <p style="font-size:0.75rem; color:var(--texto-gris);">Última actualización: Enero 2025. Para consultas: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="106275637562667163507d7169717e6a717762717e74787f64757c633e737f7d">[email protected]</a></p>
     </div>
   </div>
 </div>
 
-<!-- MODAL AVISO LEGAL -->
 <div class="modal-overlay" id="modal-aviso-legal">
   <div class="modal modal-terminos">
     <button class="modal-cerrar" onclick="document.getElementById('modal-aviso-legal').classList.remove('abierto')">✕</button>
@@ -1904,14 +1837,13 @@
       <h4>Jurisdicción</h4>
       <p>Cualquier disputa relacionada con el uso de este sitio web o los servicios del hotel se regirá por las leyes de Guatemala y se someterá a la jurisdicción de los tribunales competentes de la República de Guatemala.</p>
       <h4>Contacto</h4>
-      <p>Para cualquier consulta legal: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb998e988e999d8a98ab868a928a85918a8c998a858f83849f8e8798c5888486">[email&#160;protected]</a> | +502 5631 1624</p>
+      <p>Para cualquier consulta legal: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb998e988e999d8a98ab868a928a85918a8c998a858f83849f8e8798c5888486">[email protected]</a> | +502 5631 1624</p>
       <br>
       <p style="font-size:0.75rem; color:var(--texto-gris);">© 2025 Mayanza Grand Hotels. Todos los derechos reservados.</p>
     </div>
   </div>
 </div>
 
-<!-- MODAL VALORES -->
 <div class="modal-overlay" id="modal-valores">
   <div class="modal" style="max-width:600px;">
     <button class="modal-cerrar" onclick="document.getElementById('modal-valores').classList.remove('abierto')">✕</button>
@@ -1936,14 +1868,14 @@
         <p style="font-size:0.85rem; color:var(--texto-gris); line-height:1.7;">Combinamos la sabiduría ancestral con las últimas tendencias en hospitalidad de lujo.</p>
       </div>
       <div style="padding:16px 0;">
-        <div style="font-family:var(--fuente-titulo); font-size:0.8rem; letter-spacing:2px; color:var(--dorado); text-transform:uppercase; margin-bottom:6px;">Integridad</div>
+        <div style="font-family:var(--fuente-titulo); font-size:0.8rem; letter-spacing:2px; color
+          :var(--dorado); text-transform:uppercase; margin-bottom:6px;">Integridad</div>
         <p style="font-size:0.85rem; color:var(--texto-gris); line-height:1.7;">Actuamos con honestidad, transparencia y respeto hacia nuestros huéspedes, colaboradores y el entorno.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast">✦ Mensaje enviado exitosamente</div>
 
 <script>
@@ -2052,7 +1984,6 @@ function abrirHabitacion(idx) {
   document.getElementById('mh-categoria').textContent = h.cat;
   document.getElementById('mh-titulo').textContent = h.nombre;
   document.getElementById('mh-desc').textContent = h.desc;
-  // Imgs
   const imgs = document.getElementById('modal-hab-imgs');
   imgs.innerHTML = '';
   h.imgs.forEach((src, i) => {
@@ -2067,10 +1998,8 @@ function abrirHabitacion(idx) {
     const al = document.createElement('button'); al.className = 'modal-hab-arrow modal-hab-arrow-l'; al.textContent = '←'; al.onclick = () => navImgHab(-1); imgs.appendChild(al);
     const ar = document.createElement('button'); ar.className = 'modal-hab-arrow modal-hab-arrow-r'; ar.textContent = '→'; ar.onclick = () => navImgHab(1); imgs.appendChild(ar);
   }
-  // Amenidades
   const am = document.getElementById('mh-amenidades');
   am.innerHTML = h.amenidades.map(a => `<div class="amenidad-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${a}</div>`).join('');
-  // Precios
   const pr = document.getElementById('mh-precios');
   pr.innerHTML = '<div style="font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--dorado);margin-bottom:12px;font-family:var(--fuente-cuerpo);">Tarifas</div>' +
     h.precios.map(p => `<div class="precio-row"><span class="precio-label">${p.l}</span><span class="precio-val">${p.v}</span></div>`).join('');
@@ -2098,7 +2027,6 @@ function cambiarGaleria(tipo, btn) {
   document.querySelectorAll('.galeria-view').forEach(v => v.classList.remove('activo'));
   document.getElementById('galeria-' + tipo).classList.add('activo');
 }
-// Slider Galería
 let galIdx = 0;
 const galSlides = document.querySelectorAll('.galeria-slider-slide');
 const galDotsEl = document.getElementById('gal-dots');
@@ -2121,7 +2049,6 @@ function galSlider(d) { galIrA((galIdx + d + galSlides.length) % galSlides.lengt
 function abrirLightbox(src) { document.getElementById('lightbox-img').src = src; document.getElementById('img-lightbox').classList.add('abierto'); document.body.style.overflow = 'hidden'; }
 function cerrarLightbox() { document.getElementById('img-lightbox').classList.remove('abierto'); document.body.style.overflow = ''; }
 
-// GALERIA EXPERIENCIAS
 function abrirGaleriaExp(tipo) {
   const mapa = { spa:['Foto_de_recepción.jpeg'], gastro:['Foto_de_salon_de_restaurante.jpeg'], tours:['Foto_de_lugar_demostrativa1.jpeg'], eventos:['Salon_de_eventos.jpeg','Salon_de_eventos_2.jpeg'] };
   const imgs = mapa[tipo] || [];
@@ -2134,7 +2061,6 @@ function abrirModal(event) { if (event && event.preventDefault) event.preventDef
 function abrirModalConSuite(suiteVal, event) {
   if (event && event.preventDefault) event.preventDefault();
   abrirModal(event);
-  // Pre-seleccionar la suite después de un pequeño delay para que el modal esté visible
   setTimeout(() => {
     const opts = document.querySelectorAll('.suite-opt');
     opts.forEach(o => {
@@ -2154,11 +2080,8 @@ function abrirModalConSuite(suiteVal, event) {
   }, 300);
 }
 
-let habSeleccionadaNombre = '';
 function abrirModalConSuiteDesdeHab() {
-  // Obtener el nombre de la habitación actualmente abierta en el modal
   const nombre = document.getElementById('mh-titulo').textContent;
-  // Mapear nombres a valores del selector
   const mapaHabSuite = {
     'Habitación Simple': 'Habitación Simple ($100/noche)',
     'Suite Ancestral': 'Suite Ancestral ($200/noche)',
@@ -2170,13 +2093,13 @@ function abrirModalConSuiteDesdeHab() {
   const suiteVal = mapaHabSuite[nombre] || nombre;
   abrirModalConSuite(suiteVal, null);
 }
+
 function cerrarModal() {
   document.getElementById('modal-reserva').classList.remove('abierto');
   document.body.style.overflow = '';
   setTimeout(() => {
     document.getElementById('modal-form').style.display = 'block';
     document.getElementById('modal-exito').classList.remove('visible');
-    // Limpiar suite seleccionada
     document.querySelectorAll('.suite-opt').forEach(o => {
       o.style.border = '1px solid rgba(166,128,49,0.3)';
       o.style.background = '#faf8f4';
@@ -2184,7 +2107,6 @@ function cerrarModal() {
     });
     document.getElementById('m-suite').value = '';
     document.getElementById('suite-error').style.display = 'none';
-    // Reset contadores
     mContadores.madultos = 1; mContadores.mninos = 0; mContadores.mhabs = 1;
     document.getElementById('cnt-madultos').textContent = '1';
     document.getElementById('cnt-mninos').textContent = '0';
@@ -2231,7 +2153,6 @@ function confirmarReserva(event) {
     if (diff > 0) noches = ' (' + diff + ' noche' + (diff>1?'s':'') + ')';
   }
 
-  // Datos del QR — texto completo escaneable en recepción
   const qrData = 'MAYANZA GRAND HOTELS\n========================\nRESERVACION: ' + resNum +
     '\nHUESPED: ' + nombres + ' ' + apellidos +
     '\nEMAIL: ' + email +
@@ -2245,21 +2166,19 @@ function confirmarReserva(event) {
     '\nEMITIDO: ' + fechaEmision +
     '\n========================\nTel: +502 5631-1624\nmayanzahotels@gmail.com';
 
-  // Mostrar éxito
   document.getElementById('modal-form').style.display = 'none';
   document.getElementById('modal-exito-texto').innerHTML =
     'Gracias <strong>' + nombres + ' ' + apellidos + '</strong>, tu solicitud de reserva ha sido recibida.<br>' +
-    '<span style="font-size:0.82rem;color:var(--texto-gris);">' + suiteVal + ' &middot; ' + fmtDate(checkin) + ' &rarr; ' + fmtDate(checkout) + noches + '</span>';
+    '<span style="font-size:0.82rem;color:var(--texto-gris);">' + suiteVal + ' · ' + fmtDate(checkin) + ' → ' + fmtDate(checkout) + noches + '</span>';
 
-  // Llenar comprobante
   document.getElementById('comprobante-info').innerHTML =
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">' +
-    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">N&ordm; Reserva</span><br><strong style="font-family:\'Cinzel\',serif;font-size:0.95rem;">' + resNum + '</strong></div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Nº Reserva</span><br><strong style="font-family:\'Cinzel\',serif;font-size:0.95rem;">' + resNum + '</strong></div>' +
     '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Emitido</span><br>' + fechaEmision + '</div>' +
-    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Hu&eacute;sped</span><br><strong>' + nombres + ' ' + apellidos + '</strong></div>' +
-    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Tel&eacute;fono</span><br>' + (tel||'N/A') + '</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Huésped</span><br><strong>' + nombres + ' ' + apellidos + '</strong></div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Teléfono</span><br>' + (tel||'N/A') + '</div>' +
     '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Email</span><br>' + email + '</div>' +
-    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Hu&eacute;spedes</span><br>' + adultos + ' adulto(s), ' + ninos + ' ni&ntilde;o(s) &middot; ' + habs + ' hab.</div>' +
+    '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Huéspedes</span><br>' + adultos + ' adulto(s), ' + ninos + ' niño(s) · ' + habs + ' hab.</div>' +
     '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Suite</span><br><strong>' + suiteVal + '</strong></div>' +
     '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Paquete</span><br>' + paquete + '</div>' +
     '<div><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Check-in</span><br><strong>' + fmtDate(checkin) + '</strong></div>' +
@@ -2267,26 +2186,21 @@ function confirmarReserva(event) {
     (notas ? '<div style="grid-column:1/-1;"><span style="font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);">Notas</span><br>' + notas + '</div>' : '') +
     '</div>';
 
-  document.getElementById('qr-res-num').textContent = 'Reservaci\u00F3n: ' + resNum + ' \u00B7 Presentar en recepci\u00F3n';
+  document.getElementById('qr-res-num').textContent = 'Reservación: ' + resNum + ' · Presentar en recepción';
   const note = document.getElementById('emailjs-config-note');
   if (note) note.style.display = 'block';
   document.getElementById('modal-exito').classList.add('visible');
 
-  // ── GENERAR QR REAL con qrcode.js (cdn.jsdelivr) ──────────────────
-  // ── GENERAR QR REAL (qrcodejs — new QRCode()) ─────────────────────
-  // qrcodejs@1.0.0 usa: new QRCode(elemento_div, { text, width, height })
-  // Necesita un DIV, no un canvas. Reemplazamos el canvas por un div.
+  // CORRECCIÓN 2: Generar QR estable y ajustado a CorrectLevel.L
   var qrWrapper = document.getElementById('qr-code-display');
-  // Limpiar contenido anterior
-  qrWrapper.innerHTML = '';
-  // qrcodejs crea su propio canvas/img dentro del div
+  qrWrapper.innerHTML = ''; 
   new QRCode(qrWrapper, {
     text:          qrData,
     width:         180,
     height:        180,
     colorDark:     '#1a1208',
     colorLight:    '#ffffff',
-    correctLevel:  QRCode.CorrectLevel.M
+    correctLevel:  QRCode.CorrectLevel.L
   });
 
   window._reservaActual = {
@@ -2296,7 +2210,7 @@ function confirmarReserva(event) {
     paquete: paquete, email: email, tel: tel, notas: notas, fechaEmision: fechaEmision
   };
 
-  // ── EMAILJS ────────────────────────────────────────────────────────
+  // CORRECCIÓN 1: EmailJS Init actualizado para V4
   var EMAILJS_PUBLIC_KEY  = 'qgT22e6hKUSkUfTzs';
   var EMAILJS_SERVICE_ID  = 'service_jl6zumr';
   var EMAILJS_TEMPLATE_ID = 'template_qe05tvd';
@@ -2325,120 +2239,46 @@ function confirmarReserva(event) {
                   '\nNotas: ' + (notas || 'Ninguna')
   };
 
-  // Inicializar EmailJS
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+  // Iniciar v4 sintaxis
+  emailjs.init({
+    publicKey: EMAILJS_PUBLIC_KEY,
+  });
 
-  // Email → al cliente
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, tpl)
-    .then(function() {
-      console.log('✅ Email enviado al cliente: ' + email);
-    })
-    .catch(function(err) {
-      console.error('❌ Error email cliente:', JSON.stringify(err));
-    });
+    .then(function() { console.log('✅ Email enviado al cliente: ' + email); })
+    .catch(function(err) { console.error('❌ Error email cliente:', err); });
 
-  // Email → al hotel
   var tplHotel = JSON.parse(JSON.stringify(tpl));
   tplHotel.to_email = 'mayanzahotels@gmail.com';
   tplHotel.to_name  = 'Equipo Mayanza Hotels';
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, tplHotel)
-    .then(function() {
-      console.log('✅ Email enviado al hotel');
-    })
-    .catch(function(err) {
-      console.error('❌ Error email hotel:', JSON.stringify(err));
-    });
+    .then(function() { console.log('✅ Email enviado al hotel'); })
+    .catch(function(err) { console.error('❌ Error email hotel:', err); });
 }
 
-// ── DESCARGAR COMPROBANTE ─────────────────────────────────────────────
-// Estrategia: construir un HTML limpio en nueva ventana y usar el
-// canvas del QR como imagen base64, luego imprimir como PDF o guardar.
+// CORRECCIÓN 3: Nueva función para descargar con html2canvas
 function descargarComprobante() {
   var res = window._reservaActual;
   if (!res) { alert('Primero confirma una reserva.'); return; }
 
-  // Obtener imagen del QR desde el canvas/img generado por qrcodejs
-  var qrImgSrc = '';
-  var qrWrapper = document.getElementById('qr-code-display');
-  if (qrWrapper) {
-    var qrCanvas = qrWrapper.querySelector('canvas');
-    var qrImg    = qrWrapper.querySelector('img');
-    if (qrCanvas) {
-      qrImgSrc = qrCanvas.toDataURL('image/png');
-    } else if (qrImg) {
-      qrImgSrc = qrImg.src;
-    }
-  }
+  // Buscamos el contenedor que queremos convertir a imagen
+  var comprobanteDiv = document.getElementById('comprobante-reserva');
 
-  var qrHtml = qrImgSrc
-    ? '<img src="' + qrImgSrc + '" width="180" height="180" style="display:block;margin:0 auto;">'
-    : '<div style="width:180px;height:180px;background:#eee;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:0.7rem;color:#666;">QR no disponible</div>';
-
-  var html = '<!DOCTYPE html><html lang="es"><head>' +
-    '<meta charset="UTF-8">' +
-    '<title>Comprobante Reserva ' + res.resNum + '</title>' +
-    '<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">' +
-    '<style>' +
-    'body{margin:0;padding:0;background:#fff;font-family:"Jost",sans-serif;}' +
-    '.comprobante{max-width:480px;margin:30px auto;background:#fffdf8;border:1px solid rgba(166,128,49,0.3);padding:36px 32px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}' +
-    '.header{text-align:center;border-bottom:2px solid #a68031;padding-bottom:18px;margin-bottom:24px;}' +
-    '.logo-text{font-family:"Cinzel",serif;font-size:1.3rem;letter-spacing:4px;color:#a68031;text-transform:uppercase;}' +
-    '.sub-title{font-size:0.6rem;letter-spacing:5px;color:#8a7a5a;text-transform:uppercase;margin-top:4px;}' +
-    '.titulo{font-family:"Cinzel",serif;font-size:1rem;color:#1a1208;letter-spacing:2px;margin-top:8px;}' +
-    '.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:20px;}' +
-    '.campo label{display:block;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:#a68031;margin-bottom:2px;}' +
-    '.campo span{font-size:0.85rem;color:#1a1208;font-weight:500;}' +
-    '.campo.full{grid-column:1/-1;}' +
-    '.res-num{font-family:"Cinzel",serif;font-size:1.1rem;color:#1a1208;}' +
-    '.qr-section{text-align:center;margin:20px 0;padding:20px;background:#fff;border:1px solid rgba(166,128,49,0.2);}' +
-    '.qr-label{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:#a68031;margin-bottom:12px;}' +
-    '.res-code{font-size:0.72rem;color:#5a4e3a;margin-top:10px;letter-spacing:1px;}' +
-    '.footer{border-top:1px solid rgba(166,128,49,0.2);margin-top:20px;padding-top:14px;text-align:center;font-size:0.62rem;color:#8a7a5a;letter-spacing:1px;line-height:1.8;}' +
-    '.btn-imprimir{display:block;width:100%;margin:20px auto 0;padding:14px;background:#a68031;color:#fff;border:none;font-family:"Cinzel",serif;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;}' +
-    '@media print{.btn-imprimir{display:none!important;} body{background:#fff;} .comprobante{box-shadow:none;border:1px solid #ccc;}}' +
-    '</style></head><body>' +
-    '<div class="comprobante">' +
-    '  <div class="header">' +
-    '    <div class="logo-text">Mayanza Grand Hotels</div>' +
-    '    <div class="sub-title">El Latido de la Eterna Primavera · Guatemala</div>' +
-    '    <div class="titulo">Comprobante de Reservación</div>' +
-    '  </div>' +
-    '  <div class="grid">' +
-    '    <div class="campo full"><label>N° Reservación</label><span class="res-num">' + res.resNum + '</span></div>' +
-    '    <div class="campo"><label>Huésped</label><span>' + res.nombres + ' ' + res.apellidos + '</span></div>' +
-    '    <div class="campo"><label>Fecha emisión</label><span>' + res.fechaEmision + '</span></div>' +
-    '    <div class="campo"><label>Email</label><span>' + res.email + '</span></div>' +
-    '    <div class="campo"><label>Teléfono</label><span>' + (res.tel || 'N/A') + '</span></div>' +
-    '    <div class="campo"><label>Suite</label><span>' + res.suiteVal + '</span></div>' +
-    '    <div class="campo"><label>Paquete</label><span>' + res.paquete + '</span></div>' +
-    '    <div class="campo"><label>Check-in</label><span>' + res.checkin + '</span></div>' +
-    '    <div class="campo"><label>Check-out</label><span>' + res.checkout + res.noches + '</span></div>' +
-    '    <div class="campo"><label>Adultos</label><span>' + res.adultos + '</span></div>' +
-    '    <div class="campo"><label>Niños / Habitaciones</label><span>' + res.ninos + ' niño(s) · ' + res.habs + ' hab.</span></div>' +
-    (res.notas ? '    <div class="campo full"><label>Notas especiales</label><span>' + res.notas + '</span></div>' : '') +
-    '  </div>' +
-    '  <div class="qr-section">' +
-    '    <div class="qr-label">Código QR · Escanear en recepción</div>' +
-    qrHtml +
-    '    <div class="res-code">Reservación: ' + res.resNum + ' · Presentar en recepción</div>' +
-    '  </div>' +
-    '  <div class="footer">' +
-    '    mayanzahotels@gmail.com &nbsp;·&nbsp; +502 5631-1624 &nbsp;·&nbsp; Guatemala<br>' +
-    '    Este comprobante es válido con el código QR escaneado en recepción.' +
-    '  </div>' +
-    '  <button class="btn-imprimir" onclick="window.print()">⬇ Guardar / Imprimir Comprobante</button>' +
-    '</div></body></html>';
-
-  var w = window.open('', '_blank', 'width=560,height=800');
-  if (w) {
-    w.document.open();
-    w.document.write(html);
-    w.document.close();
-  } else {
-    alert('Por favor permite las ventanas emergentes en tu navegador para descargar el comprobante.');
-  }
+  html2canvas(comprobanteDiv, {
+    scale: 2, 
+    useCORS: true,
+    backgroundColor: "#fffdf8" 
+  }).then(function(canvas) {
+    var link = document.createElement('a');
+    link.download = 'Reserva_Mayanza_' + res.resNum + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(function(err) {
+    console.error('Error al generar comprobante:', err);
+    alert('Hubo un problema al descargar el comprobante.');
+  });
 }
-// Contadores en modal de reserva
+
 const mContadores = { madultos: 1, mninos: 0, mhabs: 1 };
 function cambiarModalContador(tipo, dir) {
   const min = (tipo === 'madultos' || tipo === 'mhabs') ? 1 : 0;
@@ -2446,7 +2286,6 @@ function cambiarModalContador(tipo, dir) {
   document.getElementById('cnt-' + tipo).textContent = mContadores[tipo];
 }
 
-// Selección visual de suite
 function seleccionarSuiteModal(el) {
   document.querySelectorAll('.suite-opt').forEach(o => {
     o.style.border = '1px solid rgba(166,128,49,0.3)';
@@ -2460,33 +2299,27 @@ function seleccionarSuiteModal(el) {
   document.getElementById('suite-error').style.display = 'none';
 }
 
-// FORMULARIO CONTACTO
 function enviarFormularioContacto(event) {
   event.preventDefault();
   mostrarToast();
   event.target.reset();
 }
 
-// TOAST
 function mostrarToast() { const t = document.getElementById('toast'); t.classList.add('visible'); setTimeout(() => t.classList.remove('visible'), 3000); }
 
-// REVEAL
 const observador = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observador.unobserve(entry.target); } });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
 
-// MODALES LEGALES
 function abrirTerminos() { document.getElementById('modal-terminos').classList.add('abierto'); document.body.style.overflow = 'hidden'; }
-function abrirAvisoLegal() { document.getElementById('modal-aviso-legal').classList.add('abierto'); document.body.style.overflow = 'hidden'
-; }
+function abrirAvisoLegal() { document.getElementById('modal-aviso-legal').classList.add('abierto'); document.body.style.overflow = 'hidden'; }
 function abrirModalValores() { document.getElementById('modal-valores').classList.add('abierto'); document.body.style.overflow = 'hidden'; }
 function cerrarModalLegal(id) { document.getElementById(id).classList.remove('abierto'); document.body.style.overflow = ''; }
 
-// PARALLAX SUAVE
 const heroContenido = document.querySelector('.hero-contenido');
 document.addEventListener('mousemove', (e) => {
-      if (!heroContenido) return;
+  if (!heroContenido) return;
   const x = (e.clientX / window.innerWidth - 0.5) * 10;
   const y = (e.clientY / window.innerHeight - 0.5) * 6;
   heroContenido.style.transform = `translate(${x}px, ${y}px)`;
