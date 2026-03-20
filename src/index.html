@@ -60,14 +60,12 @@
     .side-menu-close:hover { background: var(--dorado); color: white; }
     .side-menu-close:hover { color: var(--dorado); }
     
-    /* Global Modal Closers - Moved to Top Right */
-    /* Global Modal Closers */
     /* Global Modal Closers */
     .modal-cerrar, .modal-hab-close, .booking-dropdown-close, .img-lightbox-close { 
       position: absolute !important; 
       top: 15px !important; 
       right: 15px !important; 
-      z-index: 150000 !important;
+      z-index: 200000 !important;
       background: #fff !important;
       border: 2px solid var(--dorado) !important;
       border-radius: 50% !important;
@@ -87,6 +85,8 @@
       font-weight: bold;
     }
     .modal-cerrar span, .modal-hab-close span, .booking-dropdown-close span, .img-lightbox-close span { display: none; }
+    .modal { padding: 60px 30px 40px !important; position: relative !important; }
+    .habitacion-detalle-content { position: relative !important; padding-top: 50px !important; }
     .modal-cerrar:hover, .modal-hab-close:hover, .img-lightbox-close:hover {
       background: var(--dorado);
       color: #fff;
