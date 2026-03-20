@@ -1,0 +1,28 @@
+<section id="packages" class="seccion">
+  <div style="text-align: center; margin-bottom: 50px;">
+    <span class="seccion-etiqueta">Experiencias Diseñadas a tu Medida</span>
+    <h2 class="seccion-titulo">Ofertas & Paquetes</h2>
+    <div class="linea-dorada centrada"></div>
+    <p class="seccion-descripcion" style="margin: 0 auto;">Nuestros paquetes especiales han sido diseñados para brindarte la escapada perfecta.</p>
+  </div>
+
+  <div class="paquetes-grid">
+    <div class="paquete-card reveal" [class]="'reveal-delay-' + (i + 1)" *ngFor="let pkg of packagesList; let i = index">
+      <span class="paquete-suite">{{ pkg.suite }}</span>
+      <h3 class="paquete-nombre">{{ pkg.name }}</h3>
+      <p class="paquete-desc">{{ pkg.desc }}</p>
+
+      <ul class="paquete-incluye">
+        <li *ngFor="let item of pkg.includes">{{ item }}</li>
+      </ul>
+
+      <div class="paquete-precio-wrap">
+        <div class="paquete-precio">
+          {{ pkg.price }}<br>
+          <small>Sujeto a disponibilidad</small>
+        </div>
+        <button class="btn-paquete" (click)="scrollToBooking()">Consultar Paquete</button>
+      </div>
+    </div>
+  </div>
+</section>

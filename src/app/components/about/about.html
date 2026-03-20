@@ -1,0 +1,88 @@
+<section id="about" class="seccion-completa">
+  <div class="historia-grid">
+    <div class="historia-imagen-wrapper reveal">
+      <img src="Imagenes/Recepción.jpeg" alt="Hotel Mayanza" class="historia-imagen-principal" onerror="this.src='Logo/Logo.jpeg'">
+      <div class="historia-stat">
+        <div class="historia-stat-numero">20</div>
+        <div class="historia-stat-label">Exclusivas Habitaciones</div>
+      </div>
+    </div>
+    
+    <div class="historia-contenido reveal reveal-delay-2">
+      <span class="seccion-etiqueta">Nuestra Escencia</span>
+      <h2 class="seccion-titulo">Descubre Mayanza</h2>
+      <div class="linea-dorada"></div>
+      
+      <p class="historia-texto">
+        Enclavado en el corazón del mundo maya, Mayanza Grand Hotels combina el lujo moderno con el misticismo ancestral. Ofrecemos una experiencia incomparable donde la elegante hospitalidad y nuestro entorno natural se fusionan.
+      </p>
+      
+      <blockquote class="historia-cita">
+        "El lujo no es solo confort, es la perfecta armonía entre el alma y el entorno."
+      </blockquote>
+      
+      <button class="btn-primario" style="margin-top: 20px" (click)="openModal()">
+        Sobre Nosotros
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL SOBRE NOSOTROS -->
+<div class="modal-hab-overlay" [class.abierto]="isModalOpen" (click)="closeModal()">
+  <div class="modal-hab" style="max-width: 800px; padding: 50px;" (click)="$event.stopPropagation()">
+    <button class="modal-hab-close" (click)="closeModal()" style="position: sticky; top: 10px; float: right; z-index: 100;">✕</button>
+    
+    <span class="seccion-etiqueta" style="text-align: center;">Identidad</span>
+    <h2 class="seccion-titulo" style="text-align: center; margin-bottom: 30px;">Mayanza Grand Hotels</h2>
+    
+    <div style="margin-bottom: 40px;">
+      <h3 style="color: var(--dorado); font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 10px;">Historia</h3>
+      <p style="color: var(--texto-gris); font-family: var(--fuente-elegante); font-size: 1.1rem; line-height: 1.7;">
+        Nacimos de la visión de crear un oasis de lujo que rindiera homenaje a la inmensa riqueza cultural de Guatemala. Mayanza Grand Hotels ha crecido preservando las raíces de la herencia maya y ofreciendo un santuario de descanso inigualable.
+      </p>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+      <div>
+        <h3 style="color: var(--dorado); font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 10px;">Misión</h3>
+        <p style="color: var(--texto-gris); font-family: var(--fuente-elegante); font-size: 1.1rem; line-height: 1.7;">
+          Brindar experiencias inolvidables superando las expectativas de nuestros huéspedes a través de un servicio excepcional, instalaciones de primer nivel y un profundo respeto por nuestro entorno.
+        </p>
+      </div>
+      <div>
+        <h3 style="color: var(--dorado); font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 10px;">Visión</h3>
+        <p style="color: var(--texto-gris); font-family: var(--fuente-elegante); font-size: 1.1rem; line-height: 1.7;">
+          Ser reconocidos como el hotel de lujo líder en la región, enalteciendo la cultura guatemalteca y estableciendo el estándar internacional de la hospitalidad exquisita y sostenible.
+        </p>
+      </div>
+    </div>
+    
+    <div>
+      <h3 style="color: var(--dorado); font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 15px;">Nuestros Valores</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: var(--texto-gris); font-size: 0.95rem;">
+          <lucide-icon name="star" size="18" style="color: var(--dorado)"></lucide-icon>
+          <strong>Excelencia:</strong> Buscamos la perfección en cada detalle y servicio.
+        </li>
+        <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: var(--texto-gris); font-size: 0.95rem;">
+          <lucide-icon name="heart" size="18" style="color: var(--dorado)"></lucide-icon>
+          <strong>Pasión:</strong> Amamos lo que hacemos y se refleja en el trato al huésped.
+        </li>
+        <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: var(--texto-gris); font-size: 0.95rem;">
+          <lucide-icon name="shield" size="18" style="color: var(--dorado)"></lucide-icon>
+          <strong>Integridad:</strong> Actuamos con total transparencia y honestidad siempre.
+        </li>
+        <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: var(--texto-gris); font-size: 0.95rem;">
+          <lucide-icon name="leaf" size="18" style="color: var(--dorado)"></lucide-icon>
+          <strong>Sostenibilidad:</strong> Respetamos y cuidamos nuestro medio ambiente.
+        </li>
+        <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: var(--texto-gris); font-size: 0.95rem;">
+          <lucide-icon name="users" size="18" style="color: var(--dorado)"></lucide-icon>
+          <strong>Empatía:</strong> Comprendemos y anticipamos las necesidades de los demás.
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</div>

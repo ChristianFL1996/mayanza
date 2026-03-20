@@ -1,0 +1,64 @@
+<!-- SIDE MENU BUTTON -->
+<button class="side-menu-btn" (click)="toggleMenu()" aria-label="Menú lateral">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="menu-label">Menú</span>
+</button>
+
+<div class="side-menu-overlay" [class.abierto]="isMenuOpen" (click)="closeMenu()"></div>
+
+<div class="side-menu" [class.abierto]="isMenuOpen">
+  <div class="side-menu-header">
+    <span class="side-menu-logo">Mayanza</span>
+    <button class="side-menu-close" (click)="closeMenu()">✕</button>
+  </div>
+  <nav class="side-menu-nav">
+    <div class="side-menu-section">
+      <div class="side-menu-section-title">Conoce más de nosotros</div>
+      <a href="#about" class="side-menu-link" (click)="scrollToElement('about', $event)">
+        <lucide-icon name="info" size="18"></lucide-icon>
+        Nuestra Historia, Misión y Visión
+      </a>
+      <a href="#policies" class="side-menu-link" (click)="scrollToElement('policies', $event)">
+        <lucide-icon name="help-circle" size="18"></lucide-icon>
+        Políticas del Hotel
+      </a>
+    </div>
+    <div class="side-menu-section">
+      <div class="side-menu-section-title">Acceso Rápido</div>
+      <a href="#rooms" class="side-menu-link" (click)="scrollToElement('rooms', $event)">
+        <lucide-icon name="calendar" size="18"></lucide-icon>
+        Habitaciones & Suites
+      </a>
+      <a href="#experiences" class="side-menu-link" (click)="scrollToElement('experiences', $event)">
+        <lucide-icon name="map-pin" size="18"></lucide-icon>
+        Experiencias & Tours
+      </a>
+      <a href="#gallery" class="side-menu-link" (click)="scrollToElement('gallery', $event)">
+        <lucide-icon name="image" size="18"></lucide-icon>
+        Galería
+      </a>
+    </div>
+  </nav>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar" [class.scrolled]="isScrolled">
+  <a href="#hero" class="nav-logo" (click)="scrollToElement('hero', $event)">
+    <img src="Logo/Logo.jpeg" alt="Mayanza Grand Hotels" onerror="this.style.display='none'">
+    <div class="nav-logo-texto">Mayanza<br>Grand Hotels</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about" (click)="scrollToElement('about', $event)">Nosotros</a></li>
+    <li><a href="#rooms" (click)="scrollToElement('rooms', $event)">Habitaciones</a></li>
+    <li><a href="#events" (click)="scrollToElement('events', $event)">Eventos</a></li>
+    <li><a href="#experiences" (click)="scrollToElement('experiences', $event)">Experiencias</a></li>
+    <li><a href="#gallery" (click)="scrollToElement('gallery', $event)">Galería</a></li>
+    <li>
+      <a href="#contact" class="nav-mapa" (click)="scrollToElement('contact', $event)">
+        <lucide-icon name="map" size="14"></lucide-icon> Contacto y Mapa
+      </a>
+    </li>
+  </ul>
+</nav>

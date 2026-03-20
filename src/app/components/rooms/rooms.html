@@ -1,0 +1,84 @@
+<section id="rooms" class="seccion">
+  <div class="habitaciones-header reveal">
+    <span class="seccion-etiqueta">Alojamiento de Clase Mundial</span>
+    <h2 class="seccion-titulo">Habitaciones & Suites</h2>
+    <div class="linea-dorada centrada"></div>
+    <p class="seccion-descripcion" style="margin: 0 auto;">
+      Descansa en espacios diseñados meticulosamente que reflejan la belleza de nuestro entorno. (Uso de SPA y GYM reservado exclusivamente para Suites).
+    </p>
+  </div>
+
+  <div class="habitaciones-grid">
+    <div class="hab-card reveal" [class]="'reveal-delay-' + (i + 1)" *ngFor="let room of rooms; let i = index" (click)="openModal(room)">
+      <img [src]="room.images[0]" [alt]="room.name" onerror="this.src='Logo/Logo.jpeg'">
+      <div class="hab-overlay"></div>
+      <div class="hab-info">
+        <div class="hab-categoria">{{ room.category }}</div>
+        <h3 class="hab-nombre">{{ room.name }}</h3>
+        <p class="hab-descripcion">{{ room.desc }}</p>
+        <div class="hab-acciones">
+          <button class="hab-btn-reservar" (click)="$event.stopPropagation(); openModal(room)">Ver Detalles</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL DE HABITACIÓN -->
+<div class="modal-hab-overlay" [class.abierto]="selectedRoom !== null" (click)="closeModal()">
+  <div class="modal-hab" *ngIf="selectedRoom" (click)="$event.stopPropagation()">
+    
+    <button class="modal-hab-close" (click)="closeModal()" style="position: sticky; top: 12px; float: right; margin-right: 12px; z-index: 100;">✕</button>
+
+    <div class="modal-hab-imgs">
+      <img *ngFor="let img of selectedRoom.images; let j = index" 
+           [src]="img" 
+           [class.activo]="j === currentImageIndex"
+           [alt]="selectedRoom.name"
+           onerror="this.src='Logo/Logo.jpeg'">
+      
+      <button class="modal-hab-arrow modal-hab-arrow-l" (click)="prevImage($event)">←</button>
+      <button class="modal-hab-arrow modal-hab-arrow-r" (click)="nextImage($event)">→</button>
+      
+      <div class="modal-hab-nav">
+        <button class="modal-hab-dot" 
+                *ngFor="let img of selectedRoom.images; let j = index"
+                [class.activo]="j === currentImageIndex"
+                (click)="setImg(j)"></button>
+      </div>
+    </div>
+
+    <div class="modal-hab-body">
+      <div class="modal-hab-header">
+        <div>
+          <span class="seccion-etiqueta" style="margin-bottom: 4px;">{{ selectedRoom.category }}</span>
+          <h2 class="modal-hab-titulo">{{ selectedRoom.name }}</h2>
+        </div>
+      </div>
+      
+      <p style="color: var(--texto-gris); font-family: var(--fuente-elegante); font-size: 1.1rem; line-height: 1.8;">
+        {{ selectedRoom.desc }}
+      </p>
+
+      <div class="modal-hab-amenidades">
+        <div class="amenidad-item" *ngFor="let am of selectedRoom.amenities">
+          <lucide-icon name="check-circle" size="16"></lucide-icon> {{ am }}
+        </div>
+      </div>
+
+      <div class="modal-hab-precios">
+        <h4 style="font-family: var(--fuente-titulo); font-size: 0.8rem; letter-spacing: 2px; color: var(--dorado); margin-bottom: 12px; text-transform: uppercase;">Tarifas por Noche</h4>
+        <div class="precio-row">
+          <span class="precio-label">Ocupación Individual</span>
+          <span class="precio-val">${{ selectedRoom.priceSingle }} USD</span>
+        </div>
+        <div class="precio-row">
+          <span class="precio-label">Ocupación Doble</span>
+          <span class="precio-val">${{ selectedRoom.priceDouble }} USD</span>
+        </div>
+      </div>
+
+      <button class="btn-primario" style="width: 100%; margin-top: 10px;" (click)="closeModal()">Cerrar Detalles</button>
+    </div>
+  </div>
+</div>

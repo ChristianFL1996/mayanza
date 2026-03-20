@@ -1,0 +1,122 @@
+<div class="booking-bar" id="bookingBar">
+  <div class="booking-bar-inner">
+    
+    <!-- Fechas -->
+    <div class="booking-field">
+      <button class="booking-btn-trigger" (click)="toggleDropdown('fechas')">
+        <span class="booking-field-label">Fechas</span>
+        <span class="booking-field-value">{{ fechasStr }}</span>
+        <span class="booking-field-icon">▾</span>
+      </button>
+      <div class="booking-dropdown" [class.abierto]="openDropdown === 'fechas'">
+        <div class="booking-dropdown-header">
+          <span class="booking-dropdown-title">Fechas de Estadía</span>
+          <button class="booking-dropdown-close" (click)="closeDropdown()">✕</button>
+        </div>
+        <div class="booking-dropdown-body">
+          <div class="booking-dates-grid">
+            <div class="booking-date-group">
+              <label>Check-In</label>
+              <input type="date" [(ngModel)]="checkin">
+            </div>
+            <div class="booking-date-group">
+              <label>Check-Out</label>
+              <input type="date" [(ngModel)]="checkout">
+            </div>
+          </div>
+          <button class="booking-done-btn" (click)="closeDropdown()">Listo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Huespedes -->
+    <div class="booking-field">
+      <button class="booking-btn-trigger" (click)="toggleDropdown('huespedes')">
+        <span class="booking-field-label">Huéspedes</span>
+        <span class="booking-field-value">{{ huespedesStr }}</span>
+        <span class="booking-field-icon">▾</span>
+      </button>
+      <div class="booking-dropdown" [class.abierto]="openDropdown === 'huespedes'">
+        <div class="booking-dropdown-header">
+          <span class="booking-dropdown-title">Huéspedes</span>
+          <button class="booking-dropdown-close" (click)="closeDropdown()">✕</button>
+        </div>
+        <div class="booking-dropdown-body">
+          <div class="huespedes-row">
+            <div class="huespedes-info">
+              <div class="hs-label">Adultos</div>
+              <div class="hs-sub">Mayores de 18 años</div>
+            </div>
+            <div class="counter-btns">
+              <button class="counter-btn" (click)="changeCount('adults', -1)">−</button>
+              <span class="counter-val">{{ adults }}</span>
+              <button class="counter-btn" (click)="changeCount('adults', 1)">+</button>
+            </div>
+          </div>
+          <div class="huespedes-row">
+            <div class="huespedes-info">
+              <div class="hs-label">Niños</div>
+              <div class="hs-sub">De 2 a 17 años</div>
+            </div>
+            <div class="counter-btns">
+              <button class="counter-btn" (click)="changeCount('children', -1)">−</button>
+              <span class="counter-val">{{ children }}</span>
+              <button class="counter-btn" (click)="changeCount('children', 1)">+</button>
+            </div>
+          </div>
+          <div class="huespedes-row">
+            <div class="huespedes-info">
+              <div class="hs-label">Habitaciones</div>
+              <div class="hs-sub">Número de habitaciones</div>
+            </div>
+            <div class="counter-btns">
+              <button class="counter-btn" (click)="changeCount('rooms', -1)">−</button>
+              <span class="counter-val">{{ rooms }}</span>
+              <button class="counter-btn" (click)="changeCount('rooms', 1)">+</button>
+            </div>
+          </div>
+          <button class="booking-done-btn" (click)="closeDropdown()">Listo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarifas -->
+    <div class="booking-field">
+      <button class="booking-btn-trigger" (click)="toggleDropdown('tarifas')">
+        <span class="booking-field-label">Tarifas Especiales</span>
+        <span class="booking-field-value">{{ tarifaName }}</span>
+        <span class="booking-field-icon">▾</span>
+      </button>
+      <div class="booking-dropdown" [class.abierto]="openDropdown === 'tarifas'" style="min-width:360px;">
+        <div class="booking-dropdown-header">
+          <span class="booking-dropdown-title">Tarifas Especiales</span>
+          <button class="booking-dropdown-close" (click)="closeDropdown()">✕</button>
+        </div>
+        <div class="booking-dropdown-body">
+          
+          <div class="tarifa-option" [class.selected]="tarifa === 'estandar'" (click)="selectTarifa('estandar', 'Tarifa estándar más baja')">
+            <div class="tarifa-radio" [class.checked]="tarifa === 'estandar'"></div>
+            <span class="tarifa-text">Tarifa estándar más baja</span>
+            <button *ngIf="tarifa === 'estandar'" class="tarifa-x" (click)="clearTarifa($event)">✕</button>
+          </div>
+          
+          <div class="tarifa-option" [class.selected]="tarifa === 'corp'" (click)="selectTarifa('corp', 'Código corp./promo.')">
+            <div class="tarifa-radio" [class.checked]="tarifa === 'corp'"></div>
+            <span class="tarifa-text">Código corp./promo.</span>
+            <button *ngIf="tarifa === 'corp'" class="tarifa-x" (click)="clearTarifa($event)">✕</button>
+          </div>
+          
+          <div class="tarifa-option" [class.selected]="tarifa === 'grupo'" (click)="selectTarifa('grupo', 'Código de grupo')">
+            <div class="tarifa-radio" [class.checked]="tarifa === 'grupo'"></div>
+            <span class="tarifa-text">Código de grupo</span>
+            <button *ngIf="tarifa === 'grupo'" class="tarifa-x" (click)="clearTarifa($event)">✕</button>
+          </div>
+          <input *ngIf="tarifa === 'grupo'" type="text" class="codigo-grupo-input visible" [(ngModel)]="codigoGrupo" placeholder="Ingresa el código de grupo">
+          
+        </div>
+      </div>
+    </div>
+    
+    <button class="booking-reservar-btn">Consultar</button>
+  </div>
+</div>

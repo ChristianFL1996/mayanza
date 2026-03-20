@@ -1,0 +1,48 @@
+<section id="hero">
+  <div class="hero-slider">
+    <div class="hero-slide" 
+         *ngFor="let slide of slides; let i = index" 
+         [class.activo]="currentSlide === i"
+         [style.background-image]="'linear-gradient(rgba(26,18,8,0.4), rgba(26,18,8,0.4)), url(\'' + slide.bg + '\')'"
+         style="background-size:cover; background-position:center;">
+    </div>
+  </div>
+  
+  <div class="hero-overlay"></div>
+  <div class="hero-pattern"></div>
+  
+  <div class="hero-contenido">
+    <p class="hero-pretitulo">Guatemala · Herencia Maya · Lujo Incomparable</p>
+    <h1 class="hero-titulo">
+      <span>Mayanza</span>
+      Grand Hotels
+    </h1>
+    <p class="hero-subtitulo">"El Latido de la Eterna Primavera"</p>
+    <div class="hero-separador"><div class="hero-glifo">✦</div></div>
+    <div class="hero-botones">
+      <button class="btn-primario" (click)="scrollToElem('rooms')">Explorar Suites</button>
+      <button class="btn-secundario" (click)="scrollToElem('about')">Nuestra Historia</button>
+    </div>
+  </div>
+  
+  <button class="slider-flecha slider-flecha-izq" (click)="prevSlide()" aria-label="Anterior">←</button>
+  <button class="slider-flecha slider-flecha-der" (click)="nextSlide()" aria-label="Siguiente">→</button>
+  
+  <div class="slider-contador"><span>{{ slideNum }}</span> / 0{{ slideTotal }}</div>
+  
+  <!-- The progress bar transitions CSS width over interval matching 8s. For simplicity, binding a dynamic class or keyframe -->
+  <div class="slider-progreso" [style.width.%]="100" style="transition: none; animation: animateProgress 8s linear infinite;"></div>
+  
+  <div class="scroll-indicador">
+    <span class="scroll-texto">Descubrir</span>
+    <div class="scroll-linea"></div>
+  </div>
+  
+  <div class="hero-dots">
+    <div class="hero-dot" 
+         *ngFor="let slide of slides; let i = index" 
+         [class.activo]="currentSlide === i"
+         (click)="setSlide(i)">
+    </div>
+  </div>
+</section>

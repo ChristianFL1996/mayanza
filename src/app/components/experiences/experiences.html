@@ -1,0 +1,52 @@
+<section id="experiences" class="seccion-completa">
+  <div class="exp-contenedor">
+    <div class="exp-header reveal">
+      <div>
+        <span class="seccion-etiqueta">Emociones & Bienestar</span>
+        <h2 class="seccion-titulo">Experiencias Inolvidables</h2>
+        <div class="linea-dorada"></div>
+      </div>
+      <div>
+        <p class="seccion-descripcion">
+          Sumérgete en la magia del mundo maya con nuestras exclusivas actividades, diseñadas para conectar tu cuerpo y espíritu con la naturaleza y nuestra milenaria cultura.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-grid">
+      <div class="exp-item reveal" [class]="'reveal-delay-' + (i + 1)" *ngFor="let exp of experiences; let i = index" (click)="openModal(exp)">
+        <div class="exp-img-wrap">
+          <img [src]="exp.img" [alt]="exp.name" onerror="this.src='Logo/Logo.jpeg'">
+        </div>
+        <span class="seccion-etiqueta" style="font-size: 0.5rem; letter-spacing: 2px;">{{ exp.type }}</span>
+        <h3 class="exp-nombre">{{ exp.name }}</h3>
+        <p class="exp-desc">{{ exp.desc }}</p>
+      </div>
+      
+      <!-- Video Element -->
+      <div class="exp-item reveal reveal-delay-6" style="padding:0; overflow:hidden;">
+         <video src="Videos/Video de lago.mp4" [muted]="true" autoplay loop playsinline style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); pointer-events: none;"></video>
+         <div style="position: absolute; inset:0; background: linear-gradient(to top, rgba(26,18,8,0.9), transparent); display: flex; align-items: flex-end; justify-content: center; padding: 30px;">
+           <h3 class="exp-nombre" style="color: #fff; margin:0;">La Magia de Petén</h3>
+         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMPLE MODAL FOR EXPERIENCE DETAILS -->
+<div class="modal-hab-overlay" [class.abierto]="selectedExp !== null" (click)="closeModal()">
+  <div class="modal-hab" *ngIf="selectedExp" style="max-width: 600px; padding: 40px;" (click)="$event.stopPropagation()">
+    <button class="modal-hab-close" (click)="closeModal()" style="position: sticky; float:right; z-index: 100;">✕</button>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img [src]="selectedExp.img" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--dorado);" onerror="this.src='Logo/Logo.jpeg'">
+    </div>
+    <span class="seccion-etiqueta" style="text-align: center;">{{ selectedExp.type }}</span>
+    <h2 class="seccion-titulo" style="text-align: center; font-size: 1.8rem;">{{ selectedExp.name }}</h2>
+    <div class="linea-dorada centrada"></div>
+    <p style="color: var(--texto-gris); font-family: var(--fuente-elegante); font-size: 1.15rem; line-height: 1.8; text-align: center; margin-bottom: 30px;">
+      {{ selectedExp.desc }}
+    </p>
+    <button class="btn-primario" style="width: 100%;" (click)="closeModal()">Continuar Explorando</button>
+  </div>
+</div>

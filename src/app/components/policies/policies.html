@@ -1,0 +1,110 @@
+<section id="policies" class="seccion-completa" style="background: #fff;">
+  <div style="text-align: center; margin-bottom: 50px;">
+    <span class="seccion-etiqueta">Normas y Transparencia</span>
+    <h2 class="seccion-titulo">Información & Políticas</h2>
+    <div class="linea-dorada centrada"></div>
+    <p class="seccion-descripcion" style="margin: 0 auto;">Todo lo que necesitas saber antes y durante tu estadía para garantizar una experiencia impecable.</p>
+  </div>
+
+  <div class="info-hotel-grid reveal reveal-delay-2">
+    <!-- Horarios -->
+    <div class="info-card">
+      <h3 class="info-card-title"><lucide-icon name="clock" size="18"></lucide-icon> Horarios de Check-in y Check-out</h3>
+      <div class="info-row">
+        <span class="info-row-label">Check-in (entrada):</span>
+        <strong class="info-row-val">13:00 hrs</strong>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label">Check-out (salida):</span>
+        <strong class="info-row-val">11:00 hrs</strong>
+      </div>
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(166,128,49,0.2);">
+        <strong style="font-size: 0.8rem; color: var(--dorado);">Política de Salida Tardía:</strong>
+        <p style="font-size: 0.75rem; color: var(--texto-gris); margin-top: 5px;">Salida entre 11:00 y 12:00 horas: cargo adicional de $150 por persona. Salida después de las 13:00 horas: tarifa completa de la habitación.</p>
+      </div>
+    </div>
+
+    <!-- Reglas Generales -->
+    <div class="info-card">
+      <h3 class="info-card-title"><lucide-icon name="shield-alert" size="18"></lucide-icon> Convivencia Segura</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li *ngFor="let pol of GeneralPolicies.slice(0,3)" style="font-size: 0.75rem; color: var(--texto-gris); margin-bottom: 8px; display: flex; gap: 8px;">
+          <lucide-icon name="alert-circle" size="14" style="color: var(--dorado); flex-shrink: 0;"></lucide-icon>
+          {{ pol }}
+        </li>
+      </ul>
+      <button class="terminos-btn" (click)="openModal(); setTab('general')" style="margin-top: 20px;">Ver Todas las Políticas</button>
+    </div>
+
+    <!-- Penalizaciones resumidas -->
+    <div class="info-card">
+      <h3 class="info-card-title"><lucide-icon name="alert-triangle" size="18"></lucide-icon> Cargos Especiales</h3>
+      <p style="font-size: 0.75rem; color: var(--texto-gris); margin-bottom: 12px;">El cuidado de nuestras instalaciones es primordial. Por ello se aplican penalizaciones estrictas por daños o incumplimiento:</p>
+      <div class="info-row">
+        <span class="info-row-label" style="font-size: 0.7rem;">Fumar en habitación:</span>
+        <strong class="info-row-val" style="color: var(--rojo-carmesi);">$600 USD</strong>
+      </div>
+      <div class="info-row">
+        <span class="info-row-label" style="font-size: 0.7rem;">Pérdida daño/llave:</span>
+        <strong class="info-row-val" style="color: var(--rojo-carmesi);">$200 USD</strong>
+      </div>
+      <button class="terminos-btn" (click)="openModal(); setTab('cargos')" style="margin-top: 20px;">Ver todos los Cargos</button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL DE POLÍTICAS COMPLETAS -->
+<div class="modal-hab-overlay" [class.abierto]="isModalOpen" (click)="closeModal()">
+  <div class="modal-hab modal-terminos" style="padding: 50px;" (click)="$event.stopPropagation()">
+    <button class="modal-hab-close" (click)="closeModal()" style="position: sticky; top: 10px; float: right; z-index: 100;">✕</button>
+    
+    <h2 class="seccion-titulo" style="font-size: 1.8rem; margin-bottom: 25px;">Manual de Políticas Mayanza</h2>
+    
+    <div class="tarifas-tabs" style="margin-bottom: 30px;">
+      <button class="tarifa-tab" [class.activo]="activeTab === 'general'" (click)="setTab('general')">Reglamento General</button>
+      <button class="tarifa-tab" [class.activo]="activeTab === 'spa'" (click)="setTab('spa')">Reglamento Spa</button>
+      <button class="tarifa-tab" [class.activo]="activeTab === 'cargos'" (click)="setTab('cargos')">Cargos y Penalizaciones</button>
+    </div>
+
+    <div class="terminos-body">
+      <!-- General -->
+      <div *ngIf="activeTab === 'general'">
+        <h4>Políticas Generales del Hotel</h4>
+        <ul>
+          <li *ngFor="let pol of GeneralPolicies" style="margin-bottom: 10px;">{{ pol }}</li>
+          <li style="margin-bottom: 10px;">Los menores de edad deben permanecer acompañados en todo momento por un adulto responsable.</li>
+          <li style="margin-bottom: 10px;">Las áreas comunes pueden utilizarse hasta las 22:00 horas.</li>
+        </ul>
+      </div>
+
+      <!-- Spa -->
+      <div *ngIf="activeTab === 'spa'">
+        <h4>Reglamento de Spa Ancestral</h4>
+        <p><strong>Horario de atención:</strong> De 8:00 a.m. a 5:00 p.m., de lunes a domingo. Fuera de horario sujeto a disponibilidad.</p>
+        <p><strong>Reservaciones:</strong> Se recomienda reserva anticipada. Cancelaciones con menos de 24 hrs aplicarán cargo total.</p>
+        <p><strong>Salud y bienestar:</strong> Informar sobre cualquier condición médica, alergia o lesión.</p>
+        <p><strong>Uso de instalaciones:</strong> Requiere vestimenta adecuada en jacuzzi y piscina. Dispositivos en silencio.</p>
+        <p><strong>Edad mínima:</strong> 16 años para el spa. Servicios de salón para menores solo bajo supervisión.</p>
+      </div>
+
+      <!-- Cargos -->
+      <div *ngIf="activeTab === 'cargos'">
+        <h4>Cargos y Penalizaciones por Daños o Incumplimiento</h4>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--dorado); text-align: left;">
+              <th style="padding: 10px;">Concepto</th>
+              <th style="padding: 10px;">Cargo (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let penalty of Penalties" style="border-bottom: 1px solid rgba(166,128,49,0.2);">
+              <td style="padding: 10px;">{{ penalty.item }}</td>
+              <td style="padding: 10px; font-weight: bold; color: var(--rojo-carmesi);">{{ penalty.cost }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

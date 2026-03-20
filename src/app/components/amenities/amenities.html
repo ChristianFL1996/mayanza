@@ -1,0 +1,22 @@
+<section id="comodidades" class="seccion-completa">
+  <div style="text-align: center; margin-bottom: 50px;">
+    <span class="seccion-etiqueta">Excelencia en Cada Detalle</span>
+    <h2 class="seccion-titulo">Instalaciones & Comodidades</h2>
+    <div class="linea-dorada centrada"></div>
+    <p class="seccion-descripcion" style="margin: 0 auto;">Mayanza te ofrece una variedad de servicios para asegurar que tu estancia sea única e inolvidable.</p>
+  </div>
+
+  <div class="comodidades-grid reveal">
+    <div class="comodidad-item" *ngFor="let am of amenities">
+      <div class="comodidad-icon" style="color: var(--dorado)">
+        <!-- Fallback if specific icon not found in lucide wrapper, we just use a generic or the defined one -->
+        <lucide-icon [name]="am.icon || 'check'" size="28" style="color: currentColor"></lucide-icon>
+      </div>
+      <div class="comodidad-text">
+        <h4 class="comodidad-nombre">{{ am.name }}</h4>
+        <p style="font-size: 0.75rem; color: var(--texto-gris); margin-top: 4px;">{{ am.desc }}</p>
+        <span *ngIf="am.isNew" class="comodidad-badge" style="color: var(--rojo-carmesi); font-weight: 600;">NUEVO</span>
+      </div>
+    </div>
+  </div>
+</section>

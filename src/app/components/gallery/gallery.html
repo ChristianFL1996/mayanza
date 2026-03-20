@@ -1,0 +1,22 @@
+<section id="gallery" class="seccion-completa" style="padding: 0; background: var(--fondo-seccion);">
+  <div class="galeria-titulo-wrap">
+    <span class="seccion-etiqueta">Capturas de Instantes Mágicos</span>
+    <h2 class="seccion-titulo">Galería Mayanza</h2>
+    <div class="linea-dorada centrada"></div>
+  </div>
+
+  <div class="galeria-mosaic">
+    <div class="galeria-item reveal" *ngFor="let img of images; let i = index" [class]="'reveal-delay-' + (i % 4 + 1)" (click)="openImage(i)">
+      <img [src]="img" alt="Galería Mayanza" onerror="this.src='Logo/Logo.jpeg'">
+      <button class="galeria-expand-btn"><lucide-icon name="maximize-2" size="18"></lucide-icon></button>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="img-lightbox" [class.abierto]="selectedImage !== null" (click)="closeImage()">
+  <button class="img-lightbox-close" (click)="closeImage()">✕</button>
+  <button class="modal-hab-arrow modal-hab-arrow-l" style="z-index:3001;" *ngIf="selectedImage" (click)="prevImage($event)">←</button>
+  <button class="modal-hab-arrow modal-hab-arrow-r" style="z-index:3001;" *ngIf="selectedImage" (click)="nextImage($event)">→</button>
+  <img *ngIf="selectedImage" [src]="selectedImage" (click)="$event.stopPropagation()">
+</div>

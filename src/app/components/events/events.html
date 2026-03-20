@@ -1,0 +1,91 @@
+<section id="events" class="seccion-completa" style="background: var(--fondo-seccion);">
+  <div style="text-align: center; margin-bottom: 50px;">
+    <span class="seccion-etiqueta">Eventos Exclusivos</span>
+    <h2 class="seccion-titulo">Salones & Eventos</h2>
+    <div class="linea-dorada centrada"></div>
+    <p class="seccion-descripcion" style="margin: 0 auto;">Crea memorias inolvidables en nuestros espacios diseñados para impresionar.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+    <div class="info-card reveal" *ngFor="let salon of salones; let i = index" [class]="'reveal-delay-' + (i + 1)">
+      <img [src]="salon.img" [alt]="salon.name" style="width: 100%; height: 200px; object-fit: cover; margin-bottom: 20px;" onerror="this.src='Logo/Logo.jpeg'">
+      <h3 class="info-card-title">{{ salon.name }}</h3>
+      <p style="color: var(--texto-gris); font-size: 0.85rem; margin-bottom: 12px;">{{ salon.desc }}</p>
+      
+      <div class="info-row">
+        <strong class="info-row-label">Capacidad:</strong>
+        <span class="info-row-val">{{ salon.capacity }}</span>
+      </div>
+      <div class="info-row">
+        <strong class="info-row-label">Características:</strong>
+        <span class="info-row-val">{{ salon.features.join(', ') }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;" class="reveal reveal-delay-3">
+    <div>
+      <h3 style="font-family: var(--fuente-titulo); font-size: 1.5rem; color: var(--texto-oscuro); margin-bottom: 20px;">Especificaciones de Eventos</h3>
+      <div class="info-row" *ngFor="let m of mobiliario" style="margin-bottom: 10px; border-bottom: 1px solid rgba(166,128,49,0.1); padding-bottom: 10px;">
+        <strong class="info-row-label" style="min-width: 80px; color: var(--dorado);">{{ m.type }}</strong>
+        <span class="info-row-val" style="color: var(--texto-gris); font-size: 0.85rem;">{{ m.spec }}</span>
+      </div>
+    </div>
+    
+    <div style="text-align: center; padding: 40px; background: #fff; border: 1px solid rgba(166,128,49,0.2);">
+      <h4 style="font-family: var(--fuente-titulo); font-size: 1.2rem; margin-bottom: 15px;">Cotiza Tu Evento</h4>
+      <p style="font-size: 0.85rem; color: var(--texto-gris); margin-bottom: 20px;">Permítenos ayudarte a planificar un evento espectacular. Nuestro equipo te contactará directamente.</p>
+      <button class="btn-primario" (click)="openQuoteModal()">Cotizar Ahora</button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL COTIZACIÓN EVENTO -->
+<div class="modal-hab-overlay" [class.abierto]="isQuoteModalOpen" (click)="closeQuoteModal()">
+  <div class="modal-hab" style="max-width: 500px; padding: 40px;" (click)="$event.stopPropagation()">
+    <button class="modal-hab-close" (click)="closeQuoteModal()" style="position: sticky; float: right; z-index: 100;">✕</button>
+    
+    <h2 class="seccion-titulo" style="font-size: 1.5rem; margin-bottom: 10px; text-align: center;">Cotización de Evento</h2>
+    <p style="text-align: center; font-size: 0.8rem; color: var(--texto-gris); margin-bottom: 25px;">Llena este formulario y nos conectaremos vía WhatsApp al instante.</p>
+    
+    <form (submit)="submitQuote($event)">
+      <div class="form-grupo">
+        <label class="form-label">Nombre Completo</label>
+        <input type="text" class="form-input" [(ngModel)]="quoteData.name" name="name" required>
+      </div>
+      <div class="form-fila">
+        <div class="form-grupo">
+          <label class="form-label">Teléfono / WhatsApp</label>
+          <input type="tel" class="form-input" [(ngModel)]="quoteData.phone" name="phone" required>
+        </div>
+        <div class="form-grupo">
+          <label class="form-label">Correo Electrónico</label>
+          <input type="email" class="form-input" [(ngModel)]="quoteData.email" name="email" required>
+        </div>
+      </div>
+      
+      <div class="form-fila">
+        <div class="form-grupo">
+          <label class="form-label">Tipo de Evento</label>
+          <select class="form-select" [(ngModel)]="quoteData.eventType" name="eventType">
+            <option value="Boda">Boda</option>
+            <option value="Conferencia">Conferencia / Corporativo</option>
+            <option value="Cumpleaños">Cumpleaños / Social</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-grupo">
+          <label class="form-label">No. Invitados</label>
+          <input type="number" class="form-input" [(ngModel)]="quoteData.guests" name="guests" min="10" required>
+        </div>
+      </div>
+      
+      <div class="form-grupo">
+        <label class="form-label">Fecha del Evento</label>
+        <input type="date" class="form-input" [(ngModel)]="quoteData.date" name="date" required>
+      </div>
+
+      <button type="submit" class="booking-reservar-btn" style="width: 100%; padding: 16px; margin-top: 20px;">Enviar y Contactar por WhatsApp</button>
+    </form>
+  </div>
+</div>

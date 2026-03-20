@@ -1,0 +1,37 @@
+<section id="reviews" class="seccion" style="background: var(--fondo-seccion);">
+  <div style="text-align: center; margin-bottom: 40px;">
+    <span class="seccion-etiqueta">Lo que dicen nuestros huéspedes</span>
+    <h2 class="seccion-titulo">Reseñas</h2>
+    <div class="linea-dorada centrada"></div>
+  </div>
+
+  <div style="max-width: 800px; margin: 0 auto; position: relative; text-align: center;" class="reveal">
+    <div style="position: absolute; top: -20px; left: -20px; font-size: 6rem; color: rgba(166,128,49,0.1); font-family: var(--fuente-titulo);">"</div>
+    
+    <div style="overflow: hidden; padding: 20px;">
+      <div *ngFor="let rv of reviews; let i = index" [style.display]="currentIndex === i ? 'block' : 'none'" class="fade-in">
+        <div style="color: var(--dorado); margin-bottom: 15px; font-size: 1.2rem;">★★★★★</div>
+        <p style="font-family: var(--fuente-elegante); font-size: 1.5rem; font-style: italic; color: var(--texto-oscuro); line-height: 1.6; margin-bottom: 30px;">
+          "{{ rv.text }}"
+        </p>
+        <div style="font-family: var(--fuente-titulo); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">
+          {{ rv.author }}
+        </div>
+        <div style="font-size: 0.7rem; color: var(--texto-gris); margin-top: 5px;">{{ rv.date }}</div>
+      </div>
+    </div>
+    
+    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 30px;">
+      <button *ngFor="let rv of reviews; let i = index" 
+              (click)="setReview(i)"
+              [style.background]="currentIndex === i ? 'var(--dorado)' : 'rgba(166,128,49,0.3)'"
+              style="width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer; transition: all 0.3s;">
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+.fade-in { animation: fadeIn 0.8s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
