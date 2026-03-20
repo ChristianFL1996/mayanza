@@ -52,47 +52,41 @@
     .side-menu-btn .menu-label { font-size: 0.48rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
     .side-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 105000 !important; opacity: 0; visibility: hidden; transition: var(--transicion); }
     .side-menu-overlay.abierto { opacity: 1; visibility: visible; }
-    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 110000 !important; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
+    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 320px; background: #1a1208; z-index: 110000 !important; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); display: flex; flex-direction: column; }
     .side-menu.abierto { transform: translateX(0); }
-    .side-menu-header { padding: 40px 36px 30px; border-bottom: 1px solid rgba(166,128,49,0.15); display: flex; align-items: center; justify-content: space-between; }
+    .side-menu-header { padding: 30px; border-bottom: 1px solid rgba(166,128,49,0.15); display: flex; align-items: center; justify-content: space-between; position: relative; }
     .side-menu-logo { font-family: var(--fuente-titulo); font-size: 1.1rem; letter-spacing: 3px; color: var(--dorado); }
-    .side-menu-close { background: none; border: none; color: rgba(240,232,213,0.4); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+    .side-menu-close { background: none; border: 1px solid var(--dorado); color: var(--dorado); font-size: 1.4rem; cursor: pointer; transition: all 0.3s; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; top: 25px; right: 20px; }
+    .side-menu-close:hover { background: var(--dorado); color: white; }
     .side-menu-close:hover { color: var(--dorado); }
     
     /* Global Modal Closers - Moved to Top Right */
-    .modal-cerrar, .modal-hab-close, .booking-dropdown-close { 
-      position: absolute; 
-      top: 15px; 
-      right: 15px; 
-      z-index: 100;
-      background: #fff;
-      border: 1px solid var(--dorado);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: var(--dorado);
-      transition: var(--transicion);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* Global Modal Closers */
+    /* Global Modal Closers */
+    .modal-cerrar, .modal-hab-close, .booking-dropdown-close, .img-lightbox-close { 
+      position: absolute !important; 
+      top: 15px !important; 
+      right: 15px !important; 
+      z-index: 150000 !important;
+      background: #fff !important;
+      border: 2px solid var(--dorado) !important;
+      border-radius: 50% !important;
+      width: 44px !important;
+      height: 44px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 1.4rem !important;
+      color: var(--dorado) !important;
+      transition: all 0.3s;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.4) !important;
+      cursor: pointer !important;
     }
-    .img-lightbox-close { 
-      position: fixed !important; 
-      top: 20px !important; 
-      right: 20px !important; 
-      z-index: 40000 !important; 
-      background: rgba(26,18,8,0.8);
-      color: var(--dorado);
-      border: 1px solid var(--dorado);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .modal-cerrar::before, .modal-hab-close::before, .booking-dropdown-close::before, .img-lightbox-close::before {
+      content: '✕';
+      font-weight: bold;
     }
+    .modal-cerrar span, .modal-hab-close span, .booking-dropdown-close span, .img-lightbox-close span { display: none; }
     .modal-cerrar:hover, .modal-hab-close:hover, .img-lightbox-close:hover {
       background: var(--dorado);
       color: #fff;
@@ -493,9 +487,8 @@
     /* MODAL RESERVA */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transicion); padding: 20px; }
     .modal-overlay.abierto { opacity: 1; visibility: visible; }
-    .modal { background: #fff; border: 1px solid rgba(166,128,49,0.3); max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 50px; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-shadow: 0 30px 80px rgba(0,0,0,0.2); }
-    .modal-overlay.abierto .modal { transform: translateY(0); }
-    .modal-cerrar { position: fixed !important; top: 15px !important; right: 15px !important; background: #fff !important; border: 1px solid var(--dorado) !important; color: var(--dorado) !important; font-size: 1.1rem !important; cursor: pointer; transition: all 0.3s; width: 38px !important; height: 38px !important; display: flex; align-items: center; justify-content: center; z-index: 120000 !important; border-radius: 50% !important; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important; }
+    .modal { background: #fff; border: 1px solid rgba(166,128,49,0.3); max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 60px 50px 50px; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-shadow: 0 30px 80px rgba(0,0,0,0.2); }
+    .modal-cerrar { /* Hereda de la clase global arriba */ }
     .modal-cerrar:hover { background: var(--dorado); color: #fff; border-color: var(--dorado); }
     .modal-titulo { font-family: var(--fuente-titulo); font-size: 1.7rem; letter-spacing: 3px; color: var(--texto-oscuro); margin-bottom: 6px; }
     .modal-subtitulo { font-family: var(--fuente-elegante); font-style: italic; color: var(--dorado); margin-bottom: 28px; }
@@ -688,20 +681,20 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
         Comodidades
       </a>
-      <a href="#contacto" class="side-menu-link" onclick="cerrarSideMenu()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      <a href="#contacto" class="side-menu-link" onclick="cerrarSideMenu()" style="display:flex; align-items:center; gap:12px; padding:15px 0; border-bottom:1px solid rgba(166,128,49,0.1); color:#fff; text-decoration:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:20px;"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
         Contacto
       </a>
-    </div>
-    <div class="side-menu-section">
-      <div class="side-menu-section-title">Equipo</div>
-      <button class="side-menu-link" onclick="irAOrganigrama()" style="width:100%; text-align:left; background:none; border:none; padding:12px 0; cursor:pointer; color:var(--crema); font-family:var(--fuente-titulo); font-size:0.85rem; display:flex; align-items:center; gap:12px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+      <button class="side-menu-link" onclick="irAOrganigrama()" style="width:100%; text-align:left; background:none; border:none; padding:15px 0; cursor:pointer; color:#fff; font-family:var(--fuente-titulo); font-size:0.85rem; display:flex; align-items:center; gap:12px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:20px;"><path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
         Organigrama del Hotel
       </button>
     </div>
   </nav>
 </div>
+
+
+
 
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
@@ -1978,8 +1971,9 @@
             <div id="qr-code-display" style="display:inline-block;"></div>
           </div>
         </div>
-        <p id="qr-res-num" style="font-size:0.72rem; color:#5a4e3a; margin-top:8px; font-family:'Jost',sans-serif; letter-spacing:1px;"></p>
-          <span id="hotel-email-receipt"></span> · +502 5631 1624 · Guatemala
+          <div style="font-size:0.75rem; color:#5a4e3a; letter-spacing:1px; margin-top:10px; font-family:'Jost',sans-serif;">
+            MAYANZAHOTELS&#64;GMAIL.COM · +502 5631 1624 · GUATEMALA
+          </div>
         </div>
       </div>
 
