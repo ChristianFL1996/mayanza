@@ -46,14 +46,14 @@
     @keyframes girar { to { transform: rotate(360deg); } }
 
     /* SIDE MENU */
-    .side-menu-btn { position: fixed; left: 20px; top: 18px; z-index: 9999; background: rgba(26,18,8,0.95); border: 1px solid rgba(166,128,49,0.5); color: var(--dorado); padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: var(--transicion); backdrop-filter: blur(8px); border-radius: 3px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-    nav.scrolled ~ .side-menu-btn, body .side-menu-btn { top: 18px; }
+    .side-menu-btn { position: fixed !important; left: 20px !important; top: 18px !important; z-index: 40000 !important; background: rgba(26,18,8,0.95); border: 1px solid rgba(166,128,49,0.5); color: var(--dorado); padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: var(--transicion); backdrop-filter: blur(8px); border-radius: 3px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    body.side-menu-abierto .side-menu-btn { opacity: 0; visibility: hidden; }
     .side-menu-btn:hover { background: var(--dorado); color: #fff; }
     .side-menu-btn span.bar { width: 20px; height: 1.5px; background: currentColor; display: block; }
     .side-menu-btn .menu-label { font-size: 0.48rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
     .side-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9998; opacity: 0; visibility: hidden; transition: var(--transicion); }
     .side-menu-overlay.abierto { opacity: 1; visibility: visible; }
-    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 10000; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
+    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 50000 !important; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
     .side-menu.abierto { transform: translateX(0); }
     .side-menu-header { padding: 40px 36px 30px; border-bottom: 1px solid rgba(166,128,49,0.15); display: flex; align-items: center; justify-content: space-between; }
     .side-menu-logo { font-family: var(--fuente-titulo); font-size: 1.1rem; letter-spacing: 3px; color: var(--dorado); }
@@ -2511,10 +2511,32 @@ function descargarComprobante() {
   const element = document.getElementById('comprobante-reserva');
   if (!element) return;
   
+  // Clonamos el elemento para manipularlo sin afectar la vista del usuario
   html2canvas(element, {
     scale: 2,
     useCORS: true,
-    backgroundColor: "#fffdf8"
+    backgroundColor: "#fffdf8",
+    logging: false,
+    onclone: (clonedDoc) => {
+      // Forzamos al clon a que el QR (SVG) sea renderizado como una imagen estática
+      const qrWrapper = clonedDoc.getElementById('qr-code-display');
+      const originalSvg = document.querySelector('#qr-code-display svg');
+      if (qrWrapper && originalSvg) {
+        const svgData = new XMLSerializer().serializeToString(originalSvg);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+        const url = URL.createObjectURL(svgBlob);
+        
+        // Sincronía forzada: Dibujamos el SVG en un canvas temporal dentro del clon
+        img.src = url;
+        qrWrapper.innerHTML = '';
+        qrWrapper.appendChild(img);
+        img.style.width = '160px';
+        img.style.height = '160px';
+      }
+    }
   }).then(canvas => {
     const link = document.createElement('a');
     link.download = `Mayanza-Reserva-${window._reservaActual?.resNum || 'MGH'}.png`;
