@@ -30,16 +30,18 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Email service misconfigured' });
   }
 
+  const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'info@mayanza.com'; // Change to a verified domain in Resend
+
   try {
     // 1. Email to the Hotel
-    const hotelEmail = await fetch('https://api.resend.com/emails', {
+    const hotelResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${RESEND_API_KEY}`
       },
       body: JSON.stringify({
-        from: 'Mayanza Grand Hotels <reservas@mayanza.com>', // Note: This domain must be verified in Resend
+        from: `Mayanza Grand Hotels <${FROM_EMAIL}>`,
         to: ['mayanzahotels@gmail.com'],
         subject: `Nueva Reserva: ${res_num} - ${to_name}`,
         html: `
@@ -61,15 +63,15 @@ export default async function handler(req, res) {
       })
     });
 
-    // 2. Confirmation Email to the Guest (Optional but recommended)
-    const guestEmail = await fetch('https://api.resend.com/emails', {
+    // 2. Confirmation Email to the Guest
+    const guestResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${RESEND_API_KEY}`
       },
       body: JSON.stringify({
-        from: 'Mayanza Grand Hotels <reservas@mayanza.com>',
+        from: `Mayanza Grand Hotels <${FROM_EMAIL}>`,
         to: [to_email],
         subject: `Confirmación de Solicitud de Reserva - ${res_num}`,
         html: `
@@ -92,9 +94,20 @@ export default async function handler(req, res) {
       })
     });
 
+    const hotelData = await hotelResponse.json();
+    const guestData = await guestResponse.json();
+
+    if (!hotelResponse.ok || !guestResponse.ok) {
+      console.error('Resend Error Details:', { hotelData, guestData });
+      return res.status(502).json({ 
+        error: 'Error de entrega de correo', 
+        details: hotelData.message || guestData.message || 'Error desconocido en Resend'
+      });
+    }
+
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Error sending email:', error);
-    return res.status(500).json({ error: 'Failed to send email' });
+    console.error('Request Error:', error);
+    return res.status(500).json({ error: 'Error interno del servidor', details: error.message });
   }
 }

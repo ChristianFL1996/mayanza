@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mayanza Grand Hotels | El Latido de la Eterna Primavera</title>
-  <link rel="icon" type="image/jpeg" href="/Logo/logo.jpeg">
+  <link rel="icon" type="image/jpeg" href="/Logo/logo.jpeg?v=2">
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -104,7 +104,7 @@
     .accordion-btn.activo .accordion-icon { transform: rotate(180deg); }
 
     /* NAV */
-    nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 22px 60px 22px 80px; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 5000; padding: 22px 60px 22px 80px; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
     nav.scrolled { background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); padding: 14px 60px 14px 80px; border-bottom: 1px solid rgba(166,128,49,0.2); box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
     .nav-links a { color: #fff; text-decoration: none; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400; position: relative; transition: var(--transicion); }
     nav.scrolled .nav-links a { color: var(--texto-oscuro); }
@@ -547,10 +547,10 @@
       nav { padding: 18px 30px 18px 70px; }
       nav.scrolled { padding: 12px 30px 12px 70px; }
       .nav-links { display: none; }
-      .nav-links.abierto { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26,18,8,0.98); align-items: center; justify-content: center; gap: 20px; z-index: 1200; overflow-y: auto; padding: 40px 20px; }
+      .nav-links.abierto { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #1a1208 !important; align-items: center; justify-content: center; gap: 20px; z-index: 9999; overflow-y: auto; padding: 40px 20px; }
       .nav-links.abierto li { width: 100%; text-align: center; }
       .nav-links.abierto a { font-size: 1.1rem; display: block; padding: 10px; }
-      .hamburger { display: flex; z-index: 1300; }
+      .hamburger { display: flex; z-index: 10000; }
       .historia-grid { grid-template-columns: 1fr; }
       .historia-imagen-wrapper { display: none; }
       .historia-mv-grid { grid-template-columns: 1fr; }
@@ -1308,13 +1308,13 @@
         <h3 style="font-family:var(--fuente-titulo); font-size:1.5rem; color:var(--texto-oscuro); margin-bottom:20px;">Cotiza tu Evento</h3>
         <p style="font-size:0.9rem; color:var(--texto-gris); margin-bottom:30px; line-height:1.6;">Nuestro equipo de expertos en eventos está listo para diseñar el paquete perfecto para ti. Incluye banquetería, equipo audiovisual y coordinación.</p>
         
-        <div style="display: flex; flex-direction:column; gap: 15px; margin-bottom: 20px;">
-          <a href="https://wa.me/50256311624" target="_blank" class="btn-whatsapp" style="margin:0; background:#25d366; color:#fff; border:none; padding:16px; border-radius:4px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:12px; width: 100%;">
-            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div style="display: flex; flex-direction:column; gap:12px; margin-top:10px;">
+          <a href="https://wa.me/50256311624?text=Hola%2C%20quisiera%20cotizar%20un%20evento%20en%20Mayanza%20Hotel" target="_blank" class="btn-whatsapp" style="margin:0; background:#25d366; color:#fff; border:none; padding:18px; border-radius:4px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:12px; width: 100%; text-decoration:none;">
+            <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             COTIZAR POR WHATSAPP
           </a>
-          <a href="mailto:mayanzahotels@gmail.com?subject=Cotización%20de%20Evento" class="btn-secundario" style="color: var(--dorado); border-color: var(--dorado); text-align:center; padding: 16px; width: 100%; display: block;">
-            <i data-lucide="mail" style="display:inline-block; vertical-align:middle; width:18px; margin-right:10px;"></i> ENVIAR CORREO
+          <a href="mailto:mayanzahotels@gmail.com?subject=Cotización%20de%20Evento" Target="_blank" class="btn-secundario" style="color: var(--dorado); border-color: var(--dorado); text-align:center; padding: 18px; width: 100%; display: flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; font-weight:600;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> ENVIAR CORREO
           </a>
         </div>
     </div>
@@ -1958,7 +1958,7 @@
         </div>
         <p id="qr-res-num" style="font-size:0.72rem; color:#5a4e3a; margin-top:8px; font-family:'Jost',sans-serif; letter-spacing:1px;"></p>
         <div style="border-top:1px solid rgba(166,128,49,0.2); margin-top:16px; padding-top:12px; font-size:0.62rem; color:#8a7a5a; font-family:'Jost',sans-serif; letter-spacing:1px;">
-          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a171b031b14001b12150e1f16093a1d171b131654191517">[email protected]</a> · +502 5631 1624 · Guatemala
+          mayanzahotels@gmail.com · +502 5631 1624 · Guatemala
         </div>
       </div>
 
@@ -2022,7 +2022,7 @@
       <h4>6. Privacidad</h4>
       <p>Los datos personales proporcionados durante la reserva son tratados con estricta confidencialidad y únicamente para fines de gestión de la estadía, en cumplimiento con las leyes guatemaltecas de protección de datos.</p>
       <br>
-      <p style="font-size:0.75rem; color:var(--texto-gris);">Última actualización: Enero 2025. Para consultas: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="106275637562667163507d7169717e6a717762717e74787f64757c633e737f7d">[email protected]</a></p>
+      <p style="font-size:0.75rem; color:var(--texto-gris);">Última actualización: Enero 2025. Para consultas: mayanzahotels@gmail.com</p>
     </div>
   </div>
 </div>
@@ -2043,7 +2043,7 @@
       <h4>Jurisdicción</h4>
       <p>Cualquier disputa relacionada con el uso de este sitio web o los servicios del hotel se regirá por las leyes de Guatemala y se someterá a la jurisdicción de los tribunales competentes de la República de Guatemala.</p>
       <h4>Contacto</h4>
-      <p>Para cualquier consulta legal: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb998e988e999d8a98ab868a928a85918a8c998a858f83849f8e8798c5888486">[email protected]</a> | +502 5631 1624</p>
+      <p>Para cualquier consulta legal: mayanzahotels@gmail.com | +502 5631 1624</p>
       <br>
       <p style="font-size:0.75rem; color:var(--texto-gris);">© 2025 Mayanza Grand Hotels. Todos los derechos reservados.</p>
     </div>
@@ -2447,14 +2447,20 @@ function confirmarReserva(event) {
 
   document.getElementById('qr-res-num').textContent = `ID: ${resNum}`;
 
-  // Generar QR robusto mediante API
+  // Generar QR robusto mediante librería local (evita CORS y carga externa)
   setTimeout(() => {
     const qrWrapper = document.getElementById('qr-code-display');
     if (!qrWrapper) return;
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(qrData)}`;
-    // Fix: Add crossOrigin="anonymous" for html2canvas
-    qrWrapper.innerHTML = `<img src="${qrUrl}" alt="QR Reserva" crossOrigin="anonymous" style="width:160px;height:160px;display:block;margin:0 auto;border:4px solid #fff;">`;
-    console.log('✅ QR Generado con CORS');
+    qrWrapper.innerHTML = ''; // Limpiar previo
+    new QRCode(qrWrapper, {
+      text: qrData,
+      width: 160,
+      height: 160,
+      colorDark: "#1a1208",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+    console.log('✅ QR Generado localmente');
   }, 350);
 
   window._reservaActual = { resNum, nombres, apellidos, suiteVal, checkin: fmtDate(checkin), checkout: fmtDate(checkout), noches };
