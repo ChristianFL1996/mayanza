@@ -46,14 +46,13 @@
     @keyframes girar { to { transform: rotate(360deg); } }
 
     /* SIDE MENU */
-    .side-menu-btn { position: fixed !important; left: 20px !important; top: 18px !important; z-index: 40000 !important; background: rgba(26,18,8,0.95); border: 1px solid rgba(166,128,49,0.5); color: var(--dorado); padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: var(--transicion); backdrop-filter: blur(8px); border-radius: 3px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-    body.side-menu-abierto .side-menu-btn { opacity: 0; visibility: hidden; }
+    .side-menu-btn { position: fixed !important; left: 20px !important; top: 12px !important; z-index: 100000 !important; background: rgba(26,18,8,0.95); border: 1px solid rgba(166,128,49,0.5); color: var(--dorado); padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: var(--transicion); backdrop-filter: blur(8px); border-radius: 3px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     .side-menu-btn:hover { background: var(--dorado); color: #fff; }
     .side-menu-btn span.bar { width: 20px; height: 1.5px; background: currentColor; display: block; }
     .side-menu-btn .menu-label { font-size: 0.48rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
-    .side-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9998; opacity: 0; visibility: hidden; transition: var(--transicion); }
+    .side-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 105000 !important; opacity: 0; visibility: hidden; transition: var(--transicion); }
     .side-menu-overlay.abierto { opacity: 1; visibility: visible; }
-    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 50000 !important; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
+    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 110000 !important; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
     .side-menu.abierto { transform: translateX(0); }
     .side-menu-header { padding: 40px 36px 30px; border-bottom: 1px solid rgba(166,128,49,0.15); display: flex; align-items: center; justify-content: space-between; }
     .side-menu-logo { font-family: var(--fuente-titulo); font-size: 1.1rem; letter-spacing: 3px; color: var(--dorado); }
@@ -61,22 +60,38 @@
     .side-menu-close:hover { color: var(--dorado); }
     
     /* Global Modal Closers - Moved to Top Right */
-    .modal-cerrar, .modal-hab-close, .img-lightbox-close, .booking-dropdown-close { 
+    .modal-cerrar, .modal-hab-close, .booking-dropdown-close { 
       position: absolute; 
-      top: 20px; 
-      right: 20px; 
-      left: auto !important;
+      top: 15px; 
+      right: 15px; 
       z-index: 100;
-      background: rgba(26,18,8,0.1);
-      border: 1px solid rgba(166,128,49,0.2);
+      background: #fff;
+      border: 1px solid var(--dorado);
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      color: var(--dorado);
       transition: var(--transicion);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .img-lightbox-close { 
+      position: fixed !important; 
+      top: 20px !important; 
+      right: 20px !important; 
+      z-index: 40000 !important; 
+      background: rgba(26,18,8,0.8);
+      color: var(--dorado);
+      border: 1px solid var(--dorado);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .modal-cerrar:hover, .modal-hab-close:hover, .img-lightbox-close:hover {
       background: var(--dorado);
@@ -104,7 +119,8 @@
     .accordion-btn.activo .accordion-icon { transform: rotate(180deg); }
 
     /* NAV */
-    nav { position: fixed !important; top: 0 !important; left: 0 !important; width: 100%; z-index: 60000 !important; padding: 22px 40px !important; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
+    /* NAV */
+    nav { position: fixed !important; top: 0 !important; left: 0 !important; width: 100%; z-index: 80000 !important; padding: 22px 40px !important; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
     nav.scrolled { background: rgba(26,18,8,0.98) !important; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(166,128,49,0.3); box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: rgba(26,18,8,0.5); padding: 10px; border-radius: 4px; border: 1px solid rgba(166,128,49,0.3); z-index: 60001 !important; }
     .hamburger span { width: 25px; height: 2px; background: var(--dorado); display: block; }
@@ -479,7 +495,7 @@
     .modal-overlay.abierto { opacity: 1; visibility: visible; }
     .modal { background: #fff; border: 1px solid rgba(166,128,49,0.3); max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 50px; position: relative; transform: translateY(30px); transition: transform 0.4s ease; box-shadow: 0 30px 80px rgba(0,0,0,0.2); }
     .modal-overlay.abierto .modal { transform: translateY(0); }
-    .modal-cerrar { position: sticky; top: 16px; left: 16px; background: rgba(255,255,255,0.9); border: 1px solid rgba(166,128,49,0.35); color: #3a2e1a; font-size: 1.2rem; cursor: pointer; transition: all 0.3s; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; z-index: 10; border-radius: 2px; font-weight: bold; }
+    .modal-cerrar { position: fixed !important; top: 15px !important; right: 15px !important; background: #fff !important; border: 1px solid var(--dorado) !important; color: var(--dorado) !important; font-size: 1.1rem !important; cursor: pointer; transition: all 0.3s; width: 38px !important; height: 38px !important; display: flex; align-items: center; justify-content: center; z-index: 120000 !important; border-radius: 50% !important; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important; }
     .modal-cerrar:hover { background: var(--dorado); color: #fff; border-color: var(--dorado); }
     .modal-titulo { font-family: var(--fuente-titulo); font-size: 1.7rem; letter-spacing: 3px; color: var(--texto-oscuro); margin-bottom: 6px; }
     .modal-subtitulo { font-family: var(--fuente-elegante); font-style: italic; color: var(--dorado); margin-bottom: 28px; }
@@ -549,10 +565,10 @@
       nav { padding: 18px 30px 18px 70px; }
       nav.scrolled { padding: 12px 30px 12px 70px; }
       .nav-links { display: none; }
-      .nav-links.abierto { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #1a1208 !important; align-items: center; justify-content: center; gap: 20px; z-index: 9999; overflow-y: auto; padding: 40px 20px; }
+      .nav-links.abierto { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #1a1208 !important; align-items: center; justify-content: center; gap: 20px; z-index: 100000 !important; overflow-y: auto; padding: 40px 20px; }
       .nav-links.abierto li { width: 100%; text-align: center; }
       .nav-links.abierto a { font-size: 1.1rem; display: block; padding: 10px; }
-      .hamburger { display: flex !important; margin-right: 20px; }
+      .hamburger { display: flex !important; transform: translateX(20px); }
       .historia-grid { grid-template-columns: 1fr; }
       .historia-imagen-wrapper { display: none; }
       .historia-mv-grid { grid-template-columns: 1fr; }
@@ -2464,8 +2480,8 @@ function confirmarReserva(event) {
     }, (error, url) => {
       if (error) console.error('Error QR:', error);
       else {
-        // Usamos una imagen con crossOrigin para evitar que html2canvas se queje
-        qrWrapper.innerHTML = `<img src="${url}" id="qr-img-final" style="width:160px;height:160px;display:block;margin:0 auto;border:2px solid #fff;" crossorigin="anonymous">`;
+        // Usamos una imagen SIN CORS (DataURL no lo necesita)
+        qrWrapper.innerHTML = `<img src="${url}" id="qr-img-final" style="width:160px;height:160px;display:block;margin:0 auto;border:4px solid #fff;">`;
         console.log('✅ QR Generado como Imagen Estática para la descarga');
       }
     });
@@ -2506,7 +2522,10 @@ function descargarComprobante() {
   const element = document.getElementById('comprobante-reserva');
   if (!element) return;
   
-  // Pequeño retardo para asegurar que el DOM y las imágenes están listas
+  // Guardamos scroll actual
+  const scrollY = window.scrollY;
+  window.scrollTo(0, 0);
+  
   html2canvas(element, {
     scale: 2,
     useCORS: true,
@@ -2514,6 +2533,9 @@ function descargarComprobante() {
     backgroundColor: "#fffdf8",
     logging: true
   }).then(canvas => {
+    // Restauramos scroll
+    window.scrollTo(0, scrollY);
+    
     const link = document.createElement('a');
     link.download = `Mayanza-Reserva-${window._reservaActual?.resNum || 'MGH'}.png`;
     link.href = canvas.toDataURL('image/png');
