@@ -104,8 +104,10 @@
     .accordion-btn.activo .accordion-icon { transform: rotate(180deg); }
 
     /* NAV */
-    nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100%; z-index: 30000 !important; padding: 22px 60px 22px 80px; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
-    nav.scrolled { background: rgba(26,18,8,0.98) !important; backdrop-filter: blur(10px); padding: 14px 60px 14px 80px; border-bottom: 1px solid rgba(166,128,49,0.3); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+    nav { position: fixed !important; top: 0 !important; left: 0 !important; width: 100%; z-index: 60000 !important; padding: 22px 40px !important; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
+    nav.scrolled { background: rgba(26,18,8,0.98) !important; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(166,128,49,0.3); box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: rgba(26,18,8,0.5); padding: 10px; border-radius: 4px; border: 1px solid rgba(166,128,49,0.3); z-index: 60001 !important; }
+    .hamburger span { width: 25px; height: 2px; background: var(--dorado); display: block; }
     .nav-links a { color: #fff; text-decoration: none; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400; position: relative; transition: var(--transicion); }
     nav.scrolled .nav-links a { color: #fff; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--dorado); transition: width 0.3s ease; }
@@ -550,7 +552,7 @@
       .nav-links.abierto { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #1a1208 !important; align-items: center; justify-content: center; gap: 20px; z-index: 9999; overflow-y: auto; padding: 40px 20px; }
       .nav-links.abierto li { width: 100%; text-align: center; }
       .nav-links.abierto a { font-size: 1.1rem; display: block; padding: 10px; }
-      .hamburger { display: flex; z-index: 10000; }
+      .hamburger { display: flex !important; margin-right: 20px; }
       .historia-grid { grid-template-columns: 1fr; }
       .historia-imagen-wrapper { display: none; }
       .historia-mv-grid { grid-template-columns: 1fr; }
@@ -2450,28 +2452,21 @@ function confirmarReserva(event) {
 
   document.getElementById('qr-res-num').textContent = `ID: ${resNum}`;
 
-  // Generar QR en formato SVG (más compatible con html2canvas y alta calidad)
+  // Generar QR robusto mediante DataURL (Imagen estática para html2canvas)
   setTimeout(() => {
-    QRCode.toString(qrData, {
-      type: 'svg',
+    const qrWrapper = document.getElementById('qr-code-display');
+    if (!qrWrapper) return;
+    
+    QRCode.toDataURL(qrData, {
       width: 160,
       margin: 1,
       color: { dark: '#1a1208', light: '#ffffff' }
-    }, (error, svgString) => {
+    }, (error, url) => {
       if (error) console.error('Error QR:', error);
       else {
-        const qrWrapper = document.getElementById('qr-code-display');
-        if (qrWrapper) {
-          qrWrapper.innerHTML = svgString;
-          const svgEl = qrWrapper.querySelector('svg');
-          if (svgEl) {
-            svgEl.style.width = '160px';
-            svgEl.style.height = '160px';
-            svgEl.style.display = 'block';
-            svgEl.style.margin = '0 auto';
-          }
-          console.log('✅ QR Generado en SVG perfectamente');
-        }
+        // Usamos una imagen con crossOrigin para evitar que html2canvas se queje
+        qrWrapper.innerHTML = `<img src="${url}" id="qr-img-final" style="width:160px;height:160px;display:block;margin:0 auto;border:2px solid #fff;" crossorigin="anonymous">`;
+        console.log('✅ QR Generado como Imagen Estática para la descarga');
       }
     });
   }, 450);
@@ -2511,32 +2506,13 @@ function descargarComprobante() {
   const element = document.getElementById('comprobante-reserva');
   if (!element) return;
   
-  // Clonamos el elemento para manipularlo sin afectar la vista del usuario
+  // Pequeño retardo para asegurar que el DOM y las imágenes están listas
   html2canvas(element, {
     scale: 2,
     useCORS: true,
+    allowTaint: true,
     backgroundColor: "#fffdf8",
-    logging: false,
-    onclone: (clonedDoc) => {
-      // Forzamos al clon a que el QR (SVG) sea renderizado como una imagen estática
-      const qrWrapper = clonedDoc.getElementById('qr-code-display');
-      const originalSvg = document.querySelector('#qr-code-display svg');
-      if (qrWrapper && originalSvg) {
-        const svgData = new XMLSerializer().serializeToString(originalSvg);
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const img = new Image();
-        const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
-        const url = URL.createObjectURL(svgBlob);
-        
-        // Sincronía forzada: Dibujamos el SVG en un canvas temporal dentro del clon
-        img.src = url;
-        qrWrapper.innerHTML = '';
-        qrWrapper.appendChild(img);
-        img.style.width = '160px';
-        img.style.height = '160px';
-      }
-    }
+    logging: true
   }).then(canvas => {
     const link = document.createElement('a');
     link.download = `Mayanza-Reserva-${window._reservaActual?.resNum || 'MGH'}.png`;
@@ -2544,7 +2520,7 @@ function descargarComprobante() {
     link.click();
   }).catch(err => {
     console.error('Error html2canvas:', err);
-    alert('No se pudo generar el comprobante. Por favor toma una captura de pantalla.');
+    alert('Error al generar la imagen. Por favor intenta de nuevo o toma una captura.');
   });
 }
 
