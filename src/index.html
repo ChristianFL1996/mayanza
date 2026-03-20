@@ -46,14 +46,14 @@
     @keyframes girar { to { transform: rotate(360deg); } }
 
     /* SIDE MENU */
-    .side-menu-btn { position: fixed; left: 20px; top: 18px; z-index: 1100; background: rgba(26,18,8,0.85); border: 1px solid rgba(166,128,49,0.4); color: var(--dorado); padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: var(--transicion); backdrop-filter: blur(8px); border-radius: 3px; }
+    .side-menu-btn { position: fixed; left: 20px; top: 18px; z-index: 9999; background: rgba(26,18,8,0.95); border: 1px solid rgba(166,128,49,0.5); color: var(--dorado); padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: var(--transicion); backdrop-filter: blur(8px); border-radius: 3px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
     nav.scrolled ~ .side-menu-btn, body .side-menu-btn { top: 18px; }
     .side-menu-btn:hover { background: var(--dorado); color: #fff; }
     .side-menu-btn span.bar { width: 20px; height: 1.5px; background: currentColor; display: block; }
     .side-menu-btn .menu-label { font-size: 0.48rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
-    .side-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1200; opacity: 0; visibility: hidden; transition: var(--transicion); }
+    .side-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9998; opacity: 0; visibility: hidden; transition: var(--transicion); }
     .side-menu-overlay.abierto { opacity: 1; visibility: visible; }
-    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 1300; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
+    .side-menu { position: fixed; left: 0; top: 0; bottom: 0; width: 360px; background: #1a1208; z-index: 10000; transform: translateX(-100%); transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1); overflow-y: auto; border-right: 1px solid rgba(166,128,49,0.2); }
     .side-menu.abierto { transform: translateX(0); }
     .side-menu-header { padding: 40px 36px 30px; border-bottom: 1px solid rgba(166,128,49,0.15); display: flex; align-items: center; justify-content: space-between; }
     .side-menu-logo { font-family: var(--fuente-titulo); font-size: 1.1rem; letter-spacing: 3px; color: var(--dorado); }
@@ -595,12 +595,16 @@
       .hero-titulo { font-size: 3.2rem !important; }
       .hero-subtitulo { font-size: 0.9rem !important; }
       .video-timeline { gap: 15px !important; }
+      .eventos-grid { grid-template-columns: 1fr !important; }
+      .cotiza-evento-box { padding: 30px 20px !important; }
+      .cotiza-evento-box h3 { font-size: 1.3rem !important; }
+      .btn-whatsapp, .btn-secundario { padding: 14px !important; font-size: 0.65rem !important; }
     }
     /* Overflow protection */
     body, html { width: 100%; overflow-x: hidden; position: relative; }
   </style>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -1277,7 +1281,7 @@
     
     <div class="contacto-grid">
       <!-- Event Slider Component -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto;">
+      <div class="eventos-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto;">
         <div style="position: relative; overflow: hidden; height: 350px; cursor: pointer;" onclick="abrirLightbox('Imagenes/Salon de eventos (2).jpeg')">
           <img src="Imagenes/Salon de eventos (2).jpeg" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Salón Gran Quetzal">
           <div style="position: absolute; top:20px; right:20px; background:rgba(166,128,49,0.8); color:#fff; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.3);">⧉</div>
@@ -1304,7 +1308,7 @@
         </div>
       </div>
       
-      <div style="background: var(--fondo-seccion); padding: 40px; border: 1px solid rgba(166,128,49,0.2); display:flex; flex-direction:column; justify-content:center;">
+      <div class="cotiza-evento-box" style="background: var(--fondo-seccion); padding: 40px; border: 1px solid rgba(166,128,49,0.2); display:flex; flex-direction:column; justify-content:center;">
         <h3 style="font-family:var(--fuente-titulo); font-size:1.5rem; color:var(--texto-oscuro); margin-bottom:20px;">Cotiza tu Evento</h3>
         <p style="font-size:0.9rem; color:var(--texto-gris); margin-bottom:30px; line-height:1.6;">Nuestro equipo de expertos en eventos está listo para diseñar el paquete perfecto para ti. Incluye banquetería, equipo audiovisual y coordinación.</p>
         
@@ -2447,21 +2451,23 @@ function confirmarReserva(event) {
 
   document.getElementById('qr-res-num').textContent = `ID: ${resNum}`;
 
-  // Generar QR robusto mediante librería local (evita CORS y carga externa)
+  // Generar QR robusto mediante DataURL
   setTimeout(() => {
-    const qrWrapper = document.getElementById('qr-code-display');
-    if (!qrWrapper) return;
-    qrWrapper.innerHTML = ''; // Limpiar previo
-    new QRCode(qrWrapper, {
-      text: qrData,
+    QRCode.toDataURL(qrData, {
       width: 160,
-      height: 160,
-      colorDark: "#1a1208",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
+      margin: 2,
+      color: { dark: '#1a1208', light: '#ffffff' }
+    }, (error, url) => {
+      if (error) console.error('Error QR:', error);
+      else {
+        const qrWrapper = document.getElementById('qr-code-display');
+        if (qrWrapper) {
+          qrWrapper.innerHTML = `<img src="${url}" alt="QR Reserva" crossOrigin="anonymous" style="width:160px;height:160px;display:block;margin:0 auto;border:4px solid #fff;">`;
+          console.log('✅ QR Generado mediante DataURL');
+        }
+      }
     });
-    console.log('✅ QR Generado localmente');
-  }, 350);
+  }, 450);
 
   window._reservaActual = { resNum, nombres, apellidos, suiteVal, checkin: fmtDate(checkin), checkout: fmtDate(checkout), noches };
 
