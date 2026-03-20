@@ -104,10 +104,10 @@
     .accordion-btn.activo .accordion-icon { transform: rotate(180deg); }
 
     /* NAV */
-    nav { position: fixed; top: 0; width: 100%; z-index: 5000; padding: 22px 60px 22px 80px; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
-    nav.scrolled { background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); padding: 14px 60px 14px 80px; border-bottom: 1px solid rgba(166,128,49,0.2); box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100%; z-index: 30000 !important; padding: 22px 60px 22px 80px; display: flex; align-items: center; justify-content: space-between; transition: var(--transicion); background: transparent; }
+    nav.scrolled { background: rgba(26,18,8,0.98) !important; backdrop-filter: blur(10px); padding: 14px 60px 14px 80px; border-bottom: 1px solid rgba(166,128,49,0.3); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
     .nav-links a { color: #fff; text-decoration: none; font-size: 0.72rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 400; position: relative; transition: var(--transicion); }
-    nav.scrolled .nav-links a { color: var(--texto-oscuro); }
+    nav.scrolled .nav-links a { color: #fff; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--dorado); transition: width 0.3s ease; }
     .nav-links a:hover { color: var(--dorado) !important; }
     .nav-links a:hover::after { width: 100%; }
@@ -1961,8 +1961,7 @@
           </div>
         </div>
         <p id="qr-res-num" style="font-size:0.72rem; color:#5a4e3a; margin-top:8px; font-family:'Jost',sans-serif; letter-spacing:1px;"></p>
-        <div style="border-top:1px solid rgba(166,128,49,0.2); margin-top:16px; padding-top:12px; font-size:0.62rem; color:#8a7a5a; font-family:'Jost',sans-serif; letter-spacing:1px;">
-          mayanzahotels@gmail.com · +502 5631 1624 · Guatemala
+          <span id="hotel-email-receipt"></span> · +502 5631 1624 · Guatemala
         </div>
       </div>
 
@@ -2026,7 +2025,7 @@
       <h4>6. Privacidad</h4>
       <p>Los datos personales proporcionados durante la reserva son tratados con estricta confidencialidad y únicamente para fines de gestión de la estadía, en cumplimiento con las leyes guatemaltecas de protección de datos.</p>
       <br>
-      <p style="font-size:0.75rem; color:var(--texto-gris);">Última actualización: Enero 2025. Para consultas: mayanzahotels@gmail.com</p>
+      <p style="font-size:0.75rem; color:var(--texto-gris);">Última actualización: Enero 2025. Para consultas: <span class="hotel-email-text"></span></p>
     </div>
   </div>
 </div>
@@ -2047,7 +2046,7 @@
       <h4>Jurisdicción</h4>
       <p>Cualquier disputa relacionada con el uso de este sitio web o los servicios del hotel se regirá por las leyes de Guatemala y se someterá a la jurisdicción de los tribunales competentes de la República de Guatemala.</p>
       <h4>Contacto</h4>
-      <p>Para cualquier consulta legal: mayanzahotels@gmail.com | +502 5631 1624</p>
+      <p>Para cualquier consulta legal: <span class="hotel-email-text"></span> | +502 5631 1624</p>
       <br>
       <p style="font-size:0.75rem; color:var(--texto-gris);">© 2025 Mayanza Grand Hotels. Todos los derechos reservados.</p>
     </div>
@@ -2451,19 +2450,27 @@ function confirmarReserva(event) {
 
   document.getElementById('qr-res-num').textContent = `ID: ${resNum}`;
 
-  // Generar QR robusto mediante DataURL
+  // Generar QR en formato SVG (más compatible con html2canvas y alta calidad)
   setTimeout(() => {
-    QRCode.toDataURL(qrData, {
+    QRCode.toString(qrData, {
+      type: 'svg',
       width: 160,
-      margin: 2,
+      margin: 1,
       color: { dark: '#1a1208', light: '#ffffff' }
-    }, (error, url) => {
+    }, (error, svgString) => {
       if (error) console.error('Error QR:', error);
       else {
         const qrWrapper = document.getElementById('qr-code-display');
         if (qrWrapper) {
-          qrWrapper.innerHTML = `<img src="${url}" alt="QR Reserva" crossOrigin="anonymous" style="width:160px;height:160px;display:block;margin:0 auto;border:4px solid #fff;">`;
-          console.log('✅ QR Generado mediante DataURL');
+          qrWrapper.innerHTML = svgString;
+          const svgEl = qrWrapper.querySelector('svg');
+          if (svgEl) {
+            svgEl.style.width = '160px';
+            svgEl.style.height = '160px';
+            svgEl.style.display = 'block';
+            svgEl.style.margin = '0 auto';
+          }
+          console.log('✅ QR Generado en SVG perfectamente');
         }
       }
     });
@@ -2602,6 +2609,13 @@ function irAOrganigrama() {
     }
   }, 350);
 }
+// Inject email to bypass Cloudflare
+document.addEventListener('DOMContentLoaded', () => {
+    const email = 'mayanzahotels@gmail.com';
+    document.querySelectorAll('.hotel-email-text').forEach(el => el.textContent = email);
+    const receiptEmail = document.getElementById('hotel-email-receipt');
+    if (receiptEmail) receiptEmail.textContent = email;
+});
 </script>
 </body>
 </html>
