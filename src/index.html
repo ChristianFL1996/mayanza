@@ -563,6 +563,18 @@
       .booking-field { flex: 1 1 50%; }
       .org-row { flex-wrap: wrap; justify-content: center; }
     }
+    @media (max-width: 768px) {
+      .modal, .modal-hab { 
+        width: 95vw !important; 
+        max-height: 95vh !important;
+        padding: 24px !important;
+      }
+      .modal-hab-body { padding: 24px !important; }
+      .modal-hab-imgs { height: 280px !important; }
+      .modal-hab-header { flex-direction: column; gap: 10px; }
+      .modal-hab-amenidades { grid-template-columns: 1fr !important; }
+      .video-item-card { min-width: 85vw !important; }
+    }
     @media (max-width: 640px) {
       .franja-reconocimientos { gap: 16px; flex-wrap: wrap; justify-content: center; }
       .exp-grid { grid-template-columns: 1fr; }
@@ -570,15 +582,20 @@
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
       .form-fila { grid-template-columns: 1fr; }
-      .modal { padding: 30px 20px; }
+      .modal { padding: 25px 15px !important; }
       .hero-dots { display: none; }
-      .booking-field { flex: 1 1 100%; }
+      .booking-field { flex: 1 1 100%; border-right: none; border-bottom: 1px solid rgba(166,128,49,0.1); }
       .galeria-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
       .galeria-item:nth-child(1) { grid-column: span 2; }
       .galeria-item:nth-child(4), .galeria-item:nth-child(7) { grid-column: span 1; }
       .comodidades-grid { grid-template-columns: 1fr; }
       .info-hotel-grid { grid-template-columns: 1fr; }
+      .hero-titulo { font-size: 3.2rem !important; }
+      .hero-subtitulo { font-size: 0.9rem !important; }
+      .video-timeline { gap: 15px !important; }
     }
+    /* Overflow protection */
+    body, html { width: 100%; overflow-x: hidden; position: relative; }
   </style>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
