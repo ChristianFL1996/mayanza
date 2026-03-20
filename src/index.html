@@ -2512,9 +2512,15 @@ function confirmarReserva(event) {
 }
 
 // DESCARGA DE COMPROBANTE
-function descargarComprobante() {
+async function descargarComprobante() {
   const element = document.getElementById('comprobante-reserva');
   if (!element) return;
+  
+  // Aseguramos que la imagen del QR esté lista
+  const qrImg = document.getElementById('qr-img-final');
+  if (qrImg && !qrImg.complete) {
+    await new Promise(r => qrImg.onload = r);
+  }
   
   // Guardamos scroll actual
   const scrollY = window.scrollY;
